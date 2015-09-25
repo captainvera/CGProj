@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E97B6C891BB5AD0000DE486B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6C881BB5AD0000DE486B /* main.cpp */; };
+		E97B6C901BB5AF9600DE486B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97B6C8F1BB5AF9600DE486B /* GLUT.framework */; };
+		E97B6C921BB5AF9C00DE486B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97B6C911BB5AF9C00DE486B /* OpenGL.framework */; };
+		E97B6C991BB5B3DE00DE486B /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6C971BB5B3DE00DE486B /* Vector3.cpp */; };
+		E97B6C9D1BB5B42600DE486B /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6C9B1BB5B42600DE486B /* Camera.cpp */; };
+		E97B6CA01BB5B45800DE486B /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6C9E1BB5B45800DE486B /* Entity.cpp */; };
+		E97B6CA31BB5B47700DE486B /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CA11BB5B47700DE486B /* GameObject.cpp */; };
+		E97B6CA61BB5B48600DE486B /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CA41BB5B48600DE486B /* GameManager.cpp */; };
+		E97B6CA91BB5B51600DE486B /* DynamicObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CA71BB5B51600DE486B /* DynamicObject.cpp */; };
+		E97B6CAC1BB5B52C00DE486B /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CAA1BB5B52C00DE486B /* Car.cpp */; };
+		E97B6CAF1BB5B54A00DE486B /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CAD1BB5B54A00DE486B /* Obstacle.cpp */; };
+		E97B6CB21BB5B55900DE486B /* Butter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CB01BB5B55900DE486B /* Butter.cpp */; };
+		E97B6CB51BB5B56500DE486B /* Orange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E97B6CB31BB5B56500DE486B /* Orange.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E97B6C831BB5AD0000DE486B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E97B6C851BB5AD0000DE486B /* CGProj */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CGProj; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97B6C881BB5AD0000DE486B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E97B6C8F1BB5AF9600DE486B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		E97B6C911BB5AF9C00DE486B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E97B6C931BB5B0BD00DE486B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E97B6C971BB5B3DE00DE486B /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3.cpp; sourceTree = "<group>"; };
+		E97B6C981BB5B3DE00DE486B /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
+		E97B6C9B1BB5B42600DE486B /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		E97B6C9C1BB5B42600DE486B /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		E97B6C9E1BB5B45800DE486B /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		E97B6C9F1BB5B45800DE486B /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		E97B6CA11BB5B47700DE486B /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		E97B6CA21BB5B47700DE486B /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		E97B6CA41BB5B48600DE486B /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		E97B6CA51BB5B48600DE486B /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		E97B6CA71BB5B51600DE486B /* DynamicObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DynamicObject.cpp; sourceTree = "<group>"; };
+		E97B6CA81BB5B51600DE486B /* DynamicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicObject.h; sourceTree = "<group>"; };
+		E97B6CAA1BB5B52C00DE486B /* Car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Car.cpp; sourceTree = "<group>"; };
+		E97B6CAB1BB5B52C00DE486B /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		E97B6CAD1BB5B54A00DE486B /* Obstacle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obstacle.cpp; sourceTree = "<group>"; };
+		E97B6CAE1BB5B54A00DE486B /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
+		E97B6CB01BB5B55900DE486B /* Butter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Butter.cpp; sourceTree = "<group>"; };
+		E97B6CB11BB5B55900DE486B /* Butter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Butter.h; sourceTree = "<group>"; };
+		E97B6CB31BB5B56500DE486B /* Orange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Orange.cpp; sourceTree = "<group>"; };
+		E97B6CB41BB5B56500DE486B /* Orange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orange.h; sourceTree = "<group>"; };
+		E97B6CB61BB5B9CD00DE486B /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E97B6C821BB5AD0000DE486B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E97B6C921BB5AF9C00DE486B /* OpenGL.framework in Frameworks */,
+				E97B6C901BB5AF9600DE486B /* GLUT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E97B6C7C1BB5AD0000DE486B = {
+			isa = PBXGroup;
+			children = (
+				E97B6C931BB5B0BD00DE486B /* Cocoa.framework */,
+				E97B6C911BB5AF9C00DE486B /* OpenGL.framework */,
+				E97B6C8F1BB5AF9600DE486B /* GLUT.framework */,
+				E97B6C871BB5AD0000DE486B /* CGProj */,
+				E97B6C861BB5AD0000DE486B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E97B6C861BB5AD0000DE486B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E97B6C851BB5AD0000DE486B /* CGProj */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E97B6C871BB5AD0000DE486B /* CGProj */ = {
+			isa = PBXGroup;
+			children = (
+				E97B6C881BB5AD0000DE486B /* main.cpp */,
+				E97B6C9E1BB5B45800DE486B /* Entity.cpp */,
+				E97B6CB61BB5B9CD00DE486B /* Common.h */,
+				E97B6C9F1BB5B45800DE486B /* Entity.h */,
+				E97B6C971BB5B3DE00DE486B /* Vector3.cpp */,
+				E97B6C981BB5B3DE00DE486B /* Vector3.h */,
+				E97B6C9B1BB5B42600DE486B /* Camera.cpp */,
+				E97B6C9C1BB5B42600DE486B /* Camera.h */,
+				E97B6CA11BB5B47700DE486B /* GameObject.cpp */,
+				E97B6CA21BB5B47700DE486B /* GameObject.h */,
+				E97B6CA41BB5B48600DE486B /* GameManager.cpp */,
+				E97B6CA51BB5B48600DE486B /* GameManager.h */,
+				E97B6CA71BB5B51600DE486B /* DynamicObject.cpp */,
+				E97B6CA81BB5B51600DE486B /* DynamicObject.h */,
+				E97B6CAA1BB5B52C00DE486B /* Car.cpp */,
+				E97B6CAB1BB5B52C00DE486B /* Car.h */,
+				E97B6CAD1BB5B54A00DE486B /* Obstacle.cpp */,
+				E97B6CAE1BB5B54A00DE486B /* Obstacle.h */,
+				E97B6CB01BB5B55900DE486B /* Butter.cpp */,
+				E97B6CB11BB5B55900DE486B /* Butter.h */,
+				E97B6CB31BB5B56500DE486B /* Orange.cpp */,
+				E97B6CB41BB5B56500DE486B /* Orange.h */,
+			);
+			path = CGProj;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E97B6C841BB5AD0000DE486B /* CGProj */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E97B6C8C1BB5AD0000DE486B /* Build configuration list for PBXNativeTarget "CGProj" */;
+			buildPhases = (
+				E97B6C811BB5AD0000DE486B /* Sources */,
+				E97B6C821BB5AD0000DE486B /* Frameworks */,
+				E97B6C831BB5AD0000DE486B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CGProj;
+			productName = CGProj;
+			productReference = E97B6C851BB5AD0000DE486B /* CGProj */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E97B6C7D1BB5AD0000DE486B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "João Vicente";
+				TargetAttributes = {
+					E97B6C841BB5AD0000DE486B = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = E97B6C801BB5AD0000DE486B /* Build configuration list for PBXProject "CGProj" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E97B6C7C1BB5AD0000DE486B;
+			productRefGroup = E97B6C861BB5AD0000DE486B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E97B6C841BB5AD0000DE486B /* CGProj */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E97B6C811BB5AD0000DE486B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E97B6CA91BB5B51600DE486B /* DynamicObject.cpp in Sources */,
+				E97B6CA01BB5B45800DE486B /* Entity.cpp in Sources */,
+				E97B6CA61BB5B48600DE486B /* GameManager.cpp in Sources */,
+				E97B6C9D1BB5B42600DE486B /* Camera.cpp in Sources */,
+				E97B6C991BB5B3DE00DE486B /* Vector3.cpp in Sources */,
+				E97B6CB51BB5B56500DE486B /* Orange.cpp in Sources */,
+				E97B6CB21BB5B55900DE486B /* Butter.cpp in Sources */,
+				E97B6C891BB5AD0000DE486B /* main.cpp in Sources */,
+				E97B6CAC1BB5B52C00DE486B /* Car.cpp in Sources */,
+				E97B6CA31BB5B47700DE486B /* GameObject.cpp in Sources */,
+				E97B6CAF1BB5B54A00DE486B /* Obstacle.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		E97B6C8A1BB5AD0000DE486B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		E97B6C8B1BB5AD0000DE486B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E97B6C8D1BB5AD0000DE486B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E97B6C8E1BB5AD0000DE486B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E97B6C801BB5AD0000DE486B /* Build configuration list for PBXProject "CGProj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E97B6C8A1BB5AD0000DE486B /* Debug */,
+				E97B6C8B1BB5AD0000DE486B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E97B6C8C1BB5AD0000DE486B /* Build configuration list for PBXNativeTarget "CGProj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E97B6C8D1BB5AD0000DE486B /* Debug */,
+				E97B6C8E1BB5AD0000DE486B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E97B6C7D1BB5AD0000DE486B /* Project object */;
+}
