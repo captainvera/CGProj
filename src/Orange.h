@@ -9,7 +9,7 @@
 #ifndef __CGProj__Orange__
 #define __CGProj__Orange__
 
-#include <stdio.h>
+#include "Common.h"
 
 class Orange{
     

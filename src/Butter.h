@@ -9,7 +9,7 @@
 #ifndef __CGProj__Butter__
 #define __CGProj__Butter__
 
-#include <stdio.h>
+#include "Common.h"
 
 class Butter {
     

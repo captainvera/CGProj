@@ -9,9 +9,10 @@
 #ifndef __CGProj__DynamicObject__
 #define __CGProj__DynamicObject__
 
-#include <stdio.h>
+#include "Common.h"
+#include "GameObject.h"
 
-class DynamicObject {
+class DynamicObject : public GameObject{
     
 };
 

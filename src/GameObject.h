@@ -9,10 +9,13 @@
 #ifndef __CGProj__GameObject__
 #define __CGProj__GameObject__
 
-#include <stdio.h>
+#include "Common.h"
 #include "Entity.h"
 
-class GameObject : Entity {
-    
+class GameObject : public Entity {
+	GameObject();
+	~GameObject();
+	virtual void draw();
+	virtual void update(GLdouble delta_t);
 };
 #endif /* defined(__CGProj__GameObject__) */

@@ -9,7 +9,7 @@
 #ifndef __CGProj__Obstacle__
 #define __CGProj__Obstacle__
 
-#include <stdio.h>
+#include "Common.h"
 
 class Obstacle {
     

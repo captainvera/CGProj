@@ -9,7 +9,7 @@
 #ifndef __CGProj__Car__
 #define __CGProj__Car__
 
-#include <stdio.h>
+#include "Common.h"
 
 class Car {
     
