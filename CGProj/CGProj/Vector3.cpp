@@ -2,9 +2,6 @@
 //  Vector3.cpp
 //  CGProj
 //
-//  Created by João Vicente on 25/09/15.
-//  Copyright (c) 2015 João Vicente. All rights reserved.
-//
 
 #include "Vector3.h"
 
@@ -13,6 +10,9 @@ Vector3::Vector3(){
 }
 
 Vector3::Vector3 (GLdouble x, GLdouble y, GLdouble z) : _x(x), _y(y), _z(z) {
+}
+
+Vector3::~Vector3(){
 }
 
 GLdouble Vector3::getX() const{

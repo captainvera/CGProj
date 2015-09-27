@@ -10,6 +10,7 @@
 #define __CGProj__GameObject__
 
 #include <stdio.h>
+#include "Entity.h"
 
 class GameObject : Entity {
     
