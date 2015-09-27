@@ -12,7 +12,10 @@
 #include "Common.h"
 
 class Orange{
-    
+public:
+	Orange();
+	~Orange();
+	void draw();
 };
 
 #endif /* defined(__CGProj__Orange__) */

@@ -10,9 +10,12 @@
 #define __CGProj__Obstacle__
 
 #include "Common.h"
+#include "DynamicObject.h"
 
-class Obstacle {
-    
+class Obstacle : DynamicObject {
+public:
+	Obstacle();
+	~Obstacle();
 };
 
 #endif /* defined(__CGProj__Obstacle__) */

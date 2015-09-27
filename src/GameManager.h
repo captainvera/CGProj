@@ -12,7 +12,7 @@
 #include "Common.h"
 
 class GameManager {
-
+public:
 	GameManager();
 	~GameManager();
 
