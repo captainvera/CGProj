@@ -7,6 +7,8 @@
 
 class Logger {
 public:
-	void print(std::string text);
-	void printError(std::string text);
+	static void printf(std::string text);
+	static void printError(std::string text);
+	static void print(std::string text);
+	static void print(GLdouble d);
 };

@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include <math.h>
 
 #if defined(__APPLE__) || defined(MACOSX)
 #include <GLUT/glut.h>

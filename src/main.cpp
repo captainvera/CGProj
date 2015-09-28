@@ -7,13 +7,12 @@
 #include "GameManager.h"
 #include "Logger.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char * argv[]) {
 	
-	Logger logger = Logger();
-	GameManager gameMgr = GameManager();
+	GameManager* gameMgr = new GameManager();
 
-	logger.print("Initializing Game Manager");
-	gameMgr.init();
+	Logger::printf("Initializing Game Manager");
+	gameMgr->init(argc, argv);
 
     return 0;
 
