@@ -14,7 +14,7 @@ int main(int argc, char * argv[]) {
 
 	Car* car = new Car();
 	Logger::printf("Initializing Game Manager");
-	gameMgr->setCamera(new Camera(1, 200));
+	gameMgr->setCamera(new Camera(5, 200));
 	gameMgr->addGameObject(car);
 	gameMgr->init(argc, argv);
 
