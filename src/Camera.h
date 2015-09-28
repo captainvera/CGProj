@@ -15,7 +15,7 @@ private:
 public:
 	Camera(GLdouble near, GLdouble far);
 	~Camera();
-	void update();
+	void update(GLdouble w, GLdouble h);
 	void computeProjectionMatrix();
 	void computeVisualizationMatrix();
 };
