@@ -13,6 +13,7 @@ class DynamicObject : public GameObject{
 public:
 	DynamicObject();
 	~DynamicObject();
+	virtual void draw();
 	void update(GLdouble delta_t);
 	void setSpeed(Vector3& speed);
 	void setSpeed(GLdouble x, GLdouble y, GLdouble z);

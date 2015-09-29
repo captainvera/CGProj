@@ -7,16 +7,19 @@
 #define __CGProj__Camera__
 
 #include "Common.h"
+#include "Vector3.h"
 
 class Camera {
 private:
-	GLdouble _near;
-	GLdouble _far;
+	GLfloat _near, _far, _left, _right, _bottom, _top;
+	Vector3* _center;
+	Vector3* _up;
+	Vector3* _at;
 public:
-	Camera(GLdouble near, GLdouble far);
+	Camera(GLfloat near, GLfloat far);
 	~Camera();
 	void update(GLdouble w, GLdouble h);
-	void computeProjectionMatrix();
+	void computeProjectionMatrix(GLdouble w, GLdouble h);
 	void computeVisualizationMatrix();
 };
 
