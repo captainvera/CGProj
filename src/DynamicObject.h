@@ -10,10 +10,12 @@
 #include "GameObject.h"
 
 class DynamicObject : public GameObject{
+private:
+	Vector3* _speed;
+	GLdouble _accel;
 public:
 	DynamicObject();
 	~DynamicObject();
-	virtual void draw();
 	void update(GLdouble delta_t);
 	void setSpeed(Vector3& speed);
 	void setSpeed(GLdouble x, GLdouble y, GLdouble z);

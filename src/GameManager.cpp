@@ -135,7 +135,9 @@ void GameManager::draw()
 	_cam->computeProjectionMatrix(_currentW, _currentH);
 	_cam->computeVisualizationMatrix();
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+		glPushMatrix();
 		(*it)->draw();
+		glPopMatrix();
 	}	
 	glFlush();
 }

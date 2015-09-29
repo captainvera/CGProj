@@ -14,13 +14,9 @@ DynamicObject::~DynamicObject()
 {
 }
 
-void DynamicObject::draw()
-{
-	Logger::printf("DynamicObject");
-}
-
 void DynamicObject::update(GLdouble delta_t)
 {
+
 }
 
 void DynamicObject::setSpeed(Vector3 & speed)
