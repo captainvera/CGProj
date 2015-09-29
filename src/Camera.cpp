@@ -7,12 +7,12 @@
 #include "Logger.h"
 
 Camera::Camera(GLfloat near, GLfloat far){
-    _near = near;
-    _far = far;
-	_left = -4.0f;
-	_right = 4.0f;
-	_bottom = -3.0f;
-	_top = 3.0f;
+    _near = 5.0f;
+    _far = 75.0f;
+	_left = -20.0f;
+	_right = 20.0f;
+	_bottom = -15.0f;
+	_top = 15.0f;
 }
 
 Camera::~Camera(){
@@ -38,11 +38,12 @@ void Camera::computeProjectionMatrix(GLdouble w, GLdouble h){
 		glOrtho(_left, _right, _bottom - delta, _top + delta, _near, _far);
 	}
 }
-
+double i = 0;
 void Camera::computeVisualizationMatrix(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(-0.5, 1.0, 7.0,
+	i++;
+	gluLookAt(25.00*cos(fmod(i/30,360)), 0, 25*sin(fmod(i/30,360)),
 		0.0, 0.0, 0.0,
 		0.0, 1.0, 0.0);
 }
