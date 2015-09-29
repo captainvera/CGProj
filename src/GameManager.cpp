@@ -112,6 +112,10 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		_wireframe = !_wireframe;
 	}
+    if(key == 'r'){
+        _cam->toggleRotate();
+        Logger::printf("Toggle rotate");
+    }
 }
 
 void GameManager::onTimer()
@@ -137,7 +141,9 @@ void GameManager::draw()
 	_cam->computeProjectionMatrix(_currentW, _currentH);
 	_cam->computeVisualizationMatrix();
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+		glPushMatrix();
 		(*it)->draw();
+		glPopMatrix();
 	}	
 	glFlush();
 }
