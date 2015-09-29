@@ -13,14 +13,14 @@ Car::Car()
 Car::~Car()
 {
 }
-int t = 0;
+
 void Car::draw()
 {
 
 	
 
 	glPushMatrix();
-
+    glScalef(0.2, 0.2, 0.2);
 	 //cubo1
 	 glColor3f(1, 0, 0);
 	 glPushMatrix();

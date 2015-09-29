@@ -8,11 +8,12 @@
 
 Camera::Camera(GLfloat near, GLfloat far){
     _near = 5.0f;
-    _far = 75.0f;
-	_left = -20.0f;
-	_right = 20.0f;
-	_bottom = -15.0f;
-	_top = 15.0f;
+    _far = 200.0f;
+	_left = -50.0f;
+	_right = 50.0f;
+	_bottom = -40.0f;
+	_top = 40.0f;
+    _rotate = false;
 }
 
 Camera::~Camera(){
@@ -42,8 +43,14 @@ double i = 0;
 void Camera::computeVisualizationMatrix(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	i++;
-	gluLookAt(25.00*cos(fmod(i/30,360)), 0, 25*sin(fmod(i/30,360)),
+    if(_rotate){
+        i++;
+    }
+	gluLookAt(25.00*cos(fmod(i/30,360)), 120, 25*sin(fmod(i/30,360)),
 		0.0, 0.0, 0.0,
 		0.0, 1.0, 0.0);
+}
+
+void Camera::toggleRotate(){
+    _rotate = !_rotate;
 }
