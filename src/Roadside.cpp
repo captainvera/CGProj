@@ -18,7 +18,7 @@ void Roadside::draw(){
     double x, z;
     
     glPushMatrix();
-        for (int t = 0;t < 360;t += 3){
+        for (int t = 1;t < 360;t += 9){
             z = 40*cos(t);
             x = 40*sin(t);
             glColor3f(0, 1, 0);
