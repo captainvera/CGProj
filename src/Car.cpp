@@ -20,8 +20,9 @@ void Car::draw()
 	
 
 	glPushMatrix();
-	 glRotatef(_turn, 0, 1, 1);
-	 glTranslatef(_x, 0, 0);
+	 glTranslatef(_x, 0,_z);
+	 glRotatef(_turn, 0, 1, 0);
+	 
 	 
 	 //cubo1
 	 glColor3f(0.33, 0.2, 0.15);
@@ -83,6 +84,7 @@ void Car::draw()
 void Car::move(float accel){
 
 	_x += accel*cos((_turn * 3.14) / 180);
+	_z += accel*sin((_turn * 3.14) / 180);
 }
 
 void Car::turn(float turn) {
