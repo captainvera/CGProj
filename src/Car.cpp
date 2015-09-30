@@ -20,7 +20,9 @@ void Car::draw()
 	
 
 	glPushMatrix();
-    glScalef(0.2, 0.2, 0.2);
+	 glRotatef(_turn, 0, 1, 1);
+	 glTranslatef(_x, 0, 0);
+	 
 	 //cubo1
 	 glColor3f(0.33, 0.2, 0.15);
 	 glPushMatrix();
@@ -75,6 +77,18 @@ void Car::draw()
 	  glPopMatrix();
 	 glPopMatrix();
 	glPopMatrix();
+
+}
+
+void Car::move(float accel){
+
+	_x += accel*cos((_turn * 3.14) / 180);
+}
+
+void Car::turn(float turn) {
+
+	_turn += turn;
+	std::cout << _turn << " ";
 
 }
 
