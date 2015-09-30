@@ -40,6 +40,7 @@ void Roadside::draw(){
 }
 
 void Roadside::spawnCheerio(int x, int z){
+    glColor3f(1, 1, 0.4);
     glPushMatrix();
         glTranslatef(x, 0, z);
         glRotatef(90.0, 1.0, 0.0, 0.0);
