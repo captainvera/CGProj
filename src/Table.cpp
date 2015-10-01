@@ -19,7 +19,7 @@ void Table::draw(){
     glPushMatrix();
     
     //cubo
-    glColor3f(1, 1, 1);
+    glColor3f(0, 0.6, 0);
     glPushMatrix();
      glTranslatef(0, -53.9375, 0);
      glScalef(100, 100, 100);

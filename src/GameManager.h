@@ -10,6 +10,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "Camera.h"
+#include "Car.h"
 
 class GameManager {
 private:
@@ -17,6 +18,10 @@ private:
 	std::vector<GameObject*> _gobjs;
 
 	Camera* _cam;
+
+	Car* _car;
+
+	bool _isKeyPressed[255];
 
 	GLdouble _time,
 		_delta,
@@ -44,6 +49,7 @@ public:
 	static void displayCallback();
 	static void specialKeyboardCallback(int key, int x, int y);
 	static void keyboardCallback(unsigned char key, int x, int y);
+	static void keyboardUpCallback(unsigned char key, int x, int y);
 
 	void reshape(GLsizei w, GLsizei h);
 	void display();
@@ -59,6 +65,10 @@ public:
 	void init(int argc, char* argv[]);
 	void addGameObject(GameObject* obj);
 	void setCamera(Camera* cam);
+	void setCar(Car * car);
+	void keyboard_up(unsigned char key, int x, int y);
+
+	
 };
 
 #endif /* defined(__CGProj__GameManager__) */
