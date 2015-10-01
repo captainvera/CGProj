@@ -10,20 +10,23 @@
 
 class Vector3 {
 private:
-    GLdouble _x, _y, _z;
 public:
-    Vector3();
+	GLdouble _x, _y, _z;
+	Vector3();
     Vector3(GLdouble x, GLdouble y, GLdouble z);
     ~Vector3();
     
-    GLdouble getX() const;
-    GLdouble getY() const;
-    GLdouble getZ() const;
+	GLdouble getX() ;
+    GLdouble getY() ;
+    GLdouble getZ() ;
     
 	void set(GLdouble x, GLdouble y, GLdouble z);
     Vector3 operator=(const Vector3& vec);
     Vector3 operator+(const Vector3& vec);
     Vector3 operator-(const Vector3& vec);
     Vector3 operator*(double d);
+
+	static Vector3* normalize(Vector3* v);
+	static Vector3* crossProduct(Vector3* v1, Vector3* v2);
 };
 #endif /* defined(__CGProj__Vector3__) */

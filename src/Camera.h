@@ -8,13 +8,15 @@
 
 #include "Common.h"
 #include "Vector3.h"
+#include "GameObject.h"
 
-class Camera {
+class Camera : public GameObject{
 private:
-	GLfloat _near, _far, _left, _right, _bottom, _top;
-	Vector3* _center;
+	GLfloat _near, _far, _left, _right, _bottom, _top, _radius;
 	Vector3* _up;
-	Vector3* _at;
+	Vector3* _look;
+	Vector3* _direction;
+	Vector3* _rightaxis;
     GLboolean _rotate;
 public:
 	Camera(GLfloat near, GLfloat far);
@@ -23,6 +25,9 @@ public:
 	void computeProjectionMatrix(GLdouble w, GLdouble h);
 	void computeVisualizationMatrix();
     void toggleRotate();
+	void calculateCameraDirection();
+	void calculateRightAxis();
+	void calculateUpVector();
 };
 
 #endif /* defined(__CGProj__Camera__) */

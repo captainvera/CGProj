@@ -8,6 +8,7 @@
 
 GameObject::GameObject()
 {
+	
 }
 
 GameObject::~GameObject()
