@@ -33,35 +33,40 @@ void Vector3::set(GLdouble x, GLdouble y, GLdouble z){
     _z = z;
 }
 
-Vector3 Vector3::operator=(const Vector3& vec){
-	return Vector3(vec._x, vec._y, vec._z);
-    //return Vector3(vec.getX(), vec.getY(), vec.getZ());
+Vector3& Vector3::operator=(const Vector3& vec){
+	this->set(vec._x, vec._y, vec._z);
+	return *this;
 }
-Vector3 Vector3::operator+(const Vector3& vec){
-    //return Vector3(this->getX()+vec.getX(), this->getY()+vec.getY(), this->getZ()+vec.getZ());
-	return Vector3(this->_x + vec._x, this->_y + vec._y, this->_z + vec._z);
+Vector3& Vector3::operator+(const Vector3& vec){
+	this->set(_x + vec._x, _y + vec._y, _z + vec._z);
+	return *this;
 }
-Vector3 Vector3::operator-(const Vector3& vec){
-    //return Vector3(this->getX()-vec.getX(), this->getY()-vec.getY(), this->getZ()-vec.getZ());
-	return Vector3(this->_x - vec._x, this->_y - vec._y, this->_z - vec._z);
+Vector3& Vector3::operator-(const Vector3& vec){
+	this->set(_x - vec._x, _y - vec._y, _z - vec._z);
+	return *this;
 }
-Vector3 Vector3::operator*(double d){
-    //return Vector3(this->getX()*d, this->getY()*d, this->getZ()*d);
-	return Vector3(this->_x*d, this->_y*d, this->_z*d);
-}
-
-Vector3 * Vector3::normalize(Vector3 * v)
-{
-	GLdouble size = sqrt(v->getX()*v->getX() +
-		v->getY()*v->getY() +
-		v->getZ()*v->getZ());
-	Vector3* norm = new Vector3(v->getX() / size, v->getY() / size, v->getZ() / size);
-	return norm;
+Vector3& Vector3::operator*(double d){
+	this->set(_x*d, _y*d, _z*d);
+	return *this;
 }
 
-Vector3 * Vector3::crossProduct(Vector3 * v1, Vector3* v2)
+void Vector3::normalize(Vector3& v)
 {
-	return new Vector3(v1->getX() + v2->getX(),
-		v1->getY() + v2->getY(),
-		v1->getZ() + v2->getZ());
+	GLdouble size = sqrt(v._x*v._x +
+		v._y*v._y +
+		v._z*v._z);
+	v.set(v._x / size, v._y / size, v._z / size);
+}
+
+
+void Vector3::crossProduct(Vector3& v1, Vector3& v2, Vector3& res)
+{
+	res.set(v1._y*v2._z - v1._z*v2._y,
+		v1._z*v2._x - v1._x*v2._z,
+		v1._x*v2._y - v1._y*v2._x);
+}
+
+std::ostream& operator<<(std::ostream& os, const Vector3& v) {
+	os << "< " << v._x << " , " << v._y << " , " << v._z << " >";
+	return os;
 }

@@ -57,7 +57,7 @@ void GameManager::display()
 	//Update everything
 	update(_delta);
 	//Limit fps
-	if (_drawTimer > 0) {
+	if (_drawTimer > 15) {
 		draw();
 		_drawTimer = 0;
 		_count++;
@@ -196,8 +196,6 @@ void GameManager::draw()
 		glPopMatrix();
 	}	
 	glFlush();
-	_car->move((_isKeyPressed[105] - _isKeyPressed[107])* 0.02);
-	_car->turn((_isKeyPressed[106] - _isKeyPressed[108])* 0.2);
 }
 
 void GameManager::init(int argc, char* argv[])

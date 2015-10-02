@@ -16,11 +16,10 @@ Camera::Camera(GLfloat near, GLfloat far){
 	_bottom = -40.0f;
 	_top = 40.0f;
 
-
     _rotate = false;
 
-	_up = new Vector3();
-	_look = new Vector3(0,0,0);
+	_up = Vector3();
+	_look = Vector3(0,0,0);
 	setPosition(25, 120, 25);
 
 	calculateCameraDirection();
@@ -57,31 +56,25 @@ void Camera::computeVisualizationMatrix(){
 	glLoadIdentity();
 	if (_rotate) {
 		rotator++;
-		gluLookAt(25 * cos(rotator/30.0), 120, 25 * sin(rotator/30.0),
-			0, 0, 0, 0, 1, 0);
-		//WALK FORWARD CAMERA
-		/*setPosition(getPosition()->getX()-_direction->getX(),
-			getPosition()->getY()-_direction->getY(),
-			getPosition()->getZ()-_direction->getZ());
+		setPosition(50*cos(rotator/30.0), _position._y, 50*sin(rotator/30.0));
 		calculateCameraDirection();
-		calculateRightAxis();*/
+		calculateRightAxis();
+		gluLookAt(_position._x,
+			_position._y,
+			_position._z,
+			_position._x - _direction._x,
+			_position._y - _direction._y,
+			_position._z - _direction._z,
+			0, 1, 0);
 	}else {
-		/*printf("%f %f %f %f %f %f %f %f %f \n", getPosition()->getX(), getPosition()->getY(), getPosition()->getZ(),
-			getPosition()->getX() + _direction->getX(),
-			getPosition()->getY() + _direction->getY(),
-			getPosition()->getZ() + _direction->getZ(),
-			_up->getX(), _up->getY(), _up->getZ());*/
-		gluLookAt(getPosition()->getX(),
-			getPosition()->getY(),
-			getPosition()->getZ(),
-			getPosition()->getX() - _direction->getX(),
-			getPosition()->getY() - _direction->getY(),
-			getPosition()->getZ() - _direction->getZ(),
-			_up->getX(), _up->getY(), _up->getZ());
+		gluLookAt(_position._x,
+			_position._y,
+			_position._z,
+			_position._x - _direction._x,
+			_position._y - _direction._y,
+			_position._z - _direction._z,
+			0, 1, 0);
 	}
-	/*gluLookAt(25.00*cos(fmod(i/30,360)), 120, 25*sin(fmod(i/30,360)),
-		0.0, 0.0, 0.0,
-		0.0, 1.0, 0.0);*/
 }
 
 void Camera::toggleRotate(){
@@ -91,15 +84,15 @@ void Camera::toggleRotate(){
 
 void Camera::calculateCameraDirection()
 {
-	Vector3 a = *getPosition() - *_look;
-	_direction = Vector3::normalize(&a); 
+	_direction = _position - _look;
+	Vector3::normalize(_direction); 
 }
 
 void Camera::calculateRightAxis()
 {
-	_rightaxis = Vector3::crossProduct(new Vector3(0,1,0), _direction);
+	Vector3::crossProduct(Vector3(0,1,0), _direction, _rightaxis);
 }
 
 void Camera::calculateUpVector() {
-	_up = Vector3::crossProduct(_direction, _rightaxis);
+	Vector3::crossProduct(_direction, _rightaxis, _up);
 }
