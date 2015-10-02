@@ -8,18 +8,31 @@
 
 #include "Common.h"
 #include "DynamicObject.h"
+#include "Vector3.h"
 
 class Car : public DynamicObject {
-
+    
 private:
-	float _x = 0, _z = 0;
-	float _turn = 0;
+    
+    
+    
 public:
-	Car();
-	~Car();
-	void draw();
-	void move(float accel);
-	void turn(float turn);
+    Vector3 _position,
+    _direction;
+    GLdouble _accel,
+    _speed,
+    _turnSpeed,
+    _angle,
+    _friction;
+    
+    bool _leftPressed, _rightPressed, _downPressed, _upPressed;
+    Car();
+    ~Car();
+    void draw();
+    void move(GLdouble accel, GLdouble delta_t);
+    void turn(GLdouble turn, GLdouble delta_t);
+    void update(GLdouble delta_t);
+    
 };
 
 #endif /* defined(__CGProj__Car__) */

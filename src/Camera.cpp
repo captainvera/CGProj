@@ -90,7 +90,8 @@ void Camera::calculateCameraDirection()
 
 void Camera::calculateRightAxis()
 {
-	Vector3::crossProduct(Vector3(0,1,0), _direction, _rightaxis);
+    Vector3 vector = Vector3(0,1,0);
+	Vector3::crossProduct(vector, _direction, _rightaxis);
 }
 
 void Camera::calculateUpVector() {
