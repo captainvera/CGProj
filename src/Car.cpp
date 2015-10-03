@@ -6,6 +6,7 @@
 #include "Car.h"
 #include "Logger.h"
 
+
 Car::Car()
 {
     _direction.set(1,0,0);
@@ -16,6 +17,7 @@ Car::Car()
     _turnSpeed = 0.2;
     _friction = 0.00004;
     _angle = 0;
+    _maxSpeed = 0.1;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
@@ -96,15 +98,13 @@ void Car::draw()
 
 void Car::move( GLdouble accel, GLdouble delta_t){
     
-    if(accel != 0){
+    if(accel != 0 && fabs(_speed) < _maxSpeed){
         _speed += accel*_accel*delta_t;
-        _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
     }
-    else if(_speed > 0){
+    else if(_speed > 0 && accel == 0){
         _speed -= _friction*delta_t;
-        _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
     }
-    else
+    else if(accel == 0)
         _speed += _friction*delta_t;
         _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
 }

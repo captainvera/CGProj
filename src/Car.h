@@ -23,7 +23,8 @@ public:
     _speed,
     _turnSpeed,
     _angle,
-    _friction;
+    _friction,
+    _maxSpeed;
     
     bool _leftPressed, _rightPressed, _downPressed, _upPressed;
     Car();
