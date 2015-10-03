@@ -15,10 +15,12 @@ Car::Car()
     _speed = 0;
     _turnSpeed = 0.2;
     _friction = 0.00004;
+    _angle = 0;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
     _rightPressed = false;
+    
 }
 
 Car::~Car()
