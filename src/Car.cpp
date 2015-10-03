@@ -117,21 +117,21 @@ void Car::turn(GLdouble turn, GLdouble delta_t) {
 
 void Car::update(GLdouble delta_t) {
     
-    if(_leftPressed == true & _rightPressed == false){
+    if(_leftPressed == true && _rightPressed == false){
         turn(1, delta_t);
     }
-    else if(_leftPressed == false & _rightPressed == true){
+    else if(_leftPressed == false && _rightPressed == true){
         turn(-1, delta_t);
     }
     
     
-    if(_upPressed == true & _downPressed == false){
+    if(_upPressed == true && _downPressed == false){
         move(1, delta_t);
     }
-    else if(_upPressed == false & _downPressed == true){
+    else if(_upPressed == false && _downPressed == true){
         move(-1, delta_t);
     }
-    else if(_speed > 0.0001 or _speed < -0.0001)
+    else if(_speed > 0.0001 || _speed < -0.0001)
         move(0, delta_t);
 }
 
