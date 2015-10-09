@@ -7,13 +7,24 @@
 #include "Logger.h"
 
 Camera::Camera(GLfloat near, GLfloat far){
+
+	//ORTHO
     _near = 5.0f;
     _far = 200.0f;
 	_left = -50.0f;
 	_right = 50.0f;
 	_bottom = -40.0f;
 	_top = 40.0f;
+
     _rotate = false;
+
+	_up = Vector3();
+	_look = Vector3(0,0,0);
+	setPosition(25, 120, 25);
+
+	calculateCameraDirection();
+	calculateRightAxis();
+	calculateUpVector();
 }
 
 Camera::~Camera(){
@@ -39,18 +50,50 @@ void Camera::computeProjectionMatrix(GLdouble w, GLdouble h){
 		glOrtho(_left, _right, _bottom - delta, _top + delta, _near, _far);
 	}
 }
-double i = 0;
+double rotator = 0;
 void Camera::computeVisualizationMatrix(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-    if(_rotate){
-        i++;
-    }
-	gluLookAt(25.00*cos(fmod(i/30,360)), 120, 25*sin(fmod(i/30,360)),
-		0.0, 0.0, 0.0,
-		0.0, 1.0, 0.0);
+	if (_rotate) {
+		rotator++;
+		setPosition(50*cos(rotator/30.0), _position._y, 50*sin(rotator/30.0));
+		calculateCameraDirection();
+		calculateRightAxis();
+		gluLookAt(_position._x,
+			_position._y,
+			_position._z,
+			_position._x - _direction._x,
+			_position._y - _direction._y,
+			_position._z - _direction._z,
+			0, 1, 0);
+	}else {
+		gluLookAt(_position._x,
+			_position._y,
+			_position._z,
+			_position._x - _direction._x,
+			_position._y - _direction._y,
+			_position._z - _direction._z,
+			0, 1, 0);
+	}
 }
 
 void Camera::toggleRotate(){
+	_radius = 25;
     _rotate = !_rotate;
+}
+
+void Camera::calculateCameraDirection()
+{
+	_direction = _position - _look;
+	Vector3::normalize(_direction); 
+}
+
+void Camera::calculateRightAxis()
+{
+    Vector3 vector = Vector3(0,1,0);
+	Vector3::crossProduct(vector, _direction, _rightaxis);
+}
+
+void Camera::calculateUpVector() {
+	Vector3::crossProduct(_direction, _rightaxis, _up);
 }

@@ -16,7 +16,7 @@ GameObject::~GameObject()
 
 void GameObject::draw()
 {
-	glTranslated(getPosition()->getX(),getPosition()->getY(),getPosition()->getZ());
+	glTranslated(_position._x,_position._y,_position._z);
 }
 
 void GameObject::update(GLdouble delta_t)

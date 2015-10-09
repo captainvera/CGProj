@@ -24,6 +24,7 @@ void GameManager::setKeyboardCallback()
 {
 	glutSpecialFunc(GameManager::specialKeyboardCallback);
 	glutKeyboardFunc(GameManager::keyboardCallback);
+	glutKeyboardUpFunc(GameManager::keyboardUpCallback);
 }
 
 GameManager::GameManager()
@@ -34,6 +35,11 @@ GameManager::GameManager()
 	_h = 768;
 	_drawTimer = 0;
 	_wireframe = false;
+	int i = 0;
+	for ( i; i < 255; i++) {
+	
+		_isKeyPressed[i] = 0;
+	}
 }
 
 GameManager::~GameManager()
@@ -96,14 +102,66 @@ void GameManager::keyboardCallback(unsigned char key, int x, int y)
 	current->keyPressed(key, x, y);
 }
 
+void GameManager::keyboardUpCallback(unsigned char key, int x, int y) {
+
+	current->keyboard_up(key, x, y);
+}
+
+
 void GameManager::specialKeyPressed(int key, int x, int y)
 {
-	if (key == GLUT_KEY_UP)
+	/*
+	if (key == GLUT_KEY_UP) {
 		Logger::printf("Up pressed");
+		_car->move(0.4,0);
+	}
+	
+	if (key == GLUT_KEY_RIGHT){
+		Logger::printf("Right pressed");
+		_car->move(0, 0.4);
+	}
+	if (key == GLUT_KEY_LEFT){
+		Logger::printf("Left pressed");
+		_car->move(0, -0.4);
+	}
+	if (key == GLUT_KEY_DOWN){
+		Logger::printf("Down pressed");
+		_car->move(-0.4, 0);
+	}
+	*/
+}
+
+void GameManager::keyboard_up(unsigned char key, int _x, int _y)
+{
+
+	if (_isKeyPressed[key] == false) {
+
+	}
+	else {
+		_isKeyPressed[key] = false;
+		std::cout << key << " was pressed up\n";
+	}
+    
+    if(key == 105 && _car->_upPressed != false){
+        _car->_upPressed = false;
+        std::cout << key << "up was pressed down\n";
+
+    }
+    if(key == 107 && _car->_downPressed != false){
+        _car->_downPressed = false;
+    }
+    
+    if(key == 106 && _car->_leftPressed != false){
+        _car->_leftPressed = false;
+    }
+    if(key == 108 && _car->_rightPressed != false){
+        _car->_rightPressed = false;
+    }
 }
 
 void GameManager::keyPressed(unsigned char key, int x, int y)
 {
+
 	if (key == 'a') {
 		Logger::printf("A pressed");
 		if (_wireframe) 
@@ -116,6 +174,30 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
         _cam->toggleRotate();
         Logger::printf("Toggle rotate");
     }
+	
+	if (_isKeyPressed[key] == true) {
+
+	}
+	else {
+		_isKeyPressed[key] = true;
+		std::cout << key << " was pressed down\n";
+	}
+    
+    if(key == 105 && _car->_upPressed != true){
+        _car->_upPressed = true;
+        std::cout << key << "up was pressed down\n";
+    }
+    if(key == 107 && _car->_downPressed != true){
+        _car->_downPressed = true;
+    }
+    
+    if(key == 106 && _car->_leftPressed != true){
+        _car->_leftPressed = true;
+    }
+    if(key == 108 && _car->_rightPressed != true){
+        _car->_rightPressed = true;
+    }
+    
 }
 
 void GameManager::onTimer()
@@ -179,4 +261,12 @@ void GameManager::addGameObject(GameObject* obj)
 void GameManager::setCamera(Camera * cam)
 {
 	_cam = cam;
+}
+
+void GameManager::setCar(Car * car) {
+
+	_car = car;
+	Logger::printf("Car added");
+	_gobjs.push_back(_car);
+
 }

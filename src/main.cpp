@@ -23,7 +23,6 @@ int main(int argc, char * argv[]) {
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
 	gameMgr->init(argc, argv);
-
-    return 0;
+	return 0;
 
 }
