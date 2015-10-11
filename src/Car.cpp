@@ -13,10 +13,10 @@ Car::Car()
     _position.set(0,0,0);
     
     _accel = 0.000012;
-	_breakAccel = 0.000025;
+	_breakAccel = 0.000035;
     _speed = 0;
     _turnSpeed = 0.12;
-    _friction = 0.00006;
+    _friction = 0.000006;
     _angle = 0;
     _maxSpeed = 0.035;
 	_maxReverseSpeed = 0.008;
@@ -109,10 +109,13 @@ void Car::move( GLdouble accel, GLdouble delta_t){
     }
     else if(_speed > 0 && accel == 0){
         _speed -= _friction*delta_t;
+		if (_speed < 0) _speed = 0;
     }
-    else if(accel == 0)
-        _speed += _friction*delta_t;
-        _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
+	else if (_speed < 0 && accel == 0) {
+		_speed += _friction*delta_t;
+		if (_speed > 0) _speed = 0;
+	}
+   _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
@@ -136,10 +139,13 @@ void Car::update(GLdouble delta_t) {
     if(_upPressed == true && _downPressed == false){
         move(1, delta_t);
     }
-    else if(_upPressed == false && _downPressed == true){
-        move(-1, delta_t);
-    }
-    else if(_speed > 0.0001 || _speed < -0.0001)
+    else if(_upPressed == false && _downPressed == false){
+        move(0, delta_t);
+	}
+	else if (_upPressed == false && _downPressed == true){
+		move(-1, delta_t);
+	}
+    else if(_speed > 0.0000001 || _speed < -0.0000001)
         move(0, delta_t);
 }
 

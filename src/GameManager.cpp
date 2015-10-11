@@ -12,7 +12,7 @@ void GameManager::setDisplayCallback()
 {
 	current = this;
 	glutDisplayFunc(GameManager::displayCallback);
-	glutIdleFunc(GameManager::displayCallback);
+	//glutIdleFunc(GameManager::displayCallback);
 }
 
 void GameManager::setReshapeCallback()
@@ -27,6 +27,11 @@ void GameManager::setKeyboardCallback()
 	glutKeyboardUpFunc(GameManager::keyboardUpCallback);
 }
 
+void GameManager::setTimerCallback()
+{
+	glutTimerFunc(TIMER_VAL, GameManager::onTimer, TIMER_VAL);
+}
+
 GameManager::GameManager()
 {
 	_count = 0;
@@ -37,7 +42,6 @@ GameManager::GameManager()
 	_wireframe = false;
 	int i = 0;
 	for ( i; i < 255; i++) {
-	
 		_isKeyPressed[i] = 0;
 	}
 }
@@ -54,14 +58,18 @@ void GameManager::display()
 	_old = _time;
 	_accum += _delta;
 	_drawTimer += _delta;
+	
 	//Update everything
-	update(_delta);
+	draw();
+	_count++;
+	
 	//Limit fps
-	if (_drawTimer > 15) {
+	/*if (_drawTimer > 15) {
 		draw();
 		_drawTimer = 0;
 		_count++;
-	}
+	}*/
+	
 	//Calculate fps 
 	if (_accum > 1000) {
 		_fps = _count;
@@ -106,7 +114,6 @@ void GameManager::keyboardUpCallback(unsigned char key, int x, int y) {
 
 	current->keyboard_up(key, x, y);
 }
-
 
 void GameManager::specialKeyPressed(int key, int x, int y)
 {
@@ -183,25 +190,27 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 		std::cout << key << " was pressed down\n";
 	}
     
-    if(key == 105 && _car->_upPressed != true){
+    if(key == 105 && _car->_upPressed == false){
         _car->_upPressed = true;
         std::cout << key << "up was pressed down\n";
     }
-    if(key == 107 && _car->_downPressed != true){
+    if(key == 107 && _car->_downPressed == false){
         _car->_downPressed = true;
     }
     
-    if(key == 106 && _car->_leftPressed != true){
+    if(key == 106 && _car->_leftPressed == false){
         _car->_leftPressed = true;
     }
-    if(key == 108 && _car->_rightPressed != true){
+    if(key == 108 && _car->_rightPressed == false){
         _car->_rightPressed = true;
     }
     
 }
 
-void GameManager::onTimer()
+void GameManager::onTimer(int value)
 {
+	current->update(value);
+	current->setTimerCallback();
 }
 
 void GameManager::idle()
@@ -213,6 +222,8 @@ void GameManager::update(GLdouble delta_t)
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
+	//Redraw
+	glutPostRedisplay();
 }
 
 void GameManager::draw()
@@ -248,6 +259,7 @@ void GameManager::init(int argc, char* argv[])
 	setDisplayCallback();
 	setReshapeCallback();
 	setKeyboardCallback();
+	setTimerCallback();
 	_old = glutGet(GLUT_ELAPSED_TIME);
 	glutMainLoop();
 }
