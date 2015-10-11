@@ -20,13 +20,18 @@ public:
     Vector3 _position,
     _direction;
     GLdouble _accel,
-    _speed,
-    _turnSpeed,
-    _angle,
-    _friction,
-    _maxSpeed;
+		_speed,
+		_turnSpeed,
+		_angle,
+		_friction,
+		_maxSpeed,
+		_breakAccel,
+		_maxReverseSpeed;
     
-    bool _leftPressed, _rightPressed, _downPressed, _upPressed;
+    GLboolean _leftPressed,
+		_rightPressed, 
+		_downPressed, 
+		_upPressed;
     Car();
     ~Car();
     void draw();

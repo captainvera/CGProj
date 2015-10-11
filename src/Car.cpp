@@ -13,12 +13,13 @@ Car::Car()
     _position.set(0,0,0);
     
     _accel = 0.000012;
-	_breakAccel = 0.0005;
+	_breakAccel = 0.000025;
     _speed = 0;
-    _turnSpeed = 0.17;
+    _turnSpeed = 0.12;
     _friction = 0.00006;
     _angle = 0;
     _maxSpeed = 0.035;
+	_maxReverseSpeed = 0.008;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
@@ -98,8 +99,12 @@ void Car::draw()
 }
 
 void Car::move( GLdouble accel, GLdouble delta_t){
-    
-    if(accel != 0 && fabs(_speed) < _maxSpeed){
+	if (accel < 0 && _speed > 0) {
+		_speed += accel*_breakAccel*delta_t;
+	}
+	if (accel < 0 && fabs(_speed) < _maxReverseSpeed) {
+		_speed += accel*_accel*delta_t;
+	}else if(accel > 0 && fabs(_speed) < _maxSpeed){
         _speed += accel*_accel*delta_t;
     }
     else if(_speed > 0 && accel == 0){
