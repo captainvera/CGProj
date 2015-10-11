@@ -23,7 +23,7 @@ public:
     ~Roadside();
     void draw();
     void spawnCheerio(double x, double z);
-    Vector3* calculateBezierPoint(float t,Vector3* p0, Vector3* p1, Vector3* p2, Vector3* p3);
+    Vector3 calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3);
     void drawBezierPath();
     void calculatePerpendicularPoints();
 };

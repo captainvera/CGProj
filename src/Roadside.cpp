@@ -84,19 +84,18 @@ void Roadside::spawnCheerio(double x, double z)
     glPopMatrix();
 }
 
-Vector3* Roadside::calculateBezierPoint(float t,Vector3* p0, Vector3* p1, Vector3* p2, Vector3* p3)
+Vector3 Roadside::calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
 {
     float u = (1-t);
     float tt = t*t;
     float uu = u*u;
     float uuu = uu * u;
     float ttt = tt * t;
-    Vector3* p = new Vector3();
-    p = Vector3::mul(p0, uuu);//(*p0 * uuu); //first term
-    
-    p = Vector3::add(p, Vector3::mul(p1, 3*uu*t));//)&(*p + (*p1 * (3 * uu * t))); //second term
-    p = Vector3::add(p, Vector3::mul(p2, 3*u*tt));//)&(*p + (*p2 * (3 * u * tt))); //third term
-    p = Vector3::add(p, Vector3::mul(p3, ttt));//&(*p + (*p3 * ttt)); //fourth term
+    Vector3 p = *new Vector3();
+    p = p0 * uuu; //first term
+    p = p + (p1 * (3 * uu * t)); //second term
+    p = p + (p2 * (3 * u * tt)); //third term
+    p = p + (p3 * ttt); //fourth term
     
     
     return p;
@@ -115,13 +114,13 @@ void Roadside::drawBezierPath()
         
         if(i == 0) //Only do this for the first endpoint. When i != 0, this coincides with the end point of the previous segment
         {
-            _spawnedCheerios.push_back(*calculateBezierPoint(0, &p0, &p1, &p2, &p3));
+            _spawnedCheerios.push_back(calculateBezierPoint(0, p0, p1, p2, p3));
         }
         
         for(int j = 1; j <= max; j++)
         {
             float t = j / (float) max;
-            _spawnedCheerios.push_back(*calculateBezierPoint(t, &p0, &p1, &p2, &p3));
+            _spawnedCheerios.push_back(calculateBezierPoint(t, p0, p1, p2, p3));
         }
     }
 }
