@@ -19,6 +19,7 @@ int main(int argc, char * argv[]) {
     Roadside* roadside = new Roadside();
 	Logger::printf("Initializing Game Manager");
 	gameMgr->setCamera(new Camera(5, 200));
+	gameMgr->setCar(car);
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);

@@ -5,6 +5,7 @@
 
 #ifndef CGProj_Common_h
 #define CGProj_Common_h
+#define _USE_MATH_DEFINES
 
 #include <stdio.h>
 #include <stdlib.h>

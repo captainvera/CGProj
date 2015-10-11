@@ -129,32 +129,42 @@ void Roadside::calculatePerpendicularPoints()
 {
     double angle1, angle2;
     float pi = M_PI;
-    Vector3* normal = new Vector3(0,0,0);
+	Vector3 normal;
     
     for(int i = 0; i < _spawnedCheerios.size(); i++)
     {
         if (i == 0)
         {
-            angle1 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-2].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-2].getZ()) + pi/2);
+            angle1 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-1].getZ()) + pi/2);
             
-            angle2 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-2].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-2].getZ()) - pi/2);
+            angle2 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-1].getZ()) - pi/2);
             
-            normal = new Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
-            _outside.push_back(*normal);
-            normal = new Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
-            _inside.push_back(*normal);
+            normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
+            _outside.push_back(normal);
+            normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
+            _inside.push_back(normal);
             
-        }else{
+		}
+		else if (i == (_spawnedCheerios.size()-1)) {
         
-        angle1 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[i-1].getZ()) + pi/2);
+			angle1 = (atan2(_spawnedCheerios[0].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[0].getZ()-_spawnedCheerios[i-1].getZ()) + pi/2);
         
-        angle2 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[i-1].getZ()) - pi/2);
+			angle2 = (atan2(_spawnedCheerios[0].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[0].getZ()-_spawnedCheerios[i-1].getZ()) - pi/2);
         
-        normal = new Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
-        _outside.push_back(*normal);
-        normal = new Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
-            _inside.push_back(*normal);
-        }
-        
+			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
+			_outside.push_back(normal);
+			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
+				_inside.push_back(normal);
+		}
+		else {
+			angle1 = (atan2(_spawnedCheerios[i + 1].getX() - _spawnedCheerios[i - 1].getX(), _spawnedCheerios[i + 1].getZ() - _spawnedCheerios[i - 1].getZ()) + pi / 2);
+
+			angle2 = (atan2(_spawnedCheerios[i + 1].getX() - _spawnedCheerios[i - 1].getX(), _spawnedCheerios[i + 1].getZ() - _spawnedCheerios[i - 1].getZ()) - pi / 2);
+
+			normal = Vector3(_spawnedCheerios[i].getX() + 2 * sin(angle1), 0, _spawnedCheerios[i].getZ() + 2 * cos(angle1));
+			_outside.push_back(normal);
+			normal = Vector3(_spawnedCheerios[i].getX() + 2 * sin(angle2), 0, _spawnedCheerios[i].getZ() + 2 * cos(angle2));
+			_inside.push_back(normal);
+		}
     }
 }

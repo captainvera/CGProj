@@ -12,12 +12,13 @@ Car::Car()
     _direction.set(1,0,0);
     _position.set(0,0,0);
     
-    _accel = 0.00002;
+    _accel = 0.000012;
+	_breakAccel = 0.0005;
     _speed = 0;
-    _turnSpeed = 0.2;
-    _friction = 0.00004;
+    _turnSpeed = 0.17;
+    _friction = 0.00006;
     _angle = 0;
-    _maxSpeed = 0.1;
+    _maxSpeed = 0.035;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
