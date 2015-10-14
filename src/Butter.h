@@ -7,8 +7,9 @@
 #define __CGProj__Butter__
 
 #include "Common.h"
+#include "Obstacle.h"
 
-class Butter {
+class Butter : public Obstacle{
 public:
 	Butter();
 	~Butter();

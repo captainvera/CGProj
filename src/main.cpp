@@ -9,12 +9,14 @@
 #include "Car.h"
 #include "Table.h"
 #include "Roadside.h"
+#include "butter.h"
 
 int main(int argc, char * argv[]) {
 	
 	GameManager* gameMgr = new GameManager();
 
 	Car* car = new Car();
+    Butter* butter = new Butter();
     Table* table = new Table();
     Roadside* roadside = new Roadside();
 	Logger::printf("Initializing Game Manager");
@@ -22,6 +24,7 @@ int main(int argc, char * argv[]) {
 	gameMgr->setCar(car);
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
+    gameMgr->addGameObject(butter);
     gameMgr->addGameObject(roadside);
 	gameMgr->init(argc, argv);
 	return 0;
