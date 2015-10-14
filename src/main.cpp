@@ -9,6 +9,7 @@
 #include "Car.h"
 #include "Table.h"
 #include "Roadside.h"
+#include "Orange.h"
 
 int main(int argc, char * argv[]) {
 	
@@ -16,12 +17,14 @@ int main(int argc, char * argv[]) {
 
 	Car* car = new Car();
     Table* table = new Table();
+	Orange* orange = new Orange();
     Roadside* roadside = new Roadside();
 	Logger::printf("Initializing Game Manager");
 	gameMgr->setCamera(new Camera(5, 200));
 	gameMgr->setCar(car);
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
+	gameMgr->addGameObject(orange);
     gameMgr->addGameObject(roadside);
 	gameMgr->init(argc, argv);
 	return 0;

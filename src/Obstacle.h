@@ -9,7 +9,7 @@
 #include "Common.h"
 #include "DynamicObject.h"
 
-class Obstacle : DynamicObject {
+class Obstacle : public DynamicObject {
 public:
 	Obstacle();
 	~Obstacle();

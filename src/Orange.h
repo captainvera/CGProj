@@ -8,13 +8,15 @@
 
 #include "Common.h"
 #include "Obstacle.h"
+#include "Vector3.h"
 
-class Orange : Obstacle{
+class Orange : public Obstacle{
+private:
+	Vector3 _position;
 public:
 	Orange();
 	~Orange();
 	void draw();
-    void spawnOrange(int x, int z);
 };
 
 #endif /* defined(__CGProj__Orange__) */
