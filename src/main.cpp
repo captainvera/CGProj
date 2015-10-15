@@ -12,7 +12,8 @@
 #include "Orange.h"
 #include "butter.h"
 
-
+#define NUM_ORANGES 5
+#define NUM_BUTTERS 5
 int main(int argc, char * argv[]) {
 	
     srand (static_cast <unsigned> (time(0)));
@@ -32,7 +33,7 @@ int main(int argc, char * argv[]) {
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
     //Orange Generator
-    for(long i = 0; i < 5; i++){
+    for(long i = 0; i < NUM_ORANGES; i++){
         posx =((std::rand() % (60 -0 + 1)))-30;
         posy = 0;
         posz = (std::rand() % (60-0 + 1))-30;
@@ -44,7 +45,7 @@ int main(int argc, char * argv[]) {
                                           ,scale, scale, scale));
     }
     //Butter Generator
-    for(long i = 0; i < 5; i++){
+    for(long i = 0; i < NUM_BUTTERS; i++){
         posx =((std::rand() % (60 -0 + 1)))-30;
         posy = 0;
         posz = (std::rand() % (60-0 + 1))-30;
