@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
         angle = (std::rand() % (360-0 + 1));
         scale = 0.8+(std::rand() % (40-0 + 1))/100.0f;
         gameMgr->addGameObject(new Orange(posx,posy,posz
-                                          ,angle,rotx,roty,rotz
+                                          ,angle,0,roty,0
                                           ,scale, scale, scale));
     }
     //Butter Generator
@@ -53,7 +53,7 @@ int main(int argc, char * argv[]) {
         scale = 0.8+(std::rand() % (20-0 + 1))/100.0f;
 
         gameMgr->addGameObject(new Butter(posx,posy,posz
-                                          ,angle,rotx,roty,rotz
+                                          ,angle,0,roty,0
                                           ,scale, scale, scale));
     }
     
