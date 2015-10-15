@@ -27,8 +27,8 @@ void Orange::draw()
 {
     GameObject::draw();
 	glPushMatrix();
-	glTranslatef(0,0.2, 0);
-    glScalef(2, 2, 2);
+	 glTranslatef(0,0.2, 0);
+     glScalef(2, 2, 2);
     
      glPushMatrix();
 	  glColor3f(0.85f, 0.53f, 0.1f);

@@ -16,7 +16,7 @@
 int main(int argc, char * argv[]) {
 	
     srand (static_cast <unsigned> (time(0)));
-    int posx,posy,posz,angle,rotx,roty,rotz;
+    int posx,posy,posz,angle,rotx=0,roty=0,rotz=0;
     float scale;
     
 	GameManager* gameMgr = new GameManager();
@@ -40,7 +40,7 @@ int main(int argc, char * argv[]) {
         angle = (std::rand() % (360-0 + 1));
         scale = 0.8+(std::rand() % (40-0 + 1))/100.0f;
         gameMgr->addGameObject(new Orange(posx,posy,posz
-                                          ,angle,0,roty,0
+                                          ,angle,rotx,roty,rotz
                                           ,scale, scale, scale));
     }
     //Butter Generator
@@ -53,7 +53,7 @@ int main(int argc, char * argv[]) {
         scale = 0.8+(std::rand() % (20-0 + 1))/100.0f;
 
         gameMgr->addGameObject(new Butter(posx,posy,posz
-                                          ,angle,0,roty,0
+                                          ,angle,rotx,roty,rotz
                                           ,scale, scale, scale));
     }
     

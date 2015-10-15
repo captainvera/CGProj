@@ -28,6 +28,7 @@ void Butter::draw()
     glPushMatrix();
      glTranslated(0,-0.3f, 0);
      glScalef(1.5f, 1.5f, 1.5f);
+    
      glPushMatrix();
       glColor3f(1, 1, 0.67f);
       glScalef(3.0f,1.0f,1.5f);
@@ -37,12 +38,12 @@ void Butter::draw()
      glPushMatrix();
       glTranslatef(1.5f, -0.25f, 0.2f);
       glutSolidSphere(0.5f, 16, 16);
+    
       glPushMatrix();
-
        glTranslatef(0.4f, -0.1f,0.5f);
        glutSolidSphere(0.4f, 16, 16);
+    
        glPushMatrix();
-
         glTranslatef(0.25f, -0.05f,0.25f);
         glutSolidSphere(0.3f, 16, 16);
        glPopMatrix();

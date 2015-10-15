@@ -41,10 +41,6 @@ GameManager::GameManager()
 	_h = 768;
 	_drawTimer = 0;
 	_wireframe = false;
-	int i = 0;
-	for ( i; i < 255; i++) {
-		_isKeyPressed[i] = 0;
-	}
 }
 
 GameManager::~GameManager()
@@ -63,13 +59,6 @@ void GameManager::display()
 	//Update everything
 	draw();
 	_count++;
-	
-	//Limit fps
-	/*if (_drawTimer > 15) {
-		draw();
-		_drawTimer = 0;
-		_count++;
-	}*/
 	
 	//Calculate fps 
 	if (_accum > 1000) {
@@ -163,15 +152,6 @@ void GameManager::specialKeyPressedUp(int key, int x, int y)
 
 void GameManager::keyboardUp(unsigned char key, int _x, int _y)
 {
-
-	if (_isKeyPressed[key] == false) {
-
-	}
-	else {
-		_isKeyPressed[key] = false;
-		std::cout << key << " was pressed up\n";
-	}
-    
     
 }
 
@@ -190,15 +170,6 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
         _cam->toggleRotate();
         Logger::printf("Toggle rotate");
     }
-	
-	if (_isKeyPressed[key] == true) {
-
-	}
-	else {
-		_isKeyPressed[key] = true;
-		std::cout << key << " was pressed down\n";
-	}
-  
     
 }
 
@@ -261,7 +232,7 @@ void GameManager::init(int argc, char* argv[])
 
 void GameManager::addGameObject(GameObject* obj)
 {
-	//Logger::printf("GameObject added");
+	Logger::printf("GameObject added");
 	_gobjs.push_back(obj);
 }
 

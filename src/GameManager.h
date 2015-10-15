@@ -23,7 +23,6 @@ private:
 
 	Car* _car;
 
-	bool _isKeyPressed[255];
 
 	GLdouble _time,
 		_delta,
