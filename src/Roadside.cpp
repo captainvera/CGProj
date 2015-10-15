@@ -77,10 +77,10 @@ void Roadside::spawnCheerio(double x, double z)
 {
     glColor3f(1, 1, 0.4);
     glPushMatrix();
-        glTranslatef(x, 0, z);
+        glTranslatef(x, -0.6, z);
         glRotatef(90.0, 1.0, 0.0, 0.0);
         glScalef(0.5,0.5,0.5);
-        glutSolidTorus(0.4,0.9,3,12);
+        glutSolidTorus(0.4,0.9,12,12);
     glPopMatrix();
 }
 

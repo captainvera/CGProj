@@ -17,14 +17,15 @@ Table::~Table()
 void Table::draw()
 {
     glPushMatrix();
-    
+	 glTranslatef(_position.getX(), _position.getY() - 78.9375, _position.getX());
+	 glRotatef(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
+	 glScalef(_scale.getX(), _scale.getY(), _scale.getX());
     //cubo
-    glColor3f(0, 0.6, 0);
-    glPushMatrix();
-     glTranslatef(0, -78.9375, 0);
-     glScalef(150, 150, 150);
-     glutSolidCube(1);
-    glPopMatrix();
+     glColor3f(0, 0.6, 0);
+     glPushMatrix();
+      glScalef(150, 156.5f, 150);
+      glutSolidCube(1);
+     glPopMatrix();
     
     glPopMatrix();
     

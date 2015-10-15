@@ -10,8 +10,10 @@
 #include "Obstacle.h"
 
 class Butter : public Obstacle{
+private:
+
 public:
-	Butter();
+	Butter::Butter();
 	~Butter();
 	void draw();
 };

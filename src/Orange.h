@@ -12,8 +12,9 @@
 
 class Orange : public Obstacle{
 private:
-	Vector3 _position;
+
 public:
+
 	Orange();
 	~Orange();
 	void draw();
