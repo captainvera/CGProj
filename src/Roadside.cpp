@@ -8,6 +8,25 @@
 
 Roadside::Roadside()
 {
+    init();
+}
+
+Roadside::Roadside(GLdouble posx, GLdouble posy, GLdouble posz,
+             GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+             GLdouble scalex, GLdouble scaley, GLdouble scalez)
+:StaticObject(posx, posy, posz,
+rotangle, rotx, roty, rotz,
+              scalex, scaley, scalez)
+{
+    init();
+}
+
+Roadside::~Roadside()
+{
+}
+
+void Roadside::init()
+{
     Vector3* p0 = new Vector3(-10,0,-10);
     _controlPoints.push_back(*p0);
     p0 = new Vector3(0,0,-10);
@@ -59,12 +78,9 @@ Roadside::Roadside()
     printf("Number of Cheerios Spawned: %lu\n",_inside.size()+_outside.size());
 }
 
-Roadside::~Roadside()
-{
-}
-
 void Roadside::draw()
 {
+    GameObject::draw();
     for(int i = 0; i < _spawnedCheerios.size()-1; i++)
     {
         spawnCheerio(_inside[i].getX()*2, _inside[i].getZ()*2);

@@ -51,6 +51,7 @@ public:
 	static void reshapeCallback(GLsizei w, GLsizei h);
 	static void displayCallback();
 	static void specialKeyboardCallback(int key, int x, int y);
+    static void specialKeyboardUpCallback(int key, int x, int y);
 	static void keyboardCallback(unsigned char key, int x, int y);
 	static void keyboardUpCallback(unsigned char key, int x, int y);
 	static void onTimer(int value);
@@ -58,7 +59,9 @@ public:
 	void reshape(GLsizei w, GLsizei h);
 	void display();
 	void specialKeyPressed(int key, int x, int y);
+    void specialKeyPressedUp(int key, int x, int y);
 	void keyPressed(unsigned char key, int x, int y);
+    void keyboardUp(unsigned char key, int x, int y);
 
 	void idle();
 
@@ -69,7 +72,7 @@ public:
 	void addGameObject(GameObject* obj);
 	void setCamera(Camera* cam);
 	void setCar(Car * car);
-	void keyboard_up(unsigned char key, int x, int y);
+	
 
 	
 };

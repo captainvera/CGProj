@@ -15,6 +15,9 @@ private:
 	GLdouble _accel;
 public:
 	DynamicObject();
+    DynamicObject(GLdouble posx, GLdouble posy, GLdouble posz,
+                                 GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+                                 GLdouble scalex, GLdouble scaley, GLdouble scalez);
 	~DynamicObject();
 	void update(GLdouble delta_t);
 	void setSpeed(Vector3& speed);

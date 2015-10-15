@@ -9,17 +9,28 @@ Orange::Orange()
 {
 }
 
+Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
+               GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+               GLdouble scalex, GLdouble scaley, GLdouble scalez)
+:Obstacle(posx, posy, posz,
+          rotangle, rotx, roty, rotz,
+          scalex, scaley, scalez)
+{
+}
+
+
 Orange::~Orange()
 {
 }
 
 void Orange::draw()
 {
+    GameObject::draw();
 	glPushMatrix();
-	glTranslatef(_position.getX(), _position.getY()+0.2, _position.getX());
-	glRotatef(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
-	glScalef(_scale.getX(), _scale.getY(), _scale.getX());
-	 glPushMatrix();
+	glTranslatef(0,0.2, 0);
+    glScalef(2, 2, 2);
+    
+     glPushMatrix();
 	  glColor3f(0.85f, 0.53f, 0.1f);
 	  glutSolidSphere(1, 16, 16);
 	  

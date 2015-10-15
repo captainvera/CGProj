@@ -7,8 +7,15 @@
 
 Butter::Butter()
 {
+}
 
-
+Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
+               GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+               GLdouble scalex, GLdouble scaley, GLdouble scalez)
+:Obstacle(posx, posy, posz,
+          rotangle, rotx, roty, rotz,
+          scalex, scaley, scalez)
+{
 }
 
 Butter::~Butter()
@@ -17,10 +24,10 @@ Butter::~Butter()
 
 void Butter::draw()
 {
+    GameObject::draw();
     glPushMatrix();
-      glTranslatef(_position.getX(), _position.getY()-0.3f, _position.getX());
-	 glRotatef(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
-	 glScalef(_scale.getX(), _scale.getY(), _scale.getX());
+     glTranslated(0,-0.3f, 0);
+     glScalef(1.5f, 1.5f, 1.5f);
      glPushMatrix();
       glColor3f(1, 1, 0.67f);
       glScalef(3.0f,1.0f,1.5f);

@@ -6,20 +6,39 @@
 #include "Car.h"
 #include "Logger.h"
 
-
 Car::Car()
 {
+    init();
+}
+
+Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
+               GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+               GLdouble scalex, GLdouble scaley, GLdouble scalez)
+:DynamicObject(posx, posy, posz,
+          rotangle, rotx, roty, rotz,
+          scalex, scaley, scalez)
+{
+    init();
+}
+
+
+Car::~Car()
+{
+}
+
+void Car::init()
+{
     _direction.set(1,0,0);
-	
+    _position.set(0,0,0);
     
     _accel = 0.000012;
-	_breakAccel = 0.000035;
+    _breakAccel = 0.000035;
     _speed = 0;
     _turnSpeed = 0.12;
     _friction = 0.000006;
     _angle = 0;
     _maxSpeed = 0.035;
-	_maxReverseSpeed = 0.008;
+    _maxReverseSpeed = 0.008;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
@@ -27,19 +46,15 @@ Car::Car()
     
 }
 
-Car::~Car()
-{
-}
-
 void Car::draw()
 {
     
-    
+    GameObject::draw();
     
     glPushMatrix();
-    glTranslatef(_position.getX(), 0,_position.getZ());
-    glRotatef(_angle+_rotangle, _rotation.getX()+0, _rotation.getY()+1, _rotation.getZ()+0);
-    glScalef(_rotation.getX()*0.2, _rotation.getY()*0.2, _rotation.getY()*0.2);
+    glTranslatef(_position.getX(), _position.getY(),_position.getZ());
+    glRotatef(_angle,0,1,0);
+    glScalef(0.2,0.2,0.2);
     
     //cubo1
     glColor3f(0.33, 0.2, 0.15);

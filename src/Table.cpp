@@ -10,16 +10,26 @@ Table::Table()
 {
 }
 
+Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
+               GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+               GLdouble scalex, GLdouble scaley, GLdouble scalez)
+:StaticObject(posx, posy, posz,
+          rotangle, rotx, roty, rotz,
+          scalex, scaley, scalez)
+{
+}
+
 Table::~Table()
 {
 }
 
 void Table::draw()
 {
+    GameObject::draw();
+    
     glPushMatrix();
-	 glTranslatef(_position.getX(), _position.getY() - 78.9375, _position.getX());
-	 glRotatef(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
-	 glScalef(_scale.getX(), _scale.getY(), _scale.getX());
+	 glTranslatef(0,- 78.9375,0);
+
     //cubo
      glColor3f(0, 0.6, 0);
      glPushMatrix();
