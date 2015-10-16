@@ -37,6 +37,7 @@ int main(int argc, char * argv[]) {
 
 	gameMgr->setCamera(cam);
 	gameMgr->setCar(car);
+	
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);

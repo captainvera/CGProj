@@ -55,7 +55,7 @@ void Car::draw()
      glRotatef(_angle,0,1,0);
      glScalef(0.2,0.2,0.2);
     
-    //cubo1
+    //base
      glColor3f(0.33, 0.2, 0.15);
      glPushMatrix();
       glTranslatef(0, 0, 0);
@@ -63,7 +63,7 @@ void Car::draw()
       glutSolidCube(1);
      glPopMatrix();
     
-    //cubo2
+    //capot
      glColor3f(0.20, 0.21, 0.22);
      glPushMatrix();
       glTranslatef(-3.5, 3.5, 0);
@@ -71,7 +71,7 @@ void Car::draw()
       glutSolidCube(1);
      glPopMatrix();
     
-    //cubo3
+    //motor
      glColor3f(0.37, 0.34, 0-.33);
      glPushMatrix();
       glTranslatef(2.5, 2.5, 0);

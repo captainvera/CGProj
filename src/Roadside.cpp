@@ -8,6 +8,8 @@
 #include "Cheerio.h"
 #include "GameManager.h"
 
+#define CHEERIOS_RATE 14
+
 Roadside::Roadside()
 {
 	StaticObject();
@@ -124,7 +126,7 @@ Vector3 Roadside::calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p
 
 void Roadside::drawBezierPath()
 {
-    int max = 10;
+	int max = CHEERIOS_RATE;
 	GameObject* cheerio;
     for(int i = 0; i < _controlPoints.size() - 3; i+=4)
     {

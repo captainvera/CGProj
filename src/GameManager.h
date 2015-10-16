@@ -28,10 +28,11 @@ private:
 		_old,
 		_fps,
 		_count,
-		_accum,
-		_w,
-		_h,
-		_drawTimer;
+		_accum, _drawTimer;
+
+
+	GLdouble _w,
+		_h;
 
 	GLsizei	_currentW,
 		_currentH;

@@ -7,6 +7,9 @@
 #include "Logger.h"
 
 GameManager* current;
+GLdouble time,
+delta,
+old;
 
 void GameManager::setDisplayCallback()
 {
@@ -174,7 +177,14 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 
 void GameManager::onTimer(int value)
 {
-	current->update(value);
+	time = glutGet(GLUT_ELAPSED_TIME);
+	delta = time - old;
+	old = time;
+
+	Logger::print(delta);
+	Logger::print("\n");
+
+	current->update(delta);
 	current->setTimerCallback();
 }
 
@@ -184,6 +194,7 @@ void GameManager::idle()
 
 void GameManager::update(GLdouble delta_t)
 {
+
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}

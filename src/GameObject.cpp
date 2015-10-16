@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "Logger.h"
 
+
 void GameObject::setParent(GameObject * gobj)
 {
 	_parent = gobj;
