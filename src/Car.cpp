@@ -119,6 +119,7 @@ void Car::draw()
 }
 
 void Car::move( GLdouble accel, GLdouble delta_t){
+	
 	if (accel < 0 && _speed > 0) {
 		_speed += accel*_breakAccel*delta_t;
 	}

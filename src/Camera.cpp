@@ -6,7 +6,7 @@
 #include "Camera.h"
 #include "Logger.h"
 
-Camera::Camera(GLfloat left, GLfloat right, GLfloat top, GLfloat bottom, GLfloat near, GLfloat far){
+Camera::Camera(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far){
 
 	//ORTHO
     _near = near;
@@ -38,8 +38,8 @@ void Camera::computeProjectionMatrix(GLdouble w, GLdouble h){
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	GLfloat ratio = (_right - _left) / (_top - _bottom);
-	GLfloat aspect = (GLfloat)w / h;
-	if (ratio < aspect)
+	GLfloat aspect = (GLfloat)(w / h);
+	if (fabs(ratio) < aspect)
 	{
 		GLfloat delta = ((_top - _bottom) * aspect - (_right - _left)) / 2;
 		glOrtho(_left - delta, _right + delta, _bottom, _top, _near, _far);
@@ -50,6 +50,7 @@ void Camera::computeProjectionMatrix(GLdouble w, GLdouble h){
 		glOrtho(_left, _right, _bottom - delta, _top + delta, _near, _far);
 	}
 }
+
 double rotator = 0;
 void Camera::computeVisualizationMatrix(){
 	glMatrixMode(GL_MODELVIEW);

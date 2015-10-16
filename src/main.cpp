@@ -32,7 +32,7 @@ int main(int argc, char * argv[]) {
 	Logger::printf("Initializing Game Manager");
 
 	Camera* cam = new Camera(-55, 60, -35, 35, 5, 300);
-	cam->setPosition(0, 125, -1);
+	cam->setPosition(0, 125, 1);
 	cam->calculateCameraDirection();
 
 	gameMgr->setCamera(cam);

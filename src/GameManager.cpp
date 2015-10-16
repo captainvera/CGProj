@@ -7,7 +7,7 @@
 #include "Logger.h"
 
 GameManager* current;
-GLdouble time,
+GLdouble t,
 delta,
 old;
 
@@ -177,12 +177,9 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 
 void GameManager::onTimer(int value)
 {
-	time = glutGet(GLUT_ELAPSED_TIME);
-	delta = time - old;
-	old = time;
-
-	Logger::print(delta);
-	Logger::print("\n");
+	t = glutGet(GLUT_ELAPSED_TIME);
+	delta = t - old;
+	old = t;
 
 	current->update(delta);
 	current->setTimerCallback();
