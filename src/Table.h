@@ -17,6 +17,7 @@ public:
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
     ~Table();
     void draw();
+	void update(GLdouble delta_t);
 };
 
 

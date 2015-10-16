@@ -10,7 +10,6 @@ GameManager* current;
 
 void GameManager::setDisplayCallback()
 {
-	current = this;
 	glutDisplayFunc(GameManager::displayCallback);
 }
 
@@ -34,6 +33,7 @@ void GameManager::setTimerCallback()
 
 GameManager::GameManager()
 {
+	current = this;
 	_count = 0;
 	_accum = 0;
 	_w = 1024;
@@ -250,4 +250,9 @@ void GameManager::setCar(Car * car) {
 	Logger::printf("Car added");
 	_gobjs.push_back(_car);
 
+}
+
+GameManager * GameManager::getCurrentInstance()
+{
+	return current;
 }

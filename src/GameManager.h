@@ -7,7 +7,6 @@
 #define __CGProj__GameManager__
 
 #include "Common.h"
-#include <vector>
 #include "GameObject.h"
 #include "Camera.h"
 #include "Car.h"
@@ -72,8 +71,7 @@ public:
 	void setCamera(Camera* cam);
 	void setCar(Car * car);
 	
-
-	
+	static GameManager* getCurrentInstance();
 };
 
 #endif /* defined(__CGProj__GameManager__) */

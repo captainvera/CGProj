@@ -26,18 +26,20 @@ int main(int argc, char * argv[]) {
 	GameManager* gameMgr = new GameManager();
     
 	Car* car = new Car(0,0,0,0,0,0,0,0.5f,0.5f,0.5f);
-    Table* table = new Table(0,-1,0);
+    Table* table = new Table(0,0,0);
     Roadside* roadside = new Roadside();
 
 	Logger::printf("Initializing Game Manager");
     
 	gameMgr->setCamera(new Camera(5, 200));
-
 	gameMgr->setCar(car);
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
 
+	table->addChild(car);
+	table->addChild(roadside);
+	GameObject* temp;
     //Orange Generator
     for(long i = 0; i < NUM_ORANGES; i++){
         posx =((std::rand() % (60 -0 + 1)))-30;
@@ -46,9 +48,11 @@ int main(int argc, char * argv[]) {
         roty = 1;
         angle = (std::rand() % (360-0 + 1));
         scale = 0.8+(std::rand() % (40-0 + 1))/100.0f;
-        gameMgr->addGameObject(new Orange(posx,posy,posz
-                                          ,angle,rotx,roty,rotz
-                                          ,scale, scale, scale));
+		temp = new Orange(posx, posy, posz
+			, angle, rotx, roty, rotz
+			, scale, scale, scale);
+        gameMgr->addGameObject(temp);
+		table->addChild(temp);
     }
     //Butter Generator
     for(long i = 0; i < NUM_BUTTERS; i++){
@@ -58,10 +62,11 @@ int main(int argc, char * argv[]) {
         roty = 1;
         angle = (std::rand() % (360-0 + 1));
         scale = 0.8+(std::rand() % (20-0 + 1))/100.0f;
-
-        gameMgr->addGameObject(new Butter(posx,posy,posz
-                                          ,angle,rotx,roty,rotz
-                                          ,scale, scale, scale));
+		temp = new Butter(posx, posy, posz
+			, angle, rotx, roty, rotz
+			, scale, scale, scale);
+        gameMgr->addGameObject(temp);
+		table->addChild(temp);
     }
     
     

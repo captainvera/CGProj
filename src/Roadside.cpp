@@ -5,9 +5,12 @@
 
 #include "Roadside.h"
 #include "Logger.h"
+#include "Cheerio.h"
+#include "GameManager.h"
 
 Roadside::Roadside()
 {
+	_scale = 2;
     init();
 }
 
@@ -18,7 +21,7 @@ Roadside::Roadside(GLdouble posx, GLdouble posy, GLdouble posz,
               rotangle, rotx, roty, rotz,
               scalex, scaley, scalez)
 {
-    init();
+	Roadside();
 }
 
 Roadside::~Roadside()
@@ -75,17 +78,16 @@ void Roadside::init()
     drawBezierPath();
     calculatePerpendicularPoints();
     
-    printf("Number of Cheerios Spawned: %lu\n",_inside.size()+_outside.size());
 }
 
 void Roadside::draw()
 {
     GameObject::draw();
-    for(int i = 0; i < _spawnedCheerios.size()-1; i++)
+    /*for(int i = 0; i < _spawnedCheerios.size()-1; i++)
     {
         spawnCheerio(_inside[i].getX()*2, _inside[i].getZ()*2);
         spawnCheerio(_outside[i].getX()*2, _outside[i].getZ()*2);
-    }
+    }*/
     
 }
 
@@ -113,7 +115,6 @@ Vector3 Roadside::calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p
     p = p + (p2 * (3 * u * tt)); //third term
     p = p + (p3 * ttt); //fourth term
     
-    
     return p;
 }
 
@@ -121,6 +122,7 @@ Vector3 Roadside::calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p
 void Roadside::drawBezierPath()
 {
     int max = 10;
+	GameObject* cheerio;
     for(int i = 0; i < _controlPoints.size() - 3; i+=4)
     {
         Vector3 p0 = _controlPoints[i];
@@ -136,7 +138,7 @@ void Roadside::drawBezierPath()
         for(int j = 1; j <= max; j++)
         {
             float t = j / (float) max;
-            _spawnedCheerios.push_back(calculateBezierPoint(t, p0, p1, p2, p3));
+           _spawnedCheerios.push_back(calculateBezierPoint(t, p0, p1, p2, p3));
         }
     }
 }
@@ -146,7 +148,7 @@ void Roadside::calculatePerpendicularPoints()
     double angle1, angle2;
     float pi = M_PI;
 	Vector3 normal;
-    
+	GameObject* cheerio;
     for(int i = 0; i < _spawnedCheerios.size(); i++)
     {
         if (i == 0)
@@ -154,33 +156,47 @@ void Roadside::calculatePerpendicularPoints()
             angle1 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-1].getZ()) + pi/2);
             
             angle2 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-1].getZ()) - pi/2);
-            
+            //SPAWN CHEERIO
             normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
-            _outside.push_back(normal);
-            normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
-            _inside.push_back(normal);
-            
+			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			GameManager::getCurrentInstance()->addGameObject(cheerio);
+			addChild(cheerio);
+			//SPAWN CHEERIO
+			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
+            cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			GameManager::getCurrentInstance()->addGameObject(cheerio);
+			addChild(cheerio);
 		}
 		else if (i == (_spawnedCheerios.size()-1)) {
         
 			angle1 = (atan2(_spawnedCheerios[0].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[0].getZ()-_spawnedCheerios[i-1].getZ()) + pi/2);
         
 			angle2 = (atan2(_spawnedCheerios[0].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[0].getZ()-_spawnedCheerios[i-1].getZ()) - pi/2);
-        
+			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
-			_outside.push_back(normal);
+			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			GameManager::getCurrentInstance()->addGameObject(cheerio);
+			addChild(cheerio);
+			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
-				_inside.push_back(normal);
+			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			GameManager::getCurrentInstance()->addGameObject(cheerio);
+			addChild(cheerio);
 		}
 		else {
 			angle1 = (atan2(_spawnedCheerios[i + 1].getX() - _spawnedCheerios[i - 1].getX(), _spawnedCheerios[i + 1].getZ() - _spawnedCheerios[i - 1].getZ()) + pi / 2);
 
 			angle2 = (atan2(_spawnedCheerios[i + 1].getX() - _spawnedCheerios[i - 1].getX(), _spawnedCheerios[i + 1].getZ() - _spawnedCheerios[i - 1].getZ()) - pi / 2);
-
+			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX() + 2 * sin(angle1), 0, _spawnedCheerios[i].getZ() + 2 * cos(angle1));
-			_outside.push_back(normal);
+			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			GameManager::getCurrentInstance()->addGameObject(cheerio);
+			addChild(cheerio);
+			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX() + 2 * sin(angle2), 0, _spawnedCheerios[i].getZ() + 2 * cos(angle2));
-			_inside.push_back(normal);
+			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			GameManager::getCurrentInstance()->addGameObject(cheerio);
+			addChild(cheerio);
 		}
     }
 }
