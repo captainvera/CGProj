@@ -10,7 +10,7 @@ Entity::Entity() {
 }
 
 Entity::Entity(GLdouble posx, GLdouble posy, GLdouble posz){
-	    _position.set(posx, posy, posz);
+	_position.set(posx, posy, posz);
 }
 
 Entity::~Entity(){

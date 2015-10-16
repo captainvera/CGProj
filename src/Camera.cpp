@@ -6,21 +6,21 @@
 #include "Camera.h"
 #include "Logger.h"
 
-Camera::Camera(GLfloat near, GLfloat far){
+Camera::Camera(GLfloat left, GLfloat right, GLfloat top, GLfloat bottom, GLfloat near, GLfloat far){
 
 	//ORTHO
-    _near = 5.0f;
-    _far = 200.0f;
-	_left = -50.0f;
-	_right = 50.0f;
-	_bottom = -40.0f;
-	_top = 40.0f;
+    _near = near;
+    _far = far;
+	_left = left;
+	_right = right;
+	_bottom = bottom;
+	_top = top;
 
     _rotate = false;
 
 	_up = Vector3();
 	_look = Vector3(0,0,0);
-	setPosition(25, 120, 25);
+	setPosition(0, 0, -1);
 
 	calculateCameraDirection();
 	calculateRightAxis();

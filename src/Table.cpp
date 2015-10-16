@@ -41,5 +41,5 @@ void Table::draw()
 }
 
 void Table::update(GLdouble delta_t) {
-	_position.set(_position._x - delta_t / 200.0, _position._y , _position._z - delta_t / 200.0);
+	//_position.set(_position._x - delta_t / 200.0, _position._y , _position._z - delta_t / 200.0);
 }

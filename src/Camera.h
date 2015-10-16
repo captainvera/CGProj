@@ -26,7 +26,7 @@ private:
     GLboolean _rotate;
 public:
 
-	Camera(GLfloat near, GLfloat far);
+	Camera(GLfloat left, GLfloat right, GLfloat top, GLfloat bottom, GLfloat near, GLfloat far);
 	~Camera();
 
 	void update(GLdouble w, GLdouble h);

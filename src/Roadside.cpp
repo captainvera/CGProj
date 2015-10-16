@@ -10,7 +10,9 @@
 
 Roadside::Roadside()
 {
-	_scale = 2;
+	StaticObject();
+
+	_scale =1.8f;
     init();
 }
 
@@ -21,7 +23,8 @@ Roadside::Roadside(GLdouble posx, GLdouble posy, GLdouble posz,
               rotangle, rotx, roty, rotz,
               scalex, scaley, scalez)
 {
-	Roadside();
+	_scale = 2.0f;
+	init();
 }
 
 Roadside::~Roadside()
@@ -199,4 +202,9 @@ void Roadside::calculatePerpendicularPoints()
 			addChild(cheerio);
 		}
     }
+}
+
+void Roadside::update(GLdouble delta_t)
+{
+	//_position.set(_position._x + delta_t / 200.0, _position._y, _position._z + delta_t / 200.0);
 }

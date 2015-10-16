@@ -13,7 +13,7 @@
 #include "butter.h"
 #include <time.h>
 
-#define NUM_ORANGES 5
+#define NUM_ORANGES 3
 #define NUM_BUTTERS 5
 
 int main(int argc, char * argv[]) {
@@ -25,13 +25,17 @@ int main(int argc, char * argv[]) {
     
 	GameManager* gameMgr = new GameManager();
     
-	Car* car = new Car(0,0,0,0,0,0,0,0.5f,0.5f,0.5f);
+	Car* car = new Car(-16,0,-20,0,0,0,0,0.5f,0.5f,0.5f);
     Table* table = new Table(0,0,0);
-    Roadside* roadside = new Roadside();
+    Roadside* roadside = new Roadside(-4,0,0);
 
 	Logger::printf("Initializing Game Manager");
-    
-	gameMgr->setCamera(new Camera(5, 200));
+
+	Camera* cam = new Camera(-55, 60, -35, 35, 5, 300);
+	cam->setPosition(0, 125, -1);
+	cam->calculateCameraDirection();
+
+	gameMgr->setCamera(cam);
 	gameMgr->setCar(car);
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
