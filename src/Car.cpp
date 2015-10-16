@@ -47,8 +47,7 @@ void Car::init()
 }
 
 void Car::draw()
-{
-    
+{   
     GameObject::draw();
     
     glPushMatrix();
@@ -141,9 +140,8 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
     _angle += turn * _turnSpeed * delta_t;
-    _direction.set(cos((_angle*3.14)/180), 0, -sin((_angle*3.14)/180));
+    _direction.set(cos((_angle*M_PI)/180), 0, -sin((_angle*M_PI)/180));
     Vector3::normalize(_direction);
-    
     
 }
 
@@ -166,6 +164,7 @@ void Car::update(GLdouble delta_t) {
 	else if (_upPressed == false && _downPressed == true){
 		move(-1, delta_t);
 	}
+	//Make sure we stop
     else if(_speed > 0.0000001 || _speed < -0.0000001)
         move(0, delta_t);
 }

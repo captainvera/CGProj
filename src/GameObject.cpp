@@ -31,7 +31,6 @@ GameObject::~GameObject()
 
 void GameObject::draw()
 {
-
 	glTranslated(_position.getX(),_position.getY(),_position.getZ());
     glRotated(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
     glScaled(_scale.getX(), _scale.getY(), _scale.getX());

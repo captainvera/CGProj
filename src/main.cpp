@@ -15,9 +15,11 @@
 
 #define NUM_ORANGES 5
 #define NUM_BUTTERS 5
+
 int main(int argc, char * argv[]) {
 	
     srand (static_cast <unsigned> (time(0)));
+
     int posx,posy,posz,angle,rotx=0,roty=0,rotz=0;
     float scale;
     
@@ -26,13 +28,16 @@ int main(int argc, char * argv[]) {
 	Car* car = new Car(0,0,0,0,0,0,0,0.5f,0.5f,0.5f);
     Table* table = new Table(0,-1,0);
     Roadside* roadside = new Roadside();
+
 	Logger::printf("Initializing Game Manager");
     
 	gameMgr->setCamera(new Camera(5, 200));
+
 	gameMgr->setCar(car);
 	gameMgr->addGameObject(car);
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
+
     //Orange Generator
     for(long i = 0; i < NUM_ORANGES; i++){
         posx =((std::rand() % (60 -0 + 1)))-30;

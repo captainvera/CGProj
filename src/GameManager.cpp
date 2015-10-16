@@ -12,7 +12,6 @@ void GameManager::setDisplayCallback()
 {
 	current = this;
 	glutDisplayFunc(GameManager::displayCallback);
-	//glutIdleFunc(GameManager::displayCallback);
 }
 
 void GameManager::setReshapeCallback()
@@ -159,7 +158,7 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 {
 
 	if (key == 'a') {
-		Logger::printf("A pressed");
+		Logger::printf("Toggle wireframe");
 		if (_wireframe) 
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		else
@@ -188,6 +187,7 @@ void GameManager::update(GLdouble delta_t)
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
+
 	//Redraw
 	glutPostRedisplay();
 }
@@ -197,8 +197,10 @@ void GameManager::draw()
 	glClearColor(0.0f, 0.4f, 0.7f,1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
+
 	_cam->computeProjectionMatrix(_currentW, _currentH);
 	_cam->computeVisualizationMatrix();
+
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -210,9 +212,10 @@ void GameManager::draw()
 void GameManager::init(int argc, char* argv[])
 {
 	Logger::printf("Creating window");
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(1024, 768);
+	glutInitWindowSize(_w, _h);
 	glutInitWindowPosition(1920/2 - _w / 2, 1080/2 - _h / 2);
 	glutCreateWindow("Micro Machines");
 
