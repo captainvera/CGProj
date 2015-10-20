@@ -10,9 +10,10 @@
 #include "GameObject.h"
 
 class DynamicObject : public GameObject{
-private:
-	Vector3* _speed;
-	GLdouble _accel;
+protected:
+	Vector3 _direction;
+	GLdouble _accel, _speed;
+	
 public:
 	DynamicObject();
     DynamicObject(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -20,8 +21,9 @@ public:
                                  GLdouble scalex, GLdouble scaley, GLdouble scalez);
 	~DynamicObject();
 	void update(GLdouble delta_t);
-	void setSpeed(Vector3& speed);
-	void setSpeed(GLdouble x, GLdouble y, GLdouble z);
+	void setSpeed(GLdouble speed);
+	void setDirection(GLdouble x, GLdouble y, GLdouble z);
+	Vector3 getDirection();
 };
 
 #endif /* defined(__CGProj__DynamicObject__) */

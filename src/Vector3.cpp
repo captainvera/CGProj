@@ -27,6 +27,12 @@ GLdouble Vector3::getZ() {
 	return _z;
 }
 
+GLdouble Vector3::getSize2D()
+{
+	GLdouble size = sqrt(pow(_x, 2) + pow(_z, 2));
+	return size;
+}
+
 void Vector3::set(GLdouble x, GLdouble y, GLdouble z){
     _x = x;
     _y = y;
@@ -69,4 +75,23 @@ void Vector3::crossProduct(Vector3& v1, Vector3& v2, Vector3& res)
 std::ostream& operator<<(std::ostream& os, const Vector3& v) {
 	os << "< " << v._x << " , " << v._y << " , " << v._z << " >";
 	return os;
+}
+
+void Vector3::rotateVector2D(GLfloat angle, Vector3& v) {
+	//std::cout << " Got " << v ;
+	v.set(v._x*cos(angle) - v._z*sin(angle), 0, v._x*sin(angle) + v._z*sin(angle));
+	//std::cout << "Rotated by " << angle <<" and got " << v << "\n";
+}
+
+GLfloat Vector3::dotProduct2D(Vector3 v1, Vector3 v2) {
+	GLfloat result;
+	result = v1._x * v2._x + v1._z * v2._z;
+	return result;
+}
+
+GLfloat Vector3::angleBetweenVector2D(Vector3 v1, Vector3 v2) {
+	GLfloat result = dotProduct2D(v1, v2);
+	result /= (v1.getSize2D()*v2.getSize2D());
+	result = acos(result);
+	return result;
 }

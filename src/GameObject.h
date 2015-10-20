@@ -11,7 +11,7 @@
 #include "Vector3.h"
 
 class GameObject : public Entity {
-private:
+protected:
     Vector3 _rotation,
     _scale;
     GLdouble _rotangle;

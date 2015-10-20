@@ -17,11 +17,7 @@ private:
     
     
 public:
-    Vector3 _position,
-    _direction;
-    GLdouble _accel,
-		_speed,
-		_turnSpeed,
+    GLdouble _turnSpeed,
 		_angle,
 		_friction,
 		_maxSpeed,
@@ -32,6 +28,7 @@ public:
 		_rightPressed, 
 		_downPressed, 
 		_upPressed;
+
     Car();
     Car(GLdouble posx, GLdouble posy, GLdouble posz,
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,

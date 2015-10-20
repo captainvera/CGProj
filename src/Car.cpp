@@ -31,14 +31,14 @@ void Car::init()
     _direction.set(1,0,0);
     _position.set(0,0,0);
     
-    _accel = 0.000012;
-    _breakAccel = 0.000035;
+    _accel = 0.000006;
+    _breakAccel = 0.0000175;
     _speed = 0;
     _turnSpeed = 0.12;
-    _friction = 0.000006;
+    _friction = 0.000003;
     _angle = 0;
-    _maxSpeed = 0.035;
-    _maxReverseSpeed = 0.008;
+    _maxSpeed = 0.0175;
+    _maxReverseSpeed = 0.004;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
@@ -48,10 +48,9 @@ void Car::init()
 
 void Car::draw()
 {   
-    GameObject::draw();
-    
+	GameObject::draw();
+
     glPushMatrix();
-     glTranslatef(_position.getX(), _position.getY(),_position.getZ());
      glRotatef(_angle,0,1,0);
      glScalef(0.2,0.2,0.2);
     
@@ -141,7 +140,7 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
     _angle += turn * _turnSpeed * delta_t;
-    _direction.set(cos((_angle*M_PI)/180), 0, -sin((_angle*M_PI)/180));
+	_direction.set(cos((_angle*M_PI)/180), 0, -sin((_angle*M_PI)/180));
     Vector3::normalize(_direction);
     
 }

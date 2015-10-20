@@ -9,35 +9,40 @@
 #include "Common.h"
 #include "Vector3.h"
 #include "GameObject.h"
+#include "Car.h"
 
 class Camera : public GameObject{
-private:
-	GLfloat _near, 
-			_far, 
-			_left, 
-			_right, 
-			_bottom, 
-			_top, 
-			_radius;
+protected:
+	GLfloat _near,
+		_far;
 	Vector3 _up,
 			_look,
 			_direction,
 			_rightaxis;
-    GLboolean _rotate;
-public:
+    GLboolean _rotate,
+		_toFollow;
 
-	Camera(GLfloat left, GLfloat right, GLfloat top, GLfloat bottom, GLfloat near, GLfloat far);
+	Car* _follow;
+
+public:
+	Camera();
 	~Camera();
 
-	void update(GLdouble w, GLdouble h);
-	void computeProjectionMatrix(GLdouble w, GLdouble h);
-	void computeVisualizationMatrix();
+	virtual void update(GLdouble w, GLdouble h);
+	virtual void computeProjectionMatrix(GLdouble w, GLdouble h);
+	virtual void computeVisualizationMatrix();
 
     void toggleRotate();
 
 	void calculateCameraDirection();
 	void calculateRightAxis();
 	void calculateUpVector();
+
+	void setDirection(Vector3& dir);
+	void setLook(Vector3& look);
+
+	void followCar(Car* gobj);
+	void stopFollow();
 };
 
 #endif /* defined(__CGProj__Camera__) */

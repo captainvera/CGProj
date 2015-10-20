@@ -11,6 +11,8 @@
 #include "Roadside.h"
 #include "Orange.h"
 #include "butter.h"
+#include "OrthographicCamera.h"
+#include "PerspectiveCamera.h"
 #include <time.h>
 
 #define NUM_ORANGES 3
@@ -25,17 +27,21 @@ int main(int argc, char * argv[]) {
     
 	GameManager* gameMgr = new GameManager();
     
-	Car* car = new Car(-16,0,-20,0,0,0,0,0.5f,0.5f,0.5f);
+	Car* car = new Car(-16,0,-20,0,0,0,0,.5f,.5f,.5f);
     Table* table = new Table(0,0,0);
-    Roadside* roadside = new Roadside(-4,0,0);
+    Roadside* roadside = new Roadside(0,0,0);
 
 	Logger::printf("Initializing Game Manager");
 
-	Camera* cam = new Camera(-55, 60, -35, 35, 5, 300);
+	OrthographicCamera* cam = new OrthographicCamera(-50, 55, -30, 30, 5, 300);
 	cam->setPosition(0, 125, 1);
 	cam->calculateCameraDirection();
+	PerspectiveCamera* cam2 = new PerspectiveCamera(45.0, 5, 300);
+	cam2->setPosition(0, 125, 1);
+	cam2->calculateCameraDirection();
 
-	gameMgr->setCamera(cam);
+	gameMgr->setCameras(cam,cam2);
+
 	gameMgr->setCar(car);
 	
 	gameMgr->addGameObject(car);
@@ -45,6 +51,7 @@ int main(int argc, char * argv[]) {
 	table->addChild(car);
 	table->addChild(roadside);
 	GameObject* temp;
+
     //Orange Generator
     for(long i = 0; i < NUM_ORANGES; i++){
         posx =((std::rand() % (60 -0 + 1)))-30;

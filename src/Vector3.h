@@ -20,7 +20,8 @@ public:
 	GLdouble getX() ;
     GLdouble getY() ;
     GLdouble getZ() ;
-    
+	GLdouble getSize2D();
+
 	void set(GLdouble x, GLdouble y, GLdouble z);
     Vector3& operator=(const Vector3& vec);
     Vector3& operator+(const Vector3& vec);
@@ -30,5 +31,8 @@ public:
 
 	static void normalize(Vector3& v);
 	static void crossProduct(Vector3& v1, Vector3& v2, Vector3& res);
+	static void rotateVector2D(GLfloat angle, Vector3& v);
+	static GLfloat dotProduct2D(Vector3 v1, Vector3 v2);
+	static GLfloat angleBetweenVector2D(Vector3 v1, Vector3 v2);
 };
 #endif /* defined(__CGProj__Vector3__) */

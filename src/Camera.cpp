@@ -5,53 +5,37 @@
 
 #include "Camera.h"
 #include "Logger.h"
+#include "Car.h"
 
-Camera::Camera(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far){
 
-	//ORTHO
-    _near = near;
-    _far = far;
-	_left = left;
-	_right = right;
-	_bottom = bottom;
-	_top = top;
-
-    _rotate = false;
-
-	_up = Vector3();
-	_look = Vector3(0,0,0);
-	setPosition(0, 0, -1);
-
-	calculateCameraDirection();
-	calculateRightAxis();
-	calculateUpVector();
+Camera::Camera() {
+	_rotate = false;
+	_toFollow = false;
 }
 
 Camera::~Camera(){
 }
 
 void Camera::update(GLdouble w, GLdouble h){
-    glViewport(0, 0, w, h);
+    //glViewport(0, 0, w, h);
+	if (_toFollow) {
+		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 50, 
+			_follow->getPosition()._y + 20, _follow->getPosition()._z - _follow->getDirection()._z * 50);
+		//std::cout <<"1: "<< getPosition() << " | " << _follow->_position << " | " << _follow->_direction << "\n";
+		setLook(Vector3(_follow->getPosition()._x + _follow->getDirection()._x * 50,
+			_follow->getPosition()._y, _follow->getPosition()._z + _follow->getDirection()._z * 50));
+	}
+	calculateCameraDirection();
+	//calculateRightAxis();
+	computeProjectionMatrix(w, h);
+	computeVisualizationMatrix();
+
 }
 
 void Camera::computeProjectionMatrix(GLdouble w, GLdouble h){
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	GLfloat ratio = (_right - _left) / (_top - _bottom);
-	GLfloat aspect = (GLfloat)(w / h);
-	if (fabs(ratio) < aspect)
-	{
-		GLfloat delta = ((_top - _bottom) * aspect - (_right - _left)) / 2;
-		glOrtho(_left - delta, _right + delta, _bottom, _top, _near, _far);
-	}
-	else
-	{
-		GLfloat delta = ((_right - _left) / aspect - (_top - _bottom)) / 2;
-		glOrtho(_left, _right, _bottom - delta, _top + delta, _near, _far);
-	}
 }
 
-double rotator = 0;
+double rotator = 0;	
 void Camera::computeVisualizationMatrix(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -79,13 +63,13 @@ void Camera::computeVisualizationMatrix(){
 }
 
 void Camera::toggleRotate(){
-	_radius = 25;
     _rotate = !_rotate;
 }
 
 void Camera::calculateCameraDirection()
 {
-	_direction = _position - _look;
+	Vector3 t = Vector3(_position);
+	_direction = t - _look;
 	Vector3::normalize(_direction); 
 }
 
@@ -98,3 +82,25 @@ void Camera::calculateRightAxis()
 void Camera::calculateUpVector() {
 	Vector3::crossProduct(_direction, _rightaxis, _up);
 }
+
+void Camera::setDirection(Vector3& dir) {
+	_direction.set(dir._x, dir._y, dir._z);
+}
+
+void Camera::setLook(Vector3& look) {
+	_look.set(look._x, look._y, look._z);
+}
+
+void Camera::followCar(Car* gobj)
+{
+	_follow = gobj;
+	_toFollow = true;
+}
+
+void Camera::stopFollow()
+{
+	_toFollow = false;
+	_follow = NULL;
+}
+
+

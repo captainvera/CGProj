@@ -18,8 +18,7 @@ private:
 
 	std::vector<GameObject*> _gobjs;
 
-	Camera* _cam;
-
+	Camera *_cam1, *_cam2, *_cam;
 	Car* _car;
 
 
@@ -37,7 +36,8 @@ private:
 	GLsizei	_currentW,
 		_currentH;
 	
-	GLboolean _wireframe;
+	GLboolean _wireframe,
+		_camFollow;
 
 	void setDisplayCallback();
 	void setReshapeCallback();
@@ -70,6 +70,7 @@ public:
 	void init(int argc, char* argv[]);
 	void addGameObject(GameObject* obj);
 	void setCamera(Camera* cam);
+	void setCameras(Camera* cam1, Camera* cam2);
 	void setCar(Car * car);
 	
 	static GameManager* getCurrentInstance();

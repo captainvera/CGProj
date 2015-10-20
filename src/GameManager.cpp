@@ -14,6 +14,7 @@ old;
 void GameManager::setDisplayCallback()
 {
 	glutDisplayFunc(GameManager::displayCallback);
+	glutIdleFunc(GameManager::displayCallback);
 }
 
 void GameManager::setReshapeCallback()
@@ -43,6 +44,7 @@ GameManager::GameManager()
 	_h = 768;
 	_drawTimer = 0;
 	_wireframe = false;
+	_camFollow = false;
 }
 
 GameManager::~GameManager()
@@ -172,11 +174,27 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
         _cam->toggleRotate();
         Logger::printf("Toggle rotate");
     }
-    
+	if (key == '1') {
+		_cam->stopFollow();
+		_cam = _cam1;
+
+	}
+	if (key == '2') {
+		_cam = _cam2;
+		_cam->stopFollow();
+		_cam->setPosition(0, 100, 1);
+		_cam->setLook(Vector3(0, 0, 0));
+	}
+	if (key == '3') {
+		_cam = _cam2;
+		_cam->followCar(_car);
+	}
+
 }
 
 void GameManager::onTimer(int value)
 {
+
 	t = glutGet(GLUT_ELAPSED_TIME);
 	delta = t - old;
 	old = t;
@@ -206,9 +224,7 @@ void GameManager::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	_cam->computeProjectionMatrix(_currentW, _currentH);
-	_cam->computeVisualizationMatrix();
-
+	_cam->update(_currentW, _currentH);
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -251,6 +267,14 @@ void GameManager::setCamera(Camera * cam)
 {
 	_cam = cam;
 }
+
+void GameManager::setCameras(Camera * cam1, Camera * cam2)
+{
+	_cam1 = cam1;
+	_cam2 = cam2;
+	_cam = _cam1;
+}
+
 
 void GameManager::setCar(Car * car) {
 
