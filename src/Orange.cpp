@@ -5,8 +5,17 @@
 
 #include "Orange.h"
 
+GLboolean Orange::checkOutOfBounds()
+{
+	GLdouble x = getPosition()._x, z = getPosition()._z;
+	if (x > 75 || x < -75 || z > 75 || z < -75)
+		return true;
+	return false;
+}
+
 Orange::Orange()
 {
+	Orange(0, 0, 0);
 }
 
 Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -16,6 +25,12 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
+
+	_direction = Vector3(2*((double)(std::rand()) / RAND_MAX)-1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
+	Vector3::normalize(_direction);
+	_time = 0;
+	_speedModifier = 1;
+	_speed = 0.015;
 }
 
 
@@ -30,7 +45,7 @@ void Orange::draw()
 	 glTranslatef(0,0.2, 0);
      glScalef(2, 2, 2);
     
-	 //corpo
+	 //corpo	
      glPushMatrix();
 	  glColor3f(0.85f, 0.53f, 0.1f);
 	  glutSolidSphere(1, 16, 16);
@@ -51,6 +66,29 @@ void Orange::draw()
    
 
     
+}
+
+void Orange::update(GLdouble delta_t)
+{
+	_time += delta_t;
+	if (_time > SPEED_UP_INTERVAL) {
+		std::cout << "Speed Increased!\n";
+		_speedModifier++;
+		_time = 0;
+	}
+	setPosition(_position._x + _speedModifier*_speed*delta_t*_direction._x , _position._y,
+		_position._z + _speedModifier*_speed*delta_t*_direction._z);
+	
+	_rotation.set(_direction._z, _direction._y,- _direction._x);
+	_rotangle += delta_t*0.5;
+
+	if (checkOutOfBounds() == true) {
+		setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
+		_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
+		Vector3::normalize(_direction);
+	}
+
+
 }
 
 

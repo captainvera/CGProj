@@ -14,7 +14,7 @@ old;
 void GameManager::setDisplayCallback()
 {
 	glutDisplayFunc(GameManager::displayCallback);
-	glutIdleFunc(GameManager::displayCallback);
+	//glutIdleFunc(GameManager::displayCallback);
 }
 
 void GameManager::setReshapeCallback()
