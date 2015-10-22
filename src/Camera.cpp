@@ -87,7 +87,7 @@ void Camera::setDirection(Vector3& dir) {
 	_direction.set(dir._x, dir._y, dir._z);
 }
 
-void Camera::setLook(Vector3& look) {
+void Camera::setLook(Vector3 look) {
 	_look.set(look._x, look._y, look._z);
 }
 

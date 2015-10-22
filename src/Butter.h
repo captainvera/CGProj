@@ -11,7 +11,8 @@
 
 class Butter : public Obstacle{
 private:
-
+    
+    
 public:
 	Butter();
     Butter(GLdouble posx, GLdouble posy, GLdouble posz,

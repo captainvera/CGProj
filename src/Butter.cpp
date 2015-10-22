@@ -7,6 +7,8 @@
 
 Butter::Butter()
 {
+    _hascolider = true;
+    _colisionradius = 1;
 }
 
 Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -16,6 +18,8 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
+    _hascolider = true;
+    _colisionradius = 1;
 }
 
 Butter::~Butter()

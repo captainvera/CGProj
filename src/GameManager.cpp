@@ -213,6 +213,8 @@ void GameManager::update(GLdouble delta_t)
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
+    
+    _colisionsystem->handleColisions(_gobjs);
 
 	//Redraw
 	glutPostRedisplay();
@@ -247,7 +249,9 @@ void GameManager::init(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);                // Enable depth testing
 	glDepthFunc(GL_LEQUAL);                 // Type of depth test to do
 	glDepthRange(0, 1);
-
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_BLEND );
+    
 	Logger::printf("Starting Game");
 	setDisplayCallback();
 	setReshapeCallback();
@@ -280,8 +284,13 @@ void GameManager::setCar(Car * car) {
 
 	_car = car;
 	Logger::printf("Car added");
-	_gobjs.push_back(_car);
 
+}
+
+void GameManager::setColisionSystem(ColisionSystem *ColisionSystem)
+{
+    _colisionsystem = ColisionSystem;
+    Logger::printf("ColisionSystem added");
 }
 
 GameManager * GameManager::getCurrentInstance()

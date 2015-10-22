@@ -43,6 +43,8 @@ void Car::init()
     _downPressed = false;
     _leftPressed = false;
     _rightPressed = false;
+    _hascolider = true;
+    _colisionradius = 3;
     
 }
 

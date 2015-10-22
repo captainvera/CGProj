@@ -20,6 +20,8 @@ protected:
 	GameObject* _parent;
 	void setParent(GameObject* gobj);
 public:
+    GLboolean _hascolider;
+    GLdouble _colisionradius;
 	GameObject();
     GameObject(GLdouble posx, GLdouble posy, GLdouble posz, GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz, GLdouble scalex, GLdouble scaley, GLdouble scalez);
 	~GameObject();
