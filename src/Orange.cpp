@@ -16,6 +16,8 @@ GLboolean Orange::checkOutOfBounds()
 Orange::Orange()
 {
 	Orange(0, 0, 0);
+    _hascolider = true;
+    _colisionradius = 1.1;
 }
 
 Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -31,6 +33,8 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
 	_time = 0;
 	_speedModifier = 1;
 	_speed = 0.015;
+    _hascolider = true;
+    _colisionradius = 1.1;
 }
 
 
@@ -83,12 +87,18 @@ void Orange::update(GLdouble delta_t)
 	_rotangle += delta_t*0.5;
 
 	if (checkOutOfBounds() == true) {
-		setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
-		_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
-		Vector3::normalize(_direction);
-	}
+        setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
+        _direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
+        Vector3::normalize(_direction);
+    }
+}
 
-
+void Orange::resetPosition(){
+    setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
+    _direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
+    Vector3::normalize(_direction);
+    _speedModifier = 1;
+    _time = 0;
 }
 
 

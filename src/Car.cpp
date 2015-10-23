@@ -8,6 +8,9 @@
 
 Car::Car()
 {
+    _position.set(0,0,0);
+    _initposition.set(0,0,0);
+
     init();
 }
 
@@ -18,6 +21,7 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
+    _initposition.set(posx,posy,posz);
     init();
 }
 
@@ -29,7 +33,6 @@ Car::~Car()
 void Car::init()
 {
     _direction.set(1,0,0);
-    _position.set(0,0,0);
     
     _accel = 0.000006;
     _breakAccel = 0.0000175;
@@ -44,7 +47,7 @@ void Car::init()
     _leftPressed = false;
     _rightPressed = false;
     _hascolider = true;
-    _colisionradius = 3;
+    _colisionradius = 2;
     
 }
 
@@ -171,4 +174,6 @@ void Car::update(GLdouble delta_t) {
         move(0, delta_t);
 }
 
-
+void Car::butterSlow(){
+    _speed = _speed * 0.95;
+}
