@@ -22,7 +22,9 @@ public:
 		_friction,
 		_maxSpeed,
 		_breakAccel,
-		_maxReverseSpeed;
+		_maxReverseSpeed,
+        _frontWheelRotation,
+        _drift;
     
     GLboolean _leftPressed,
 		_rightPressed, 
