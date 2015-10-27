@@ -3,7 +3,7 @@
 //  CGProj
 //
 
-#ifndef __CGProj__Cheerip__
+#ifndef __CGProj__Cheerio__
 #define __CGProj__Cheerio__
 
 #include "Common.h"

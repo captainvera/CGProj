@@ -21,7 +21,7 @@ void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, GameObjec
     //COLLISION SYSTEM baaaaaasico 
     for(std::vector<GameObject*>::iterator it = objs.begin(); it != objs.end(); ++it){
             
-        if((*it)->_hascolider == true){
+        if((*it)->_hascollider == true){
                     std::cout<< "Collision detected" << (*target)._collisionradius << " and " <<(*it)->_collisionradius <<"\n" ;
             
                 
@@ -43,8 +43,8 @@ GLboolean CollisionSystem::checkCollision(GameObject* obj1, GameObject* obj2)
     
 }
 
-template <>
-bool CollisionSystem::handleCollision(Car c, Orange c2 )
+template<>
+bool CollisionSystem::handleCollision(Car c, Orange c2)
 {
-
+    return true;
 }

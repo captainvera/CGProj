@@ -19,8 +19,8 @@ GameObject::GameObject()
     _rotangle = 0;
     _rotation.set(0, 0, 0);
     _scale.set(1, 1, 1);
-    _hascolider = false;
-    _colisionradius = 0;
+    _hascollider = false;
+    _collisionradius = 0;
 }
 
 
@@ -32,8 +32,8 @@ GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
     _rotangle = rotangle;
     _rotation.set(rotx, roty, rotz);
     _scale.set(scalex, scaley, scalez);
-    _hascolider = false;
-    _colisionradius = 0;
+    _hascollider = false;
+    _collisionradius = 0;
 }
 
 GameObject::~GameObject()
@@ -45,9 +45,9 @@ void GameObject::draw()
 	//First apply parent transform
 	//Then object transform
 	applyTransform();
-    if(_hascolider == true){
+    if(_hascollider == true){
         glColor4f(1,0,0,0.5f);
-        glutSolidSphere(_colisionradius*1.5, 8, 8);
+        glutSolidSphere(_collisionradius*1.5, 8, 8);
     }
 }
 

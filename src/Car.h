@@ -16,10 +16,7 @@
 class Car : public DynamicObject {
     
 protected:
-    virtual void colideWith(Orange&);
-    virtual void colide(Butter&);
-    virtual void colide(Cheerio&);
-    
+
 public:
     Vector3 _initposition;
     
@@ -47,8 +44,7 @@ public:
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
     void init();
-    void butterSlow();
-    virtual void colide(GameObject&);
+ 
     
 };
 

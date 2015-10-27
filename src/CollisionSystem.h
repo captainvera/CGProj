@@ -23,8 +23,10 @@ public:
     void searchCollisions(std::vector<GameObject*>& objs, GameObject* target);
     GLboolean checkCollision(GameObject* obj1, GameObject* obj2);
     
-template<typename _T1, typename _T2>
-    void handleCollision(_T1 obj1, _T2 obj2);
-};
 
+template<class _T1, class _T2>
+    void handleCollision(_T1 obj1, _T2 obj2);
+    
+};
 #endif /* defined(__CGProj__CollisionSystem__) */
+

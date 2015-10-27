@@ -214,7 +214,7 @@ void GameManager::update(GLdouble delta_t)
 		(*it)->update(delta_t);
 	}
     
-    _colisionsystem->handleColisions(_gobjs, _car);
+    _colisionsystem->searchCollisions(_gobjs, _car);
 
 	//Redraw
 	glutPostRedisplay();

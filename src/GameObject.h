@@ -19,10 +19,9 @@ protected:
 	std::vector<GameObject*> _childs;
 	GameObject* _parent;
 	void setParent(GameObject* gobj);
-    virtual void colideWith(GameObject&);
 public:
-    GLboolean _hascolider;
-    GLdouble _colisionradius;
+    GLboolean _hascollider;
+    GLdouble _collisionradius;
 	GameObject();
     GameObject(GLdouble posx, GLdouble posy, GLdouble posz, GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz, GLdouble scalex, GLdouble scaley, GLdouble scalez);
 	~GameObject();
@@ -31,6 +30,5 @@ public:
 
 	void addChild(GameObject* gobj);
 	void applyTransform();
-    virtual void colide(GameObject&);
 };
 #endif /* defined(__CGProj__GameObject__) */

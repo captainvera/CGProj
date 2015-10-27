@@ -10,7 +10,7 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "Car.h"
-#include "ColisionSystem.h"
+#include "CollisionSystem.h"
 
 #define TIMER_VAL 15
 
@@ -21,7 +21,7 @@ private:
 
 	Camera *_cam1, *_cam2, *_cam;
 	Car* _car;
-    ColisionSystem* _colisionsystem;
+    CollisionSystem* _colisionsystem;
 
 
 	GLdouble _time,
@@ -74,7 +74,7 @@ public:
 	void setCamera(Camera* cam);
 	void setCameras(Camera* cam1, Camera* cam2);
 	void setCar(Car * car);
-    void setColisionSystem(ColisionSystem* ColisionSystem);
+    void setColisionSystem(CollisionSystem* ColisionSystem);
 	
 	static GameManager* getCurrentInstance();
 };

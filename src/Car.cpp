@@ -46,8 +46,8 @@ void Car::init()
     _downPressed = false;
     _leftPressed = false;
     _rightPressed = false;
-    _hascolider = true;
-    _colisionradius = 2;
+    _hascollider = true;
+    _collisionradius = 2;
     _frontWheelRotation = 0;
     _drift = 0;
 }
@@ -181,7 +181,9 @@ void Car::update(GLdouble delta_t) {
     else if(_speed > 0.0000001 || _speed < -0.0000001)
         move(0, delta_t);
 }
-
-void Car::butterSlow(){
+/*
+void Car::collideWith(Butter& butter)
+{
     _speed = _speed * 0.95;
 }
+*/
