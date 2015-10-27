@@ -9,6 +9,9 @@
 #include "Common.h"
 #include "Vector3.h"
 #include "GameObject.h"
+#include "Car.h"
+#include "Orange.h"
+
 
 class ColisionSystem {
     
@@ -17,7 +20,7 @@ public:
     GameObject * _obj;
     ColisionSystem(GLdouble radius);
     ~ColisionSystem();
-    void handleColisions(std::vector<GameObject*>& objs);
+    void handleColisions(std::vector<GameObject*>& objs, Car* car);
 };
 
 #endif /* defined(__CGProj__ColisionSystem__) */

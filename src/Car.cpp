@@ -8,6 +8,9 @@
 
 Car::Car()
 {
+    _position.set(0,0,0);
+    _initposition.set(0,0,0);
+
     init();
 }
 
@@ -18,6 +21,7 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
+    _initposition.set(posx,posy,posz);
     init();
 }
 
@@ -29,23 +33,23 @@ Car::~Car()
 void Car::init()
 {
     _direction.set(1,0,0);
-    _position.set(0,0,0);
     
-    _accel = 0.000006;
-    _breakAccel = 0.0000175;
+    _accel = 0.000012;
+    _breakAccel = 0.000035;
     _speed = 0;
-    _turnSpeed = 0.12;
-    _friction = 0.000003;
+    _turnSpeed = 0.28;
+    _friction = 0.000006;
     _angle = 0;
-    _maxSpeed = 0.0175;
-    _maxReverseSpeed = 0.004;
+    _maxSpeed = 0.035;
+    _maxReverseSpeed = 0.008;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
     _rightPressed = false;
     _hascolider = true;
-    _colisionradius = 3;
-    
+    _colisionradius = 2;
+    _frontWheelRotation = 0;
+    _drift = 0;
 }
 
 void Car::draw()
@@ -86,12 +90,14 @@ void Car::draw()
     
       glPushMatrix();
 	   glTranslatef(4, -1.5, -4.5);
+       glRotatef(_frontWheelRotation, 0,1,0);
 	   glScalef(1.5,1.5,1.5);
 	   glutSolidTorus(0.7,1,12,15);
       glPopMatrix();
     
       glPushMatrix();
 	   glTranslatef(4, -1.5, 4.5);
+       glRotatef(_frontWheelRotation, 0,1,0);
 	   glScalef(1.5,1.5,1.5);
 	   glutSolidTorus(0.7,1,12,15);
       glPopMatrix();
@@ -141,19 +147,24 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
-    _angle += turn * _turnSpeed * delta_t;
+    GLfloat diff = turn * _turnSpeed * delta_t*(_maxSpeed/(_maxSpeed+_speed));
+    if(_speed > 0)
+        _angle += diff;
 	_direction.set(cos((_angle*M_PI)/180), 0, -sin((_angle*M_PI)/180));
     Vector3::normalize(_direction);
-    
 }
 
 void Car::update(GLdouble delta_t) {
     
     if(_leftPressed == true && _rightPressed == false){
         turn(1, delta_t);
+        _frontWheelRotation = 50;
     }
     else if(_leftPressed == false && _rightPressed == true){
         turn(-1, delta_t);
+        _frontWheelRotation = -50;
+    }else{
+        _frontWheelRotation = 0;
     }
     
     
@@ -171,5 +182,6 @@ void Car::update(GLdouble delta_t) {
         move(0, delta_t);
 }
 
-
-
+void Car::butterSlow(){
+    _speed = _speed * 0.95;
+}

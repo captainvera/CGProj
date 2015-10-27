@@ -10,15 +10,15 @@
 #include "Obstacle.h"
 #include "Vector3.h"
 
-#define SPEED_UP_INTERVAL 20000 //10s
+#define SPEED_UP_INTERVAL 20000 //20s
 
 class Orange : public Obstacle{
 private:
 	GLboolean checkOutOfBounds();
-	GLdouble _time, 
-			_speedModifier;
+    GLdouble _time;
 public:
-
+    GLdouble _speedModifier;
+    
 	Orange();
     Orange(GLdouble posx, GLdouble posy, GLdouble posz,
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,
@@ -26,6 +26,7 @@ public:
 	~Orange();
 	void draw();
 	void update(GLdouble delta_t);
+    void resetPosition();
 };
 
 #endif /* defined(__CGProj__Orange__) */

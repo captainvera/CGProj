@@ -18,6 +18,7 @@ Camera::~Camera(){
 
 void Camera::update(GLdouble w, GLdouble h){
     //glViewport(0, 0, w, h);
+    // PASSAR PARA O UPDATE O MOVIMENTO DA CAMARA
 	if (_toFollow) {
 		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 50, 
 			_follow->getPosition()._y + 20, _follow->getPosition()._z - _follow->getDirection()._z * 50);

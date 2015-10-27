@@ -21,12 +21,16 @@ protected:
     virtual void colide(Cheerio&);
     
 public:
+    Vector3 _initposition;
+    
     GLdouble _turnSpeed,
 		_angle,
 		_friction,
 		_maxSpeed,
 		_breakAccel,
-		_maxReverseSpeed;
+		_maxReverseSpeed,
+        _frontWheelRotation,
+        _drift;
     
     GLboolean _leftPressed,
 		_rightPressed, 
@@ -43,6 +47,7 @@ public:
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
     void init();
+    void butterSlow();
     virtual void colide(GameObject&);
     
 };

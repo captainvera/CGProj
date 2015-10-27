@@ -15,7 +15,7 @@
 #include "PerspectiveCamera.h"
 #include <time.h>
 
-#define NUM_ORANGES 100
+#define NUM_ORANGES 3
 #define NUM_BUTTERS 5
 
 int main(int argc, char * argv[]) {
