@@ -9,12 +9,16 @@
 #include "Common.h"
 #include "DynamicObject.h"
 #include "Vector3.h"
+#include "Orange.h"
+#include "Butter.h"
+#include "Cheerio.h"
 
 class Car : public DynamicObject {
     
-private:
-    
-    
+protected:
+    virtual void colideWith(Orange&);
+    virtual void colide(Butter&);
+    virtual void colide(Cheerio&);
     
 public:
     GLdouble _turnSpeed,
@@ -39,6 +43,7 @@ public:
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
     void init();
+    virtual void colide(GameObject&);
     
 };
 

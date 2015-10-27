@@ -19,6 +19,7 @@ protected:
 	std::vector<GameObject*> _childs;
 	GameObject* _parent;
 	void setParent(GameObject* gobj);
+    virtual void colideWith(GameObject&);
 public:
     GLboolean _hascolider;
     GLdouble _colisionradius;
@@ -30,5 +31,6 @@ public:
 
 	void addChild(GameObject* gobj);
 	void applyTransform();
+    virtual void colide(GameObject&);
 };
 #endif /* defined(__CGProj__GameObject__) */
