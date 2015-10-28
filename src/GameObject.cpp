@@ -3,6 +3,8 @@
 //  CGProj
 //
 
+/*FIXME handle default collide comment*/
+
 #include "GameObject.h"
 #include "Logger.h"
 
@@ -20,7 +22,7 @@ GameObject::GameObject()
     _rotation.set(0, 0, 0);
     _scale.set(1, 1, 1);
     _hascollider = false;
-    _collisionradius = 0;
+    _collisionradius = 1;
 }
 
 
@@ -33,7 +35,18 @@ GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
     _rotation.set(rotx, roty, rotz);
     _scale.set(scalex, scaley, scalez);
     _hascollider = false;
-    _collisionradius = 0;
+	if (scalex > scaley) {
+		if (scalex > scalez)
+			_collisionradius = scalex;
+		else _collisionradius = scalez;
+	}
+	else if (scaley > scalez) {
+		_collisionradius = scaley;
+	}
+	else if (scalez > scaley)
+		_collisionradius = scalez;
+	else _collisionradius = scalex;
+
 }
 
 GameObject::~GameObject()
@@ -70,4 +83,25 @@ void GameObject::applyTransform()
 	glTranslated(_position.getX(), _position.getY(), _position.getZ());
 	glRotated(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
 	glScaled(_scale.getX(), _scale.getY(), _scale.getX());
+}
+
+void GameObject::collide(GameObject* obj) 
+{
+	//Logger::printf("DEBUG: BOOP BOOP BOOP Something is very wrong in the GameObject, it seems to want to collide with someone, wonder how that happened! (Yes, this is the default collider)\n");
+}
+
+void GameObject::collideWith(GameObject* obj) 
+{
+}
+
+void GameObject::collideWith(Butter * obj)
+{
+}
+
+void GameObject::collideWith(Orange * obj)
+{
+}
+
+void GameObject::collideWith(Cheerio * obj)
+{
 }

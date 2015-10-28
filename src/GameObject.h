@@ -10,6 +10,10 @@
 #include "Entity.h"
 #include "Vector3.h"
 
+class Butter;
+class Orange;
+class Cheerio;
+
 class GameObject : public Entity {
 protected:
     Vector3 _rotation,
@@ -19,6 +23,7 @@ protected:
 	std::vector<GameObject*> _childs;
 	GameObject* _parent;
 	void setParent(GameObject* gobj);
+	
 public:
     GLboolean _hascollider;
     GLdouble _collisionradius;
@@ -30,5 +35,12 @@ public:
 
 	void addChild(GameObject* gobj);
 	void applyTransform();
+
+	virtual void collide(GameObject* obj);
+	virtual void collideWith(GameObject* obj);
+	virtual void collideWith(Butter* obj);
+	virtual void collideWith(Orange* obj);
+	virtual void collideWith(Cheerio* obj);
+
 };
 #endif /* defined(__CGProj__GameObject__) */

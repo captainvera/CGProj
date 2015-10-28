@@ -15,8 +15,6 @@
 
 class Car : public DynamicObject {
     
-protected:
-
 public:
     Vector3 _initposition;
     
@@ -44,7 +42,9 @@ public:
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
     void init();
- 
+	void resetPosition();
+
+	void Car::collideWith(Butter* butter);
     
 };
 

@@ -21,7 +21,7 @@ private:
 
 	Camera *_cam1, *_cam2, *_cam;
 	Car* _car;
-    CollisionSystem* _colisionsystem;
+    CollisionSystem* _collisionsystem;
 
 
 	GLdouble _time,
@@ -74,7 +74,7 @@ public:
 	void setCamera(Camera* cam);
 	void setCameras(Camera* cam1, Camera* cam2);
 	void setCar(Car * car);
-    void setColisionSystem(CollisionSystem* ColisionSystem);
+    void setcollisionSystem(CollisionSystem* collisionSystem);
 	
 	static GameManager* getCurrentInstance();
 };

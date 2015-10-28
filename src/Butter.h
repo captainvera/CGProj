@@ -20,5 +20,6 @@ public:
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
 	~Butter();
 	void draw();
+	void collide(GameObject* obj);
 };
 #endif /* defined(__CGProj__Butter__) */

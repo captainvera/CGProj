@@ -189,6 +189,10 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 		_cam = _cam2;
 		_cam->followCar(_car);
 	}
+	if (key == 27) {
+		exit(1);
+
+	}
 
 }
 
@@ -214,7 +218,7 @@ void GameManager::update(GLdouble delta_t)
 		(*it)->update(delta_t);
 	}
     
-    _colisionsystem->searchCollisions(_gobjs, _car);
+    _collisionsystem->searchCollisions(_gobjs, _car);
 
 	//Redraw
 	glutPostRedisplay();
@@ -286,11 +290,10 @@ void GameManager::setCar(Car * car) {
 	Logger::printf("Car added");
 
 }
-
-void GameManager::setColisionSystem(ColisionSystem *ColisionSystem)
+void GameManager::setcollisionSystem(CollisionSystem* collisionSystem)
 {
-    _colisionsystem = ColisionSystem;
-    Logger::printf("ColisionSystem added");
+	_collisionsystem = collisionSystem;
+	Logger::printf("collisionSystem added");
 }
 
 GameManager * GameManager::getCurrentInstance()

@@ -3,7 +3,7 @@
 //  CGProj
 //
 
-/*FIXME implement square and circle coliders, coexisting*/ 
+/*FIXME implement square and circle colliders, coexisting*/ 
 
 #include "CollisionSystem.h"
 
@@ -17,16 +17,20 @@ CollisionSystem::~CollisionSystem(){
 
 void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, GameObject* target){
     
-    
-    //COLLISION SYSTEM baaaaaasico 
-    for(std::vector<GameObject*>::iterator it = objs.begin(); it != objs.end(); ++it){
-            
-        if((*it)->_hascollider == true){
-                    std::cout<< "Collision detected" << (*target)._collisionradius << " and " <<(*it)->_collisionradius <<"\n" ;
-            
-                
-        }
-    }
+	if(target->_hascollider == true){
+		//COLLISION SYSTEM baaaaaasico 
+		for(std::vector<GameObject*>::iterator it = objs.begin(); it != objs.end(); ++it){
+
+			if((*it)->_hascollider == true){
+
+				if (checkCollision(*it, target) == true) {
+					target->collide(*it);
+					(*it)->collide(target);
+				}
+			}
+		}
+	}
+	else std::cout << "DEBUG: Seriously.. Something can't colide if it has no collider (Hint: CollisionSystem)";
 }
 
 GLboolean CollisionSystem::checkCollision(GameObject* obj1, GameObject* obj2)
@@ -35,16 +39,10 @@ GLboolean CollisionSystem::checkCollision(GameObject* obj1, GameObject* obj2)
         
         pow(((*obj2)._position._z - (*obj1)._position._z), 2) <=
         
-        pow((*obj1)._collisionradius + (*obj2)._collisionradius, 2) && (*obj1)._collisionradius != (*obj2)._collisionradius)
+        pow((*obj1)._collisionradius + (*obj2)._collisionradius, 2))
         
         return true;
     
     return false;
     
-}
-
-template<>
-bool CollisionSystem::handleCollision(Car c, Orange c2)
-{
-    return true;
 }

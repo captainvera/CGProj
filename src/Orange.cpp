@@ -13,11 +13,13 @@ GLboolean Orange::checkOutOfBounds()
 	return false;
 }
 
+
+
 Orange::Orange()
 {
 	Orange(0, 0, 0);
-    _hascolider = true;
-    _colisionradius = 1.1;
+    _hascollider = true;
+    _collisionradius *= 1.1;
 }
 
 Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -33,8 +35,8 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
 	_time = 0;
 	_speedModifier = 1;
 	_speed = 0.015;
-    _hascolider = true;
-    _colisionradius = 1.1;
+    _hascollider = true;
+    _collisionradius *= 1.1;
 }
 
 
@@ -100,5 +102,6 @@ void Orange::resetPosition(){
     _speedModifier = 1;
     _time = 0;
 }
+
 
 

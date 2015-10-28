@@ -7,8 +7,8 @@
 
 Butter::Butter()
 {
-    _hascolider = true;
-    _colisionradius = 1;
+    _hascollider = true;
+    _collisionradius *= 1;
 }
 
 Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -18,8 +18,8 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
-    _hascolider = true;
-    _colisionradius = 1;
+    _hascollider = true;
+    _collisionradius *= 1;
 }
 
 Butter::~Butter()
@@ -59,3 +59,10 @@ void Butter::draw()
     glPopMatrix();
     
 }
+
+void Butter::collide(GameObject* obj) 
+{
+	printf("Collide butter");
+	obj->collideWith(this);
+}
+
