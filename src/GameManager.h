@@ -12,7 +12,11 @@
 #include "Car.h"
 #include "CollisionSystem.h"
 
+
 #define TIMER_VAL 15
+
+class Camera;
+class CollisionSystem;
 
 class GameManager {
 private:
@@ -75,6 +79,8 @@ public:
 	void setCameras(Camera* cam1, Camera* cam2);
 	void setCar(Car * car);
     void setcollisionSystem(CollisionSystem* collisionSystem);
+    
+    void GGWP();
 	
 	static GameManager* getCurrentInstance();
 };

@@ -9,8 +9,6 @@
 Car::Car()
 {
     _position.set(0,0,0);
-    _initposition.set(0,0,0);
-
     init();
 }
 
@@ -21,7 +19,7 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
-    _initposition.set(posx,posy,posz);
+    
     init();
 }
 
@@ -32,8 +30,8 @@ Car::~Car()
 
 void Car::init()
 {
+    /*FIXME direction should be set with rotation*/
     _direction.set(1,0,0);
-    
     _accel = 0.000012;
     _breakAccel = 0.000035;
     _speed = 0;
@@ -182,14 +180,20 @@ void Car::update(GLdouble delta_t) {
         move(0, delta_t);
 }
 
+void Car::collide(GameObject *obj)
+{
+    obj->collideWith(this);
+}
+
 void Car::collideWith(Butter* butter)
 {
     _speed = _speed * 0.95;
-	printf("lilili\n");
+
 }
 
-void Car::resetPosition()
+void Car::collideWith(Orange* orange)
 {
-	_position = _initposition;
+    _speed = 0;
+
 }
 

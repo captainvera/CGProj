@@ -16,7 +16,7 @@
 class Car : public DynamicObject {
     
 public:
-    Vector3 _initposition;
+    
     
     GLdouble _turnSpeed,
 		_angle,
@@ -42,9 +42,10 @@ public:
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
     void init();
-	void resetPosition();
-
-	void Car::collideWith(Butter* butter);
+    
+    void collide(GameObject* obj);
+	void collideWith(Butter* butter);
+    void collideWith(Orange* orange);
     
 };
 

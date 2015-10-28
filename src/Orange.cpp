@@ -103,5 +103,13 @@ void Orange::resetPosition(){
     _time = 0;
 }
 
+void Orange::collide(GameObject* obj)
+{
+    obj->collideWith(this);
+}
 
+void Orange::collideWith(Car* obj)
+{
+    GameManager::getCurrentInstance()->GGWP();
+}
 

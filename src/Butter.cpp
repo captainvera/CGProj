@@ -62,7 +62,11 @@ void Butter::draw()
 
 void Butter::collide(GameObject* obj) 
 {
-	printf("Collide butter");
 	obj->collideWith(this);
+}
+
+void Butter::collideWith(Car* car)
+{
+    //cenas
 }
 

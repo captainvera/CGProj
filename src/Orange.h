@@ -9,6 +9,8 @@
 #include "Common.h"
 #include "Obstacle.h"
 #include "Vector3.h"
+#include "Car.h"
+#include "GameManager.h"
 
 #define SPEED_UP_INTERVAL 20000 //20s
 
@@ -27,6 +29,8 @@ public:
 	void draw();
 	void update(GLdouble delta_t);
     void resetPosition();
+    void collide(GameObject* obj);
+    void collideWith(Car* obj);
 };
 
 #endif /* defined(__CGProj__Orange__) */

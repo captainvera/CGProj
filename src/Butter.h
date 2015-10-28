@@ -8,6 +8,7 @@
 
 #include "Common.h"
 #include "Obstacle.h"
+#include "Car.h"
 
 class Butter : public Obstacle{
 private:
@@ -21,5 +22,6 @@ public:
 	~Butter();
 	void draw();
 	void collide(GameObject* obj);
+    void collideWith(Car* car);
 };
 #endif /* defined(__CGProj__Butter__) */

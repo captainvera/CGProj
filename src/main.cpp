@@ -27,7 +27,7 @@ int main(int argc, char * argv[]) {
     
 	GameManager* gameMgr = new GameManager();
     
-	Car* car = new Car(-16,0,-20,0,0,0,0,.5f,.5f,.5f);
+	Car* car = new Car(-16,0,-20,180,0,1,0,.5f,.5f,.5f);
     Table* table = new Table(0,0,0);
     Roadside* roadside = new Roadside(0,0,0);
 

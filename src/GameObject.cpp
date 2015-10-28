@@ -19,10 +19,14 @@ GameObject::GameObject()
 {
 	_hasParent = false;
     _rotangle = 0;
+    _initRotangle = _rotangle;
     _rotation.set(0, 0, 0);
+    _initRotation = _rotation;
     _scale.set(1, 1, 1);
+    _initScale = _scale;
     _hascollider = false;
     _collisionradius = 1;
+    
 }
 
 
@@ -32,8 +36,11 @@ GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
 :Entity(posx,posy,posz)
 {
     _rotangle = rotangle;
+    _initRotangle = _rotangle;
     _rotation.set(rotx, roty, rotz);
+    _initRotation = _rotation;
     _scale.set(scalex, scaley, scalez);
+    _initScale = _scale;
     _hascollider = false;
 	if (scalex > scaley) {
 		if (scalex > scalez)
@@ -85,6 +92,13 @@ void GameObject::applyTransform()
 	glScaled(_scale.getX(), _scale.getY(), _scale.getX());
 }
 
+void GameObject::reset()
+{
+    Entity::reset();
+    _rotangle = _initRotangle;
+    _rotation = _initRotation;
+}
+
 void GameObject::collide(GameObject* obj) 
 {
 	//Logger::printf("DEBUG: BOOP BOOP BOOP Something is very wrong in the GameObject, it seems to want to collide with someone, wonder how that happened! (Yes, this is the default collider)\n");
@@ -103,5 +117,9 @@ void GameObject::collideWith(Orange * obj)
 }
 
 void GameObject::collideWith(Cheerio * obj)
+{
+}
+
+void GameObject::collideWith(Car * obj)
 {
 }
