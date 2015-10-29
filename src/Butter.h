@@ -13,7 +13,7 @@
 class Butter : public Obstacle{
 private:
     
-    
+	GLdouble _friction;
 public:
 	Butter();
     Butter(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -21,6 +21,7 @@ public:
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
 	~Butter();
 	void render();
+	void update(GLdouble delta_t);
 	void collide(GameObject* obj);
     void collideWith(Car* car);
 };

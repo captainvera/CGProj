@@ -20,6 +20,7 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
 {
     _hascollider = true;
     _collisionradius *= 1;
+	
 }
 
 Butter::~Butter()
@@ -59,6 +60,16 @@ void Butter::render()
     
 }
 
+
+void Butter::update(GLdouble delta_t) 
+{
+	
+	if (_speed > 0 && _accel == 0) {
+		_speed -= _friction*delta_t;
+		if (_speed < 0) _speed = 0;
+	}
+}
+
 void Butter::collide(GameObject* obj) 
 {
 	obj->collideWith(this);
@@ -66,6 +77,6 @@ void Butter::collide(GameObject* obj)
 
 void Butter::collideWith(Car* car)
 {
-    //cenas
+
 }
 
