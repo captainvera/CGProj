@@ -9,6 +9,8 @@
 #include "Common.h"
 #include "Obstacle.h"
 #include "Vector3.h"
+#include "Car.h"
+#include "GameManager.h"
 
 #define SPEED_UP_INTERVAL 10000 //10s
 #define RESPAWN_TIME 500 
@@ -19,7 +21,7 @@ private:
 	GLdouble _speedModifier;
 	void setOrangeRespawnCallback();
 public:
-
+    
 	Orange();
     Orange(GLdouble posx, GLdouble posy, GLdouble posz,
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,
@@ -33,6 +35,9 @@ public:
 	void setOrangeSpeedCallback();
 	static void orangeRespawnCallback(int obj);
 	static void orangeSpeedCallback(int obj);
+    void collide(GameObject* obj);
+    void collideWith(Car* obj);
+
 };
 
 #endif /* defined(__CGProj__Orange__) */

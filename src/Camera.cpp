@@ -18,6 +18,7 @@ Camera::~Camera(){
 
 void Camera::update(GLdouble w, GLdouble h){
     //glViewport(0, 0, w, h);
+    // PASSAR PARA O UPDATE O MOVIMENTO DA CAMARA
 	if (_toFollow) {
 		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 50, 
 			_follow->getPosition()._y + 20, _follow->getPosition()._z - _follow->getDirection()._z * 50);
@@ -87,7 +88,7 @@ void Camera::setDirection(Vector3& dir) {
 	_direction.set(dir._x, dir._y, dir._z);
 }
 
-void Camera::setLook(Vector3& look) {
+void Camera::setLook(Vector3 look) {
 	_look.set(look._x, look._y, look._z);
 }
 

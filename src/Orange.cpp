@@ -23,12 +23,14 @@ void Orange::setOrangeSpeedCallback()
 {
 	glutTimerFunc(SPEED_UP_INTERVAL, Orange::orangeSpeedCallback, (int)this);
 }
-
-
+	
 Orange::Orange()
 {
 	Orange(0, 0, 0);
+    _hascollider = true;
+    _collisionradius *= 1.1;
 }
+
 
 Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
                GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
@@ -43,6 +45,8 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
 	_speedModifier = 1;
 	_speed = ((double)std::rand() / RAND_MAX)*0.010+0.005;
 	setOrangeSpeedCallback();
+    _hascollider = true;
+    _collisionradius *= 1.1;
 }
 
 
@@ -89,9 +93,12 @@ void Orange::update(GLdouble delta_t)
 		_draw = false;
 		setOrangeRespawnCallback();
 		setPosition(0, 0, 0);
-	}
+    }
+}
 
-
+void Orange::collide(GameObject* obj)
+{
+    obj->collideWith(this);
 }
 
 void Orange::respawn()
@@ -100,6 +107,7 @@ void Orange::respawn()
 	setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
 	_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
 	_direction.normalize();
+	resetSpeed();
 	_draw = true;
 }
 
@@ -125,4 +133,8 @@ void Orange::orangeSpeedCallback(int obj)
 	o->setOrangeSpeedCallback();
 }
 
+void Orange::collideWith(Car* obj)
+{
+    GameManager::getCurrentInstance()->GGWP();
+}
 

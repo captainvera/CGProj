@@ -8,6 +8,7 @@
 
 Car::Car()
 {
+    _position.set(0,0,0);
     init();
 }
 
@@ -18,6 +19,7 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
+    
     init();
 }
 
@@ -28,6 +30,7 @@ Car::~Car()
 
 void Car::init()
 {
+    /*FIXME direction should be set with rotation*/
     _direction.set(1,0,0);
 	_moving.set(1, 0, 0);
     _position.set(0,0,0);
@@ -50,6 +53,10 @@ void Car::init()
 	_facingAngle = 0;
 	_maxFacingAngle = 1;
 	_drift = 0.98;
+    _hascollider = true;
+    _collisionradius *= 4;
+    _frontWheelRotation = 0;
+    _drift = 0;
 }
 
 void Car::render()
@@ -100,12 +107,14 @@ void Car::render()
     
       glPushMatrix();
 	   glTranslatef(4, -1.5, -4.5);
+       glRotatef(_frontWheelRotation, 0,1,0);
 	   glScalef(1.5,1.5,1.5);
 	   glutSolidTorus(0.7,1,12,15);
       glPopMatrix();
     
       glPushMatrix();
 	   glTranslatef(4, -1.5, 4.5);
+       glRotatef(_frontWheelRotation, 0,1,0);
 	   glScalef(1.5,1.5,1.5);
 	   glutSolidTorus(0.7,1,12,15);
       glPopMatrix();
@@ -172,11 +181,14 @@ void Car::turn(GLdouble turn, GLdouble delta_t) {
 void Car::update(GLdouble delta_t) {
     if(_leftPressed == true && _rightPressed == false){
         turn(1, delta_t);
+        _frontWheelRotation = 50;
     }
     else if(_leftPressed == false && _rightPressed == true){
         turn(-1, delta_t);
+		_frontWheelRotation = -50;
 	}
 	else {
+		_frontWheelRotation = 0;
 		turn(0, delta_t);
 	}
     
@@ -193,4 +205,20 @@ void Car::update(GLdouble delta_t) {
 
 }
 
+void Car::collide(GameObject *obj)
+{
+    obj->collideWith(this);
+}
+
+void Car::collideWith(Butter* butter)
+{
+    _speed = _speed * 0.95;
+
+}
+
+void Car::collideWith(Orange* orange)
+{
+    _speed = 0;
+
+}
 

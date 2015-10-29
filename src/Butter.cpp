@@ -7,6 +7,8 @@
 
 Butter::Butter()
 {
+    _hascollider = true;
+    _collisionradius *= 1;
 }
 
 Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -16,6 +18,8 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
           rotangle, rotx, roty, rotz,
           scalex, scaley, scalez)
 {
+    _hascollider = true;
+    _collisionradius *= 1;
 }
 
 Butter::~Butter()
@@ -54,3 +58,14 @@ void Butter::render()
     glPopMatrix();
     
 }
+
+void Butter::collide(GameObject* obj) 
+{
+	obj->collideWith(this);
+}
+
+void Butter::collideWith(Car* car)
+{
+    //cenas
+}
+

@@ -39,7 +39,7 @@ public:
 	void calculateUpVector();
 
 	void setDirection(Vector3& dir);
-	void setLook(Vector3& look);
+	void setLook(Vector3 look);
 
 	void followCar(Car* gobj);
 	void stopFollow();

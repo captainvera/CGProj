@@ -9,11 +9,13 @@
 #include "Common.h"
 #include "DynamicObject.h"
 #include "Vector3.h"
+#include "Orange.h"
+#include "Butter.h"
+#include "Cheerio.h"
 
 class Car : public DynamicObject {
     
-private:
-    
+public:
     
 	Vector3 _moving;
 public:
@@ -28,8 +30,9 @@ public:
 		_turnVelocity,
 		_maxTurnSpeed,
 		_maxFacingAngle,
-		_drift;
-    
+		_drift,
+		_frontWheelRotation;
+
     GLboolean _leftPressed,
 		_rightPressed, 
 		_downPressed, 
@@ -45,6 +48,10 @@ public:
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
     void init();
+    
+    void collide(GameObject* obj);
+	void collideWith(Butter* butter);
+    void collideWith(Orange* orange);
     
 };
 

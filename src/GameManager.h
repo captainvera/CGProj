@@ -10,8 +10,13 @@
 #include "GameObject.h"
 #include "Camera.h"
 #include "Car.h"
+#include "CollisionSystem.h"
+
 
 #define TIMER_VAL 8
+
+class Camera;
+class CollisionSystem;
 
 class GameManager {
 private:
@@ -20,6 +25,7 @@ private:
 
 	Camera *_cam1, *_cam2, *_cam;
 	Car* _car;
+    CollisionSystem* _collisionSystem;
 
 
 	GLdouble _time,
@@ -72,6 +78,9 @@ public:
 	void setCamera(Camera* cam);
 	void setCameras(Camera* cam1, Camera* cam2);
 	void setCar(Car * car);
+    void setCollisionSystem(CollisionSystem* collisionSystem);
+    
+    void GGWP();
 	
 	static GameManager* getCurrentInstance();
 };

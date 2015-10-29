@@ -2,6 +2,8 @@
 
 Cheerio::Cheerio()
 {
+    _hascollider = true;
+    _collisionradius *= 0.2;
 }
 
 Cheerio::Cheerio(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -11,7 +13,8 @@ Cheerio::Cheerio(GLdouble posx, GLdouble posy, GLdouble posz,
 		rotangle, rotx, roty, rotz,
 		scalex, scaley, scalez)
 {
-
+    _hascollider = true;
+    _collisionradius *= 0.2;
 }
 
 
