@@ -35,6 +35,5 @@ void Entity::setPosition(Vector3& vec)
 
 void Entity::reset()
 {
-    std::cout << "Reset\n";
     _position = _initPosition;
 }

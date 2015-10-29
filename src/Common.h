@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <math.h>
+#include <cmath>
 #include <vector>
 
 #if defined(__APPLE__) || defined(MACOSX)

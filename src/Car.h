@@ -43,15 +43,17 @@ public:
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
     ~Car();
+    void init();
     void render();
     void move(GLdouble accel, GLdouble delta_t);
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
-    void init();
+    GLdouble getSpeed();
     
     void collide(GameObject* obj);
 	void collideWith(Butter* butter);
     void collideWith(Orange* orange);
+    void collideWith(Cheerio* butter);
     
 };
 

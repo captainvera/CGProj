@@ -16,6 +16,8 @@ DynamicObject::DynamicObject(GLdouble posx, GLdouble posy, GLdouble posz,
                rotangle, rotx, roty, rotz,
                scalex, scaley, scalez)
 {
+    _direction.set(cos((rotangle*3.14)/180),0, sin((rotangle*3.14)/180));
+    std::cout << _direction;
 }
 
 DynamicObject::~DynamicObject()

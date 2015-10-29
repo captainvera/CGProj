@@ -33,8 +33,6 @@ void Car::init()
     /*FIXME direction should be set with rotation*/
     _direction.set(1,0,0);
 	_moving.set(1, 0, 0);
-    _position.set(0,0,0);
-    
     _accel = 0.000012;
     _breakAccel = 0.000035;
     _speed = 0;
@@ -71,7 +69,8 @@ void Car::render()
 	glBegin(GL_LINES);
 	glVertex3f(0.0, 0, 0.0);
 	glVertex3f(_moving._x*10, 0, _moving._z*10);
-	glEnd();*/
+	glEnd();
+    glLineWidth(1);*/
 
     glPushMatrix();
      glRotatef(_angle,0,1,0);
@@ -205,6 +204,11 @@ void Car::update(GLdouble delta_t) {
 
 }
 
+GLdouble Car::getSpeed()
+{
+    return _speed;
+}
+
 void Car::collide(GameObject *obj)
 {
     obj->collideWith(this);
@@ -212,7 +216,7 @@ void Car::collide(GameObject *obj)
 
 void Car::collideWith(Butter* butter)
 {
-    _speed = _speed * 0.95;
+    _speed = _speed * 0.7;
 
 }
 
@@ -221,4 +225,11 @@ void Car::collideWith(Orange* orange)
     _speed = 0;
 
 }
+
+void Car::collideWith(Cheerio* butter)
+{
+    _speed = _speed * 0.8;
+    
+}
+
 

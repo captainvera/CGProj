@@ -22,6 +22,7 @@ public:
 	~Butter();
 	void render();
 	void update(GLdouble delta_t);
+    void move(GLdouble delta_t);
 	void collide(GameObject* obj);
     void collideWith(Car* car);
 };

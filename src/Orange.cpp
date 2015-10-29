@@ -6,6 +6,8 @@
 #include "Orange.h"
 #include "Logger.h"
 
+/*FIXME glutTimerFunc */
+
 GLboolean Orange::checkOutOfBounds()
 {
 	GLdouble x = getPosition()._x, z = getPosition()._z;
@@ -16,12 +18,12 @@ GLboolean Orange::checkOutOfBounds()
 
 void Orange::setOrangeRespawnCallback()
 {
-	glutTimerFunc( RESPAWN_TIME, Orange::orangeRespawnCallback, (int)this);	
+	glutTimerFunc(RESPAWN_TIME, Orange::orangeRespawnCallback, (int)(size_t)this);
 }
 
 void Orange::setOrangeSpeedCallback()
 {
-	glutTimerFunc(SPEED_UP_INTERVAL, Orange::orangeSpeedCallback, (int)this);
+	glutTimerFunc(SPEED_UP_INTERVAL, Orange::orangeSpeedCallback, (int)(size_t)this);
 }
 	
 Orange::Orange()
@@ -103,8 +105,7 @@ void Orange::collide(GameObject* obj)
 
 void Orange::respawn()
 {
-	Logger::printf("Respawning orange!");
-	setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
+    setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
 	_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
 	_direction.normalize();
 	resetSpeed();

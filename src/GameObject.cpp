@@ -43,6 +43,7 @@ GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
     _scale.set(scalex, scaley, scalez);
     _initScale = _scale;
     _hascollider = false;
+    _draw = true;
 	if (scalex > scaley) {
 		if (scalex > scalez)
 			_collisionradius = scalex;
