@@ -22,7 +22,7 @@ public:
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
     ~Roadside();
-    void draw();
+    void render();
     void init();
     void spawnCheerio(double x, double z);
     Vector3 calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3);

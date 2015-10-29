@@ -56,14 +56,20 @@ Vector3& Vector3::operator*(double d){
 	return *this;
 }
 
-void Vector3::normalize(Vector3& v)
+void Vector3::normalize()
 {
-	GLdouble size = sqrt(v._x*v._x +
-		v._y*v._y +
-		v._z*v._z);
-	v.set(v._x / size, v._y / size, v._z / size);
+	GLdouble size = sqrt(_x*_x +
+		_y*_y +
+		_z*_z);
+	set(_x / size, _y / size, _z / size);
 }
 
+void Vector3::normalize2D()
+{
+	GLdouble size = sqrt(_x*_x +
+		_z*_z);
+	set(_x / size, _y, _z / size);
+}
 
 void Vector3::crossProduct(Vector3& v1, Vector3& v2, Vector3& res)
 {
@@ -77,10 +83,15 @@ std::ostream& operator<<(std::ostream& os, const Vector3& v) {
 	return os;
 }
 
-void Vector3::rotateVector2D(GLfloat angle, Vector3& v) {
-	//std::cout << " Got " << v ;
-	v.set(v._x*cos(angle) - v._z*sin(angle), 0, v._x*sin(angle) + v._z*sin(angle));
-	//std::cout << "Rotated by " << angle <<" and got " << v << "\n";
+void Vector3::rotate2D(GLfloat angle) {
+	GLfloat x, z;
+	x = _x;
+	z = _z;
+	_x = x*cos(angle) - z*sin(angle);
+	_z = x*cos(angle) + z*sin(angle);
+	std::cout << "x " << _x << " , y " << _z << "\n";
+
+	//normalize2D();
 }
 
 GLfloat Vector3::dotProduct2D(Vector3 v1, Vector3 v2) {

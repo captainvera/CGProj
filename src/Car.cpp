@@ -29,26 +29,42 @@ Car::~Car()
 void Car::init()
 {
     _direction.set(1,0,0);
+	_moving.set(1, 0, 0);
     _position.set(0,0,0);
     
-    _accel = 0.000006;
-    _breakAccel = 0.0000175;
+    _accel = 0.000012;
+    _breakAccel = 0.000035;
     _speed = 0;
-    _turnSpeed = 0.12;
-    _friction = 0.000003;
+    _turnSpeed = 0.035;
+	_maxTurnSpeed = 2;
+    _friction = 0.000006;
     _angle = 0;
-    _maxSpeed = 0.0175;
-    _maxReverseSpeed = 0.004;
+    _maxSpeed = 0.035;
+    _maxReverseSpeed = 0.008;
     _upPressed = false;
     _downPressed = false;
     _leftPressed = false;
     _rightPressed = false;
-    
+	_turnVelocity = 0;
+	_turnFriction = 0.93;
+	_facingAngle = 0;
+	_maxFacingAngle = 1;
+	_drift = 0.98;
 }
 
-void Car::draw()
+void Car::render()
 {   
-	GameObject::draw();
+	/*glLineWidth(2.5);
+	glColor3f(1.0, 0.0, 0.0);
+	glBegin(GL_LINES);
+	glVertex3f(0.0, 1, 0.0);
+	glVertex3f(_direction._x*10, 1, _direction._z*10);
+	glEnd();
+	glColor3f(0.0, 0.0, 1.0);
+	glBegin(GL_LINES);
+	glVertex3f(0.0, 0, 0.0);
+	glVertex3f(_moving._x*10, 0, _moving._z*10);
+	glEnd();*/
 
     glPushMatrix();
      glRotatef(_angle,0,1,0);
@@ -139,34 +155,42 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
-    _angle += turn * _turnSpeed * delta_t;
-	_direction.set(cos((_angle*M_PI)/180), 0, -sin((_angle*M_PI)/180));
-    Vector3::normalize(_direction);
-    
+	if(fabs(_turnVelocity)<_maxTurnSpeed)
+		_turnVelocity += turn*_turnSpeed*delta_t*(1.2*_maxSpeed-_speed)*50;
+	_turnVelocity *= _turnFriction;
+	_angle += _turnVelocity;
+	
+
+	//_angle += turn * _turnSpeed * delta_t;
+	_direction.set(cos((_angle*M_PI) / 180), 0, -sin((_angle*M_PI) / 180));
+	_moving.set(cos((_angle*M_PI) / 180), 0, -sin((_angle*M_PI) / 180));
+	_direction.normalize();
+	_moving.normalize();
+
 }
 
 void Car::update(GLdouble delta_t) {
-    
     if(_leftPressed == true && _rightPressed == false){
         turn(1, delta_t);
     }
     else if(_leftPressed == false && _rightPressed == true){
         turn(-1, delta_t);
-    }
+	}
+	else {
+		turn(0, delta_t);
+	}
     
     
     if(_upPressed == true && _downPressed == false){
         move(1, delta_t);
     }
-    else if(_upPressed == false && _downPressed == false){
-        move(0, delta_t);
-	}
 	else if (_upPressed == false && _downPressed == true){
 		move(-1, delta_t);
 	}
-	//Make sure we stop
-    else if(_speed > 0.0000001 || _speed < -0.0000001)
-        move(0, delta_t);
+	else {
+		move(0, delta_t);
+	}
+
 }
 
 

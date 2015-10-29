@@ -21,7 +21,7 @@ public:
 		GLdouble scalex = 1, GLdouble scaley = 1, GLdouble scalez = 1);
 
 	~Cheerio();
-	void draw();
+	void render();
 };
 
 #endif /* defined(__CGProj__Orange__) */

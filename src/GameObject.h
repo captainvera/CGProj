@@ -15,7 +15,7 @@ protected:
     Vector3 _rotation,
     _scale;
     GLdouble _rotangle;
-	GLboolean _hasParent;
+	GLboolean _hasParent, _draw;
 	std::vector<GameObject*> _childs;
 	GameObject* _parent;
 	void setParent(GameObject* gobj);
@@ -24,6 +24,7 @@ public:
     GameObject(GLdouble posx, GLdouble posy, GLdouble posz, GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz, GLdouble scalex, GLdouble scaley, GLdouble scalez);
 	~GameObject();
 	virtual void draw();
+	virtual void render();
 	virtual void update(GLdouble delta_t);
 
 	void addChild(GameObject* gobj);

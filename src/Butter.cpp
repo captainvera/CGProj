@@ -22,9 +22,8 @@ Butter::~Butter()
 {
 }
 
-void Butter::draw()
+void Butter::render()
 {
-    GameObject::draw();
     glPushMatrix();
      glTranslated(0,-0.3f, 0);
      glScalef(1.5f, 1.5f, 1.5f);

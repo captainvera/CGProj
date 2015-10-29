@@ -70,7 +70,7 @@ void Camera::calculateCameraDirection()
 {
 	Vector3 t = Vector3(_position);
 	_direction = t - _look;
-	Vector3::normalize(_direction); 
+	_direction.normalize();
 }
 
 void Camera::calculateRightAxis()

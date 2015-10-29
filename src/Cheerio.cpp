@@ -19,9 +19,8 @@ Cheerio::~Cheerio()
 {
 }
 
-void Cheerio::draw()
+void Cheerio::render()
 {
-	GameObject::draw();
 	glColor3f(1, 1, 0.4);
 	glPushMatrix();
 	glRotatef(90.0, 1.0, 0.0, 0.0);

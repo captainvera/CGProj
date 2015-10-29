@@ -223,13 +223,15 @@ void GameManager::draw()
 	glClearColor(0.0f, 0.4f, 0.7f,1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
-
+	int a = 0;
 	_cam->update(_currentW, _currentH);
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
 		glPopMatrix();
+		a++;
 	}	
+	//std::cout << "Draw " << a << " objects\n";
 	glFlush();
 }
 
@@ -280,7 +282,6 @@ void GameManager::setCar(Car * car) {
 
 	_car = car;
 	Logger::printf("Car added");
-	_gobjs.push_back(_car);
 
 }
 

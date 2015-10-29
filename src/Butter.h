@@ -18,6 +18,6 @@ public:
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
 	~Butter();
-	void draw();
+	void render();
 };
 #endif /* defined(__CGProj__Butter__) */

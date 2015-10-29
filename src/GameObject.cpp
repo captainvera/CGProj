@@ -19,6 +19,7 @@ GameObject::GameObject()
     _rotangle = 0;
     _rotation.set(0, 0, 0);
     _scale.set(1, 1, 1);
+	_draw = true;
 }
 
 
@@ -40,7 +41,15 @@ void GameObject::draw()
 {
 	//First apply parent transform
 	//Then object transform
-	applyTransform();
+	//std::cout << "draw\n";
+	if (_draw) {
+		applyTransform();
+		render();
+	}
+}
+
+void GameObject::render()
+{
 }
 
 void GameObject::update(GLdouble delta_t)

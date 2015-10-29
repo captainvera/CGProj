@@ -85,9 +85,8 @@ void Roadside::init()
     
 }
 
-void Roadside::draw()
+void Roadside::render()
 {
-    GameObject::draw();
     /*for(int i = 0; i < _spawnedCheerios.size()-1; i++)
     {
         spawnCheerio(_inside[i].getX()*2, _inside[i].getZ()*2);

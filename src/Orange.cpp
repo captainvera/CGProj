@@ -4,6 +4,7 @@
 //
 
 #include "Orange.h"
+#include "Logger.h"
 
 GLboolean Orange::checkOutOfBounds()
 {
@@ -12,6 +13,17 @@ GLboolean Orange::checkOutOfBounds()
 		return true;
 	return false;
 }
+
+void Orange::setOrangeRespawnCallback()
+{
+	glutTimerFunc( RESPAWN_TIME, Orange::orangeRespawnCallback, (int)this);	
+}
+
+void Orange::setOrangeSpeedCallback()
+{
+	glutTimerFunc(SPEED_UP_INTERVAL, Orange::orangeSpeedCallback, (int)this);
+}
+
 
 Orange::Orange()
 {
@@ -27,10 +39,10 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
 {
 
 	_direction = Vector3(2*((double)(std::rand()) / RAND_MAX)-1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
-	Vector3::normalize(_direction);
-	_time = 0;
+	_direction.normalize();
 	_speedModifier = 1;
-	_speed = 0.015;
+	_speed = ((double)std::rand() / RAND_MAX)*0.010+0.005;
+	setOrangeSpeedCallback();
 }
 
 
@@ -38,9 +50,8 @@ Orange::~Orange()
 {
 }
 
-void Orange::draw()
+void Orange::render()
 {
-    GameObject::draw();
 	glPushMatrix();
 	 glTranslatef(0,0.2, 0);
      glScalef(2, 2, 2);
@@ -61,21 +72,13 @@ void Orange::draw()
 
 	 glPopMatrix();
 	 
-	 
 	glPopMatrix();
-   
 
-    
 }
 
 void Orange::update(GLdouble delta_t)
 {
-	_time += delta_t;
-	if (_time > SPEED_UP_INTERVAL) {
-		std::cout << "Speed Increased!\n";
-		_speedModifier++;
-		_time = 0;
-	}
+
 	setPosition(_position._x + _speedModifier*_speed*delta_t*_direction._x , _position._y,
 		_position._z + _speedModifier*_speed*delta_t*_direction._z);
 	
@@ -83,12 +86,43 @@ void Orange::update(GLdouble delta_t)
 	_rotangle += delta_t*0.5;
 
 	if (checkOutOfBounds() == true) {
-		setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
-		_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
-		Vector3::normalize(_direction);
+		_draw = false;
+		setOrangeRespawnCallback();
+		setPosition(0, 0, 0);
 	}
 
 
+}
+
+void Orange::respawn()
+{
+	Logger::printf("Respawning orange!");
+	setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
+	_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
+	_direction.normalize();
+	_draw = true;
+}
+
+void Orange::increaseSpeed()
+{
+	_speedModifier++;
+	Logger::printf("Speed increase!");
+}
+
+void Orange::resetSpeed() {
+	_speedModifier = 1;
+}
+void Orange::orangeRespawnCallback(int obj)
+{
+	Orange* o = (Orange*)obj;
+	o->respawn();
+}
+
+void Orange::orangeSpeedCallback(int obj)
+{
+	Orange* o = (Orange*)obj;
+	o->increaseSpeed();
+	o->setOrangeSpeedCallback();
 }
 
 

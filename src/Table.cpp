@@ -23,10 +23,8 @@ Table::~Table()
 {
 }
 
-void Table::draw()
-{
-    GameObject::draw();
-    
+void Table::render()
+{    
     glPushMatrix();
 	 glTranslatef(0,- 79.9375,0);
 

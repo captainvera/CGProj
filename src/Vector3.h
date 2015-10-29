@@ -29,9 +29,12 @@ public:
     Vector3& operator*(double d);
 	friend std::ostream& operator<<(std::ostream& os, const Vector3& v);
 
-	static void normalize(Vector3& v);
+	void normalize();
+	void normalize2D();
+	void rotate2D(GLfloat angle);
+
+
 	static void crossProduct(Vector3& v1, Vector3& v2, Vector3& res);
-	static void rotateVector2D(GLfloat angle, Vector3& v);
 	static GLfloat dotProduct2D(Vector3 v1, Vector3 v2);
 	static GLfloat angleBetweenVector2D(Vector3 v1, Vector3 v2);
 };

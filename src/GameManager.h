@@ -11,7 +11,7 @@
 #include "Camera.h"
 #include "Car.h"
 
-#define TIMER_VAL 15
+#define TIMER_VAL 8
 
 class GameManager {
 private:
