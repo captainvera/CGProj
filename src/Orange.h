@@ -37,7 +37,7 @@ public:
 	static void orangeSpeedCallback(int obj);
     void collide(GameObject* obj);
     void collideWith(Car* obj);
-
+	void reset();
 };
 
 #endif /* defined(__CGProj__Orange__) */

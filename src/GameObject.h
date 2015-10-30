@@ -40,7 +40,7 @@ public:
 
 	void addChild(GameObject* gobj);
 	void applyTransform();
-    void reset();
+    virtual void reset();
 
 	virtual void collide(GameObject* obj);
 	virtual void collideWith(GameObject* obj);

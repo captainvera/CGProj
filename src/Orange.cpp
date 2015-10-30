@@ -139,3 +139,9 @@ void Orange::collideWith(Car* obj)
     GameManager::getCurrentInstance()->GGWP();
 }
 
+void Orange::reset()
+{
+	respawn();
+	_speedModifier = 1;
+}
+

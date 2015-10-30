@@ -20,7 +20,7 @@ public:
     Vector3& getPosition();
     void setPosition(GLdouble x, GLdouble y, GLdouble z);
     void setPosition(Vector3& vec);
-    void reset();
+    virtual void reset();
 };
 
 #endif /* defined(__CGProj__Entity__) */

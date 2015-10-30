@@ -24,7 +24,7 @@ public:
 	void setSpeed(GLdouble speed);
 	void setDirection(GLdouble x, GLdouble y, GLdouble z);
 	Vector3 getDirection();
-	void reset();
+	virtual void reset();
 };
 
 #endif /* defined(__CGProj__DynamicObject__) */
