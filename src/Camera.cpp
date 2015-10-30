@@ -16,21 +16,23 @@ Camera::Camera() {
 Camera::~Camera(){
 }
 
-void Camera::update(GLdouble w, GLdouble h){
-    //glViewport(0, 0, w, h);
-    // PASSAR PARA O UPDATE O MOVIMENTO DA CAMARA
+void Camera::update()
+{
 	if (_toFollow) {
-		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 50, 
+		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 50,
 			_follow->getPosition()._y + 20, _follow->getPosition()._z - _follow->getDirection()._z * 50);
 		//std::cout <<"1: "<< getPosition() << " | " << _follow->_position << " | " << _follow->_direction << "\n";
 		setLook(Vector3(_follow->getPosition()._x + _follow->getDirection()._x * 50,
 			_follow->getPosition()._y, _follow->getPosition()._z + _follow->getDirection()._z * 50));
 	}
+}
+
+void Camera::updateMatrix(GLdouble w, GLdouble h){
+    //glViewport(0, 0, w, h);
+    // PASSAR PARA O UPDATE O MOVIMENTO DA CAMARA
 	calculateCameraDirection();
-	//calculateRightAxis();
 	computeProjectionMatrix(w, h);
 	computeVisualizationMatrix();
-
 }
 
 void Camera::computeProjectionMatrix(GLdouble w, GLdouble h){

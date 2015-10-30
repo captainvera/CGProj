@@ -171,7 +171,7 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
-	if(fabs(_turnVelocity)<_maxTurnSpeed)
+	if(fabs(_turnVelocity)<_maxTurnSpeed && fabs(_speed) >0)
 		_turnVelocity += turn*_turnSpeed*delta_t*(1.2*_maxSpeed-_speed)*50;
 	_turnVelocity *= _turnFriction;
 	_angle += _turnVelocity;
@@ -241,6 +241,13 @@ void Car::collideWith(Cheerio* butter)
 {
     _speed = _speed * 0.8;
     
+}
+
+void Car::reset()
+{
+	DynamicObject::reset();
+	_angle = 0.0;
+	_direction.set(1, 0, 0);
 }
 
 

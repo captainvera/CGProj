@@ -18,7 +18,6 @@ CollisionSystem::~CollisionSystem(){
 void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, GameObject* target){
     
 	if(target->_hascollider == true){
-		//COLLISION SYSTEM baaaaaasico
 		for(std::vector<GameObject*>::iterator it = objs.begin(); it != objs.end(); ++it){
 
 			if((*it)->_hascollider == true){
@@ -30,7 +29,8 @@ void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, GameObjec
 			}
 		}
 	}
-	else std::cout << "DEBUG: Seriously.. Something can't colide if it has no collider (Hint: CollisionSystem)";
+	else {
+	}
 }
 
 GLboolean CollisionSystem::checkCollision(GameObject* obj1, GameObject* obj2)

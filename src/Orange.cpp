@@ -108,7 +108,7 @@ void Orange::respawn()
     setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
 	_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
 	_direction.normalize();
-	resetSpeed();
+	_speed = ((double)std::rand() / RAND_MAX)*0.010 + 0.005;
 	_draw = true;
 }
 
@@ -142,6 +142,6 @@ void Orange::collideWith(Car* obj)
 void Orange::reset()
 {
 	respawn();
-	_speedModifier = 1;
+	resetSpeed();
 }
 

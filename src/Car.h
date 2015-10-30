@@ -57,6 +57,8 @@ public:
 	void collideWith(Butter* butter);
     void collideWith(Orange* orange);
     void collideWith(Cheerio* butter);
+
+	void reset();
     
 };
 

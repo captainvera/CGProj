@@ -12,7 +12,7 @@
 #include "Car.h"
 #include "GameManager.h"
 
-#define SPEED_UP_INTERVAL 10000 //10s
+#define SPEED_UP_INTERVAL 8000 // miliseconds
 #define RESPAWN_TIME 500 
 
 class Orange : public Obstacle{

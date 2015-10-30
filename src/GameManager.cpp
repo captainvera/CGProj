@@ -214,6 +214,7 @@ void GameManager::idle()
 void GameManager::update(GLdouble delta_t)
 {
 
+	_cam->update();
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
@@ -230,7 +231,7 @@ void GameManager::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	int a = 0;
-	_cam->update(_currentW, _currentH);
+	_cam->updateMatrix(_currentW, _currentH);
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -296,7 +297,7 @@ void GameManager::setCar(Car * car) {
 void GameManager::setCollisionSystem(CollisionSystem* collisionSystem)
 {
 	_collisionSystem = collisionSystem;
-	Logger::printf("collisionSystem added");
+	Logger::printf("CollisionSystem added");
 }
 
 GLboolean GameManager::wireframe()

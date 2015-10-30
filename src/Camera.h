@@ -27,8 +27,8 @@ protected:
 public:
 	Camera();
 	~Camera();
-
-	virtual void update(GLdouble w, GLdouble h);
+	virtual void update();
+	virtual void updateMatrix(GLdouble w, GLdouble h);
 	virtual void computeProjectionMatrix(GLdouble w, GLdouble h);
 	virtual void computeVisualizationMatrix();
 
