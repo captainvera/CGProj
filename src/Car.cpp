@@ -6,6 +6,14 @@
 #include "Car.h"
 #include "Logger.h"
 
+GLboolean Car::checkOutOfBounds()
+{
+	GLdouble x = _position.getX(), z = _position.getZ();
+	if (x > 75 || x < -75 || z > 50 || z < -50)
+		return true;
+	return false;
+}
+
 Car::Car()
 {
     _position.set(0,0,0);
@@ -52,7 +60,7 @@ void Car::init()
 	_maxFacingAngle = 1;
 	_drift = 0.98;
     _hascollider = true;
-    _collisionradius *= 4;
+    _collisionradius *= 2;
     _frontWheelRotation = 0;
     _drift = 0;
 }
@@ -159,7 +167,7 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 		_speed += _friction*delta_t;
 		if (_speed > 0) _speed = 0;
 	}
-   _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
+   _position.set(_position.getX()+_direction.getX()*_speed*delta_t,_position.getY(),_position.getZ()+_direction.getZ()*_speed*delta_t);
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
@@ -201,6 +209,9 @@ void Car::update(GLdouble delta_t) {
 	else {
 		move(0, delta_t);
 	}
+
+	if (checkOutOfBounds() == true)
+		reset();
 
 }
 

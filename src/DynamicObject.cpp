@@ -17,7 +17,6 @@ DynamicObject::DynamicObject(GLdouble posx, GLdouble posy, GLdouble posz,
                scalex, scaley, scalez)
 {
     _direction.set(cos((rotangle*3.14)/180),0, sin((rotangle*3.14)/180));
-    std::cout << _direction;
 }
 
 DynamicObject::~DynamicObject()
@@ -41,3 +40,11 @@ Vector3 DynamicObject::getDirection()
 {
 	return _direction;
 }
+
+void DynamicObject::reset()
+{
+	_speed = 0;
+	GameObject::reset();
+}
+
+

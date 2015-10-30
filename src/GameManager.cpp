@@ -299,6 +299,11 @@ void GameManager::setCollisionSystem(CollisionSystem* collisionSystem)
 	Logger::printf("collisionSystem added");
 }
 
+GLboolean GameManager::wireframe()
+{
+	return _wireframe;
+}
+
 void GameManager::GGWP()
 {
     for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {

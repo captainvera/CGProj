@@ -7,6 +7,7 @@
 
 #include "GameObject.h"
 #include "Logger.h"
+#include "GameManager.h"
 
 
 void GameObject::setParent(GameObject * gobj)
@@ -66,7 +67,7 @@ void GameObject::draw()
 {
 	if (_draw) {
 		applyTransform();
-		if (_hascollider == true) {
+		if (_hascollider == true && GameManager::getCurrentInstance()->wireframe()) {
 			glColor4f(1, 0, 0, 0.5f);
 			glutSolidSphere(_collisionradius*1.5, 8, 8);
 		}

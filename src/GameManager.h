@@ -80,6 +80,7 @@ public:
 	void setCar(Car * car);
     void setCollisionSystem(CollisionSystem* collisionSystem);
     
+	GLboolean wireframe();
     void GGWP();
 	
 	static GameManager* getCurrentInstance();

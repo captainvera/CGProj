@@ -4,7 +4,7 @@ Cheerio::Cheerio()
 {
     _hascollider = true;
     _collisionradius *= 0.2;
-    _friction = 0.009;
+    _friction = 0.0000009;
 }
 
 Cheerio::Cheerio(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -14,9 +14,9 @@ Cheerio::Cheerio(GLdouble posx, GLdouble posy, GLdouble posz,
 		rotangle, rotx, roty, rotz,
 		scalex, scaley, scalez)
 {
-    _hascollider = true;
-    _collisionradius *= 0.2;
-    _friction = 0.009;
+	_hascollider = true;
+	_collisionradius *= 0.2;
+	_friction = 0.000009;
 }
 
 
@@ -48,7 +48,7 @@ void Cheerio::update(GLdouble delta_t)
 
 void Cheerio::move(GLdouble delta_t)
 {
-    _position.set(_position.getX()+_direction.getX()*_speed*delta_t,0,_position.getZ()+_direction.getZ()*_speed*delta_t);
+    _position.set(_position.getX()+_direction.getX()*_speed*delta_t,_position.getY(),_position.getZ()+_direction.getZ()*_speed*delta_t);
 }
 
 void Cheerio::collide(GameObject* obj)
@@ -58,13 +58,10 @@ void Cheerio::collide(GameObject* obj)
 
 void Cheerio::collideWith(Car* car)
 {
-    
-    std::cout << _position <<"stuff";
-    _speed = fabs(car->getSpeed());
+	if (_speed < car->getSpeed())
+		_speed = fabs(car->getSpeed()*0.9);
     _direction.set(_position.getX() - car->_position.getX(), _position.getY() - car->_position.getY(),_position.getZ() - car->_position.getZ());
-    _direction.normalize();
-    std::cout << _direction;
-    std::cout <<"car: " << car -> getSpeed() << " butt: " << _speed << "po: " << _position<< "\n";
+    _direction.normalize2D();
 }
 
 

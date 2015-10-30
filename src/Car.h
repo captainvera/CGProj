@@ -14,7 +14,10 @@
 #include "Cheerio.h"
 
 class Car : public DynamicObject {
-    
+
+private:
+	GLboolean checkOutOfBounds();
+
 public:
     
 	Vector3 _moving;

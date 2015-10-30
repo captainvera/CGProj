@@ -27,7 +27,7 @@ int main(int argc, char * argv[]) {
     
 	GameManager* gameMgr = new GameManager();
     
-	Car* car = new Car(-16,0,-20,0,0,1,0,.5f,.5f,.5f);
+	Car* car = new Car(-16,-1.5,-20,0,0,1,0,.5f,.5f,.5f);
     Table* table = new Table(0,0,0);
     Roadside* roadside = new Roadside(0,0,0);
 
@@ -69,7 +69,7 @@ int main(int argc, char * argv[]) {
     //Butter Generator
     for(long i = 0; i < NUM_BUTTERS; i++){
         posx =((std::rand() % (60 -0 + 1)))-30;
-        posy = 0;
+        posy = -1;
         posz = (std::rand() % (60-0 + 1))-30;
         roty = 1;
         angle = (std::rand() % (360-0 + 1));

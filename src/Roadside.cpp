@@ -162,12 +162,12 @@ void Roadside::calculatePerpendicularPoints()
             angle2 = (atan2(_spawnedCheerios[i+1].getX()-_spawnedCheerios[_spawnedCheerios.size()-1].getX(), _spawnedCheerios[i+1].getZ()-_spawnedCheerios[_spawnedCheerios.size()-1].getZ()) - pi/2);
             //SPAWN CHEERIO
             normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
-			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.0, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
-            cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+            cheerio = new Cheerio(normal._x*_scale, -1.0, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 		}
@@ -178,12 +178,12 @@ void Roadside::calculatePerpendicularPoints()
 			angle2 = (atan2(_spawnedCheerios[0].getX()-_spawnedCheerios[i-1].getX(), _spawnedCheerios[0].getZ()-_spawnedCheerios[i-1].getZ()) - pi/2);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle1),0,_spawnedCheerios[i].getZ()+2*cos(angle1));
-			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.0, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX()+2*sin(angle2),0,_spawnedCheerios[i].getZ()+2*cos(angle2));
-			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.0, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 		}
@@ -193,12 +193,12 @@ void Roadside::calculatePerpendicularPoints()
 			angle2 = (atan2(_spawnedCheerios[i + 1].getX() - _spawnedCheerios[i - 1].getX(), _spawnedCheerios[i + 1].getZ() - _spawnedCheerios[i - 1].getZ()) - pi / 2);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX() + 2 * sin(angle1), 0, _spawnedCheerios[i].getZ() + 2 * cos(angle1));
-			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawnedCheerios[i].getX() + 2 * sin(angle2), 0, _spawnedCheerios[i].getZ() + 2 * cos(angle2));
-			cheerio = new Cheerio(normal._x*_scale, 0.0, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 		}

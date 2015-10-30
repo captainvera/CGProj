@@ -11,9 +11,10 @@
 #include "Car.h"
 
 class Butter : public Obstacle{
+
 private:
-    
 	GLdouble _friction;
+	GLboolean checkOutOfBounds();
 public:
 	Butter();
     Butter(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -23,6 +24,7 @@ public:
 	void render();
 	void update(GLdouble delta_t);
     void move(GLdouble delta_t);
+
 	void collide(GameObject* obj);
     void collideWith(Car* car);
 };

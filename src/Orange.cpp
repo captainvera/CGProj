@@ -11,7 +11,7 @@
 GLboolean Orange::checkOutOfBounds()
 {
 	GLdouble x = getPosition()._x, z = getPosition()._z;
-	if (x > 75 || x < -75 || z > 75 || z < -75)
+	if (x > 75 || x < -75 || z > 50 || z < -50)
 		return true;
 	return false;
 }
