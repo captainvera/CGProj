@@ -8,6 +8,7 @@
 
 DynamicObject::DynamicObject()
 {
+    _speed = 0;
 }
 DynamicObject::DynamicObject(GLdouble posx, GLdouble posy, GLdouble posz,
                    GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
@@ -17,6 +18,7 @@ DynamicObject::DynamicObject(GLdouble posx, GLdouble posy, GLdouble posz,
                scalex, scaley, scalez)
 {
     _direction.set(cos((rotangle*3.14)/180),0, sin((rotangle*3.14)/180));
+    _speed = 0;
 }
 
 DynamicObject::~DynamicObject()
@@ -32,6 +34,11 @@ void DynamicObject::setSpeed(GLdouble speed)
 {
 }
 
+GLdouble DynamicObject::getSpeed()
+{
+    return _speed;
+}
+
 void DynamicObject::setDirection(GLdouble x, GLdouble y, GLdouble z)
 {
 }
@@ -40,7 +47,6 @@ Vector3 DynamicObject::getDirection()
 {
 	return _direction;
 }
-
 void DynamicObject::reset()
 {
 	_speed = 0;

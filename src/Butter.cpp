@@ -17,7 +17,7 @@ Butter::Butter()
 {
     _hascollider = true;
     _collisionradius *= 1;
-    _friction = 0.00002;
+    _friction = 0.000002;
 }
 
 Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -29,7 +29,7 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
 {
     _hascollider = true;
     _collisionradius *= 1;
-    _friction = 0.00002;
+    _friction = 0.000002;
 	
 }
 
@@ -96,8 +96,8 @@ void Butter::collide(GameObject* obj)
 
 void Butter::collideWith(Car* car)
 {
-	if (_speed < car->getSpeed())
-	 _speed = fabs(car->getSpeed()*0.9);
+	if (fabs(_speed) < fabs(car->getSpeed()))
+	 _speed = fabs(car->getSpeed()*0.6);
     _direction.set(_position.getX() - car->_position.getX(), _position.getY() - car->_position.getY(),_position.getZ() - car->_position.getZ());
     _direction.normalize2D();
 }

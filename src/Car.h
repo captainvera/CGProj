@@ -51,7 +51,6 @@ public:
     void move(GLdouble accel, GLdouble delta_t);
     void turn(GLdouble turn, GLdouble delta_t);
     void update(GLdouble delta_t);
-    GLdouble getSpeed();
     
     void collide(GameObject* obj);
 	void collideWith(Butter* butter);

@@ -28,6 +28,8 @@ public:
     
     void collide(GameObject* obj);
     void collideWith(Car* car);
+    void collideWith(Butter* car);
+    void collideWith(Cheerio* car);
 };
 
 #endif /* defined(__CGProj__Orange__) */

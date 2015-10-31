@@ -22,6 +22,7 @@ public:
 	~DynamicObject();
 	void update(GLdouble delta_t);
 	void setSpeed(GLdouble speed);
+    GLdouble getSpeed();
 	void setDirection(GLdouble x, GLdouble y, GLdouble z);
 	Vector3 getDirection();
 	virtual void reset();

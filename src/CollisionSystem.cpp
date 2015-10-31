@@ -20,7 +20,7 @@ void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, GameObjec
 	if(target->_hascollider == true){
 		for(std::vector<GameObject*>::iterator it = objs.begin(); it != objs.end(); ++it){
 
-			if((*it)->_hascollider == true){
+			if((*it)->_hascollider == true && (*it) != target){
 
 				if (checkCollision(*it, target) == true) {
 					target->collide(*it);

@@ -60,7 +60,7 @@ void Car::init()
 	_maxFacingAngle = 1;
 	_drift = 0.98;
     _hascollider = true;
-    _collisionradius *= 2;
+    _collisionradius *= 1.7;
     _frontWheelRotation = 0;
     _drift = 0;
 }
@@ -215,11 +215,6 @@ void Car::update(GLdouble delta_t) {
 
 }
 
-GLdouble Car::getSpeed()
-{
-    return _speed;
-}
-
 void Car::collide(GameObject *obj)
 {
     obj->collideWith(this);
@@ -239,7 +234,7 @@ void Car::collideWith(Orange* orange)
 
 void Car::collideWith(Cheerio* butter)
 {
-    _speed = _speed * 0.8;
+    _speed = _speed * 0.9;
     
 }
 
