@@ -20,7 +20,7 @@ protected:
 			_direction,
 			_rightaxis;
     GLboolean _rotate,
-		_toFollow;
+              _toFollow;
 
 	Car* _follow;
 
