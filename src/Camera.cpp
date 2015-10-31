@@ -19,8 +19,8 @@ Camera::~Camera(){
 void Camera::update()
 {
 	if (_toFollow) {
-		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 100,
-			_follow->getPosition()._y + 40, _follow->getPosition()._z - _follow->getDirection()._z * 100);
+		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 25,
+			_follow->getPosition()._y + 10, _follow->getPosition()._z - _follow->getDirection()._z * 25);
 		
 		//std::cout <<"1: "<< getPosition() << " | " << _follow->_position << " | " << _follow->_direction << "\n";
 		setLook(Vector3(_follow->getPosition()._x + _follow->getDirection()._x * 50,
