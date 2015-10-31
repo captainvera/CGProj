@@ -74,19 +74,10 @@ void Butter::render()
 void Butter::update(GLdouble delta_t) 
 {
 	
-	if (_speed > 0) {
-        move(delta_t);
-		_speed -= _friction*delta_t;
-		if (_speed < 0) _speed = 0;
-	}
+	DynamicObject::update(delta_t);
 
 	if (checkOutOfBounds() == true)
 		reset();
-}
-
-void Butter::move(GLdouble delta_t)
-{
-   _position.set(_position.getX()+_direction.getX()*_speed*delta_t,_position.getY(),_position.getZ()+_direction.getZ()*_speed*delta_t);
 }
 
 void Butter::collide(GameObject* obj) 
@@ -96,8 +87,8 @@ void Butter::collide(GameObject* obj)
 
 void Butter::collideWith(Car* car)
 {
-	if (_speed < car->getSpeed())
-	 _speed = fabs(car->getSpeed()*0.9);
+	//if (_speed < car->getSpeed())
+		//_speed = fabs(car->getSpeed()*0.9);
     _direction.set(_position.getX() - car->_position.getX(), _position.getY() - car->_position.getY(),_position.getZ() - car->_position.getZ());
     _direction.normalize2D();
 }

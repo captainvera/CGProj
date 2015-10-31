@@ -218,7 +218,6 @@ void GameManager::update(GLdouble delta_t)
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
-    
     _collisionSystem->searchCollisions(_gobjs, _car);
 
 	//Redraw
@@ -270,7 +269,6 @@ void GameManager::init(int argc, char* argv[])
 
 void GameManager::addGameObject(GameObject* obj)
 {
-	Logger::printf("GameObject added");
 	_gobjs.push_back(obj);
 }
 

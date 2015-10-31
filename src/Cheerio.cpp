@@ -35,22 +35,6 @@ void Cheerio::render()
 
 }
 
-void Cheerio::update(GLdouble delta_t)
-{
-    
-    if (_speed > 0) {
-        move(delta_t);
-        _speed -= _friction*delta_t;
-        if (_speed < 0) _speed = 0;
-    }
-    
-}
-
-void Cheerio::move(GLdouble delta_t)
-{
-    _position.set(_position.getX()+_direction.getX()*_speed*delta_t,_position.getY(),_position.getZ()+_direction.getZ()*_speed*delta_t);
-}
-
 void Cheerio::collide(GameObject* obj)
 {
     obj->collideWith(this);

@@ -8,9 +8,9 @@
 class OrthographicCamera : public Camera {
 private:
 	GLfloat _left,
-		_right,
-		_bottom,
-		_top;
+			_right,
+			_bottom,
+			_top;
 public:
 	OrthographicCamera();
 	OrthographicCamera(GLfloat left, GLfloat right, GLfloat top, GLfloat bottom, GLfloat near, GLfloat far);

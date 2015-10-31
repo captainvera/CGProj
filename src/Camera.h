@@ -14,7 +14,7 @@
 class Camera : public GameObject{
 protected:
 	GLfloat _near,
-		_far;
+			_far;
 	Vector3 _up,
 			_look,
 			_direction,

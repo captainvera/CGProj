@@ -167,7 +167,7 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 		_speed += _friction*delta_t;
 		if (_speed > 0) _speed = 0;
 	}
-   _position.set(_position.getX()+_direction.getX()*_speed*delta_t,_position.getY(),_position.getZ()+_direction.getZ()*_speed*delta_t);
+	DynamicObject::move(delta_t);
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
@@ -227,7 +227,7 @@ void Car::collide(GameObject *obj)
 
 void Car::collideWith(Butter* butter)
 {
-    _speed = _speed * 0.7;
+    _speed = 0;
 
 }
 
@@ -239,7 +239,7 @@ void Car::collideWith(Orange* orange)
 
 void Car::collideWith(Cheerio* butter)
 {
-    _speed = _speed * 0.8;
+   _speed = _speed * 0.8;
     
 }
 
