@@ -218,8 +218,11 @@ void GameManager::update(GLdouble delta_t)
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
-    _collisionSystem->searchCollisions(_gobjs, _car);
-
+    
+    for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+        if((*it)->_hascollider == true)
+            _collisionSystem->searchCollisions(_gobjs, (*it));
+    }
 	//Redraw
 	glutPostRedisplay();
 }
@@ -258,7 +261,7 @@ void GameManager::init(int argc, char* argv[])
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_BLEND );
     
-	Logger::printf("Starting Game");
+	printf("Starting Game with %d GameObjects", _gobjs.size());
 	setDisplayCallback();
 	setReshapeCallback();
 	setKeyboardCallback();
@@ -269,6 +272,7 @@ void GameManager::init(int argc, char* argv[])
 
 void GameManager::addGameObject(GameObject* obj)
 {
+	Logger::printf("GameObject added");
 	_gobjs.push_back(obj);
 }
 
