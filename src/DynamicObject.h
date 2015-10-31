@@ -12,7 +12,9 @@
 class DynamicObject : public GameObject{
 protected:
 	Vector3 _direction;
-	GLdouble _accel, _speed, _friction;
+	GLdouble _accel,
+            _speed,
+            _friction;
 	
 public:
 	DynamicObject();
