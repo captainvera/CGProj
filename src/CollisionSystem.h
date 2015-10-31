@@ -14,10 +14,10 @@
 
 
 class CollisionSystem {
-    
-public:
     GLdouble _radius;
     GameObject * _obj;
+public:
+  
     CollisionSystem(GLdouble radius);
     ~CollisionSystem();
     void searchCollisions(std::vector<GameObject*>& objs, GameObject* target);

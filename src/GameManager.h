@@ -23,27 +23,30 @@ private:
 
 	std::vector<GameObject*> _gobjs;
 
-	Camera *_cam1, *_cam2, *_cam;
+	Camera *_cam1,
+		   *_cam2, 
+		   *_cam;
+
 	Car* _car;
+
     CollisionSystem* _collisionSystem;
 
-
 	GLdouble _time,
-		_delta,
-		_old,
-		_fps,
-		_count,
-		_accum, _drawTimer;
-
+			 _delta,
+			 _old,
+			 _fps,
+			 _count,
+			 _accum,
+			 _drawTimer;
 
 	GLdouble _w,
-		_h;
+			 _h;
 
 	GLsizei	_currentW,
-		_currentH;
+			_currentH;
 	
 	GLboolean _wireframe,
-		_camFollow;
+			  _camFollow;
 
 	void setDisplayCallback();
 	void setReshapeCallback();

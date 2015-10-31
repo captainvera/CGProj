@@ -13,7 +13,6 @@
 
 class Cheerio : public Obstacle {
 private:
-    GLdouble _friction;
 public:
 
 	Cheerio();
@@ -23,8 +22,6 @@ public:
 
 	~Cheerio();
 	void render();
-    void update(GLdouble delta_t);
-    void move(GLdouble delta_t);
     
     void collide(GameObject* obj);
     void collideWith(Car* car);

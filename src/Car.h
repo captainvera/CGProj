@@ -14,32 +14,27 @@
 #include "Cheerio.h"
 
 class Car : public DynamicObject {
-
 private:
 	GLboolean checkOutOfBounds();
-
-public:
-    
 	Vector3 _moving;
 public:
 	GLdouble _turnSpeed,
-		_angle,
-		_facingAngle,
-		_friction,
-		_maxSpeed,
-		_breakAccel,
-		_maxReverseSpeed,
-		_turnFriction,
-		_turnVelocity,
-		_maxTurnSpeed,
-		_maxFacingAngle,
-		_drift,
-		_frontWheelRotation;
+			_angle,
+			_facingAngle,
+			_maxSpeed,
+			_breakAccel,
+			_maxReverseSpeed,
+			_turnFriction,
+			_turnVelocity,
+			_maxTurnSpeed,
+			_maxFacingAngle,
+			_drift,
+			_frontWheelRotation;
 
     GLboolean _leftPressed,
-		_rightPressed, 
-		_downPressed, 
-		_upPressed;
+			  _rightPressed, 
+			  _downPressed, 
+			  _upPressed;
 
     Car();
     Car(GLdouble posx, GLdouble posy, GLdouble posz,

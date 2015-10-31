@@ -31,6 +31,7 @@ Orange::Orange()
 	Orange(0, 0, 0);
     _hascollider = true;
     _collisionradius *= 1.1;
+
 }
 
 
@@ -46,6 +47,7 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
 	_direction.normalize();
 	_speedModifier = 1;
 	_speed = ((double)std::rand() / RAND_MAX)*0.010+0.005;
+	_baseSpeed = _speed;
 	setOrangeSpeedCallback();
     _hascollider = true;
     _collisionradius *= 1.1;
@@ -84,12 +86,13 @@ void Orange::render()
 
 void Orange::update(GLdouble delta_t)
 {
+	_speed = _speedModifier*_baseSpeed;
+	//setPosition(_position._x + _speedModifier*_speed*delta_t*_direction._x , _position._y,
+		//_position._z + _speedModifier*_speed*delta_t*_direction._z);
+	DynamicObject::move(delta_t);
 
-	setPosition(_position._x + _speedModifier*_speed*delta_t*_direction._x , _position._y,
-		_position._z + _speedModifier*_speed*delta_t*_direction._z);
-	
 	_rotation.set(_direction._z, _direction._y,- _direction._x);
-	_rotangle += delta_t*0.5;
+	_rotangle += delta_t*50*_speed;
 
 	if (checkOutOfBounds() == true) {
 		_draw = false;
@@ -108,7 +111,7 @@ void Orange::respawn()
     setPosition((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
 	_direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
 	_direction.normalize();
-	_speed = ((double)std::rand() / RAND_MAX)*0.010 + 0.005;
+	_baseSpeed = ((double)std::rand() / RAND_MAX)*0.010 + 0.005;
 	_draw = true;
 }
 
@@ -118,7 +121,7 @@ void Orange::increaseSpeed()
 	Logger::printf("Speed increase!");
 }
 
-void Orange::resetSpeed() {
+void Orange::resetSpeed() {	
 	_speedModifier = 1;
 }
 void Orange::orangeRespawnCallback(int obj)

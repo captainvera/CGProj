@@ -11,7 +11,7 @@
 
 class Entity {
 protected:
-        Vector3 _initPosition;
+	Vector3 _initPosition;
 public:
     Vector3 _position;
 	Entity();

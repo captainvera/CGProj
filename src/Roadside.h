@@ -13,8 +13,8 @@
 
 class Roadside : public StaticObject {
 private:
-    std::vector<Vector3> _spawnedCheerios;
-    std::vector<Vector3> _controlPoints;
+    std::vector<Vector3> _spawnedCheerios,
+						 _controlPoints;
 	GLdouble _scale;
 public:
     Roadside();
@@ -22,12 +22,15 @@ public:
            GLdouble rotangle=0, GLdouble rotx=0, GLdouble roty=0, GLdouble rotz=0,
            GLdouble scalex=1, GLdouble scaley=1, GLdouble scalez=1);
     ~Roadside();
+
     void render();
     void init();
     void spawnCheerio(double x, double z);
+
     Vector3 calculateBezierPoint(float t,Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3);
     void drawBezierPath();
     void calculatePerpendicularPoints();
+
 	void update(GLdouble delta_t);
 };
     

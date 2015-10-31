@@ -8,7 +8,7 @@
 class PerspectiveCamera : public Camera {
 private:
 	GLfloat _aspect, 
-		_fov;
+			_fov;
 public:
 	PerspectiveCamera();
 	PerspectiveCamera(GLfloat fov, GLfloat near, GLfloat far);
