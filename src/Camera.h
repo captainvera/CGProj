@@ -18,9 +18,10 @@ protected:
 	Vector3 _up,
 			_look,
 			_direction,
-			_rightaxis;
+			_rightaxis,
+			_followOffset;
     GLboolean _rotate,
-		_toFollow;
+			  _toFollow;
 
 	Car* _follow;
 
@@ -41,7 +42,7 @@ public:
 	void setDirection(Vector3& dir);
 	void setLook(Vector3 look);
 
-	void followCar(Car* gobj);
+	void followCar(Car* gobj, Vector3 offset);
 	void stopFollow();
 };
 

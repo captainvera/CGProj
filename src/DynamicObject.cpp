@@ -34,10 +34,12 @@ void DynamicObject::update(GLdouble delta_t)
 
 void DynamicObject::setSpeed(GLdouble speed)
 {
+	_speed = speed;
 }
 
 void DynamicObject::setDirection(GLdouble x, GLdouble y, GLdouble z)
 {
+	_direction.set(x, y, z);
 }
 
 Vector3 DynamicObject::getDirection()
@@ -53,7 +55,9 @@ void DynamicObject::reset()
 
 void DynamicObject::move(GLdouble delta_t)
 {
-	_position.set(_position.getX() + _direction.getX()*_speed*delta_t, _position.getY(), _position.getZ() + _direction.getZ()*_speed*delta_t);
+	_position.set(_position.getX() + _direction.getX()*_speed*delta_t, 
+				  _position.getY(), 
+				  _position.getZ() + _direction.getZ()*_speed*delta_t);
 
 }
 

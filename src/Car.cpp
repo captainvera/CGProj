@@ -210,8 +210,9 @@ void Car::update(GLdouble delta_t) {
 		move(0, delta_t);
 	}
 
-	if (checkOutOfBounds() == true)
+	if (checkOutOfBounds() == true) {
 		reset();
+	}
 
 }
 
@@ -233,7 +234,7 @@ void Car::collideWith(Butter* butter)
 
 void Car::collideWith(Orange* orange)
 {
-    _speed = 0;
+    _speed = _speed*0.6;
 
 }
 

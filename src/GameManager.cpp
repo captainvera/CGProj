@@ -187,7 +187,7 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 	}
 	if (key == '3') {
 		_cam = _cam2;
-		_cam->followCar(_car);
+		_cam->followCar(_car, Vector3(35,15,35));
 	}
 	if (key == 27) {
 		exit(1);
@@ -258,6 +258,8 @@ void GameManager::init(int argc, char* argv[])
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable( GL_BLEND );
     
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	Logger::printf("Starting Game");
 	setDisplayCallback();
 	setReshapeCallback();
