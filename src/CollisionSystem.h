@@ -20,7 +20,7 @@ public:
   
     CollisionSystem(GLdouble radius);
     ~CollisionSystem();
-    void searchCollisions(std::vector<GameObject*>& objs, GameObject* target);
+    void searchCollisions(std::vector<GameObject*>& objs, DynamicObject* target);
     GLboolean checkCollision(GameObject* obj1, GameObject* obj2);
     
 };

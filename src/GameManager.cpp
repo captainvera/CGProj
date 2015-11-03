@@ -220,8 +220,12 @@ void GameManager::update(GLdouble delta_t)
 	}
     
     for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-        if((*it)->_hascollider == true)
-            _collisionSystem->searchCollisions(_gobjs, (*it));
+		if ((*it)->_hascollider == true) {
+			DynamicObject* din;
+			din = (DynamicObject*)(*it);
+			if(din->getSpeed() > 0)
+				_collisionSystem->searchCollisions(_gobjs, din);
+		}
     }
 	//Redraw
 	glutPostRedisplay();

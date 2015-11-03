@@ -11,6 +11,7 @@
 #include "Camera.h"
 #include "Car.h"
 #include "CollisionSystem.h"
+#include "DynamicObject.h"
 
 
 #define TIMER_VAL 8
