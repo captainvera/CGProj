@@ -18,9 +18,10 @@
 class Orange : public Obstacle{
 private:
 	GLboolean checkOutOfBounds();
-	GLdouble _speedModifier, 
-			 _baseSpeed;
+	GLdouble _speed_modifier, 
+			 _base_speed;
 	void setOrangeRespawnCallback();
+    Material _materialpe;
 public:
     
 	Orange();

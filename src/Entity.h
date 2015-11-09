@@ -11,12 +11,14 @@
 
 class Entity {
 protected:
-	Vector3 _initPosition;
+	Vector3 _init_position;
 public:
+
     Vector3 _position;
 	Entity();
     Entity(GLdouble posx, GLdouble posy, GLdouble posz);
     ~Entity();
+
     Vector3& getPosition();
     void setPosition(GLdouble x, GLdouble y, GLdouble z);
     void setPosition(Vector3& vec);

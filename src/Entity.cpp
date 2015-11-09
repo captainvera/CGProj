@@ -7,13 +7,13 @@
 
 Entity::Entity() {
 	_position.set(0, 0, 0);
-    _initPosition = _position;
+    _init_position = _position;
 }
 
 Entity::Entity(GLdouble posx, GLdouble posy, GLdouble posz)
 {
 	_position.set(posx, posy, posz);
-    _initPosition = _position;
+    _init_position = _position;
 }
 
 Entity::~Entity(){
@@ -35,5 +35,5 @@ void Entity::setPosition(Vector3& vec)
 
 void Entity::reset()
 {
-    _position = _initPosition;
+    _position = _init_position;
 }

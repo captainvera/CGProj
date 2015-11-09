@@ -17,24 +17,27 @@ class Car : public DynamicObject {
 private:
 	GLboolean checkOutOfBounds();
 	Vector3 _moving;
+    Material _materialmotor,
+             _materialrodas,
+             _materialcapota;
 public:
 	GLdouble _turnSpeed,
 			_angle,
-			_facingAngle,
-			_maxSpeed,
-			_breakAccel,
-			_maxReverseSpeed,
-			_turnFriction,
-			_turnVelocity,
-			_maxTurnSpeed,
-			_maxFacingAngle,
+			_facing_angle,
+			_max_speed,
+			_break_accel,
+			_max_reverse_speed,
+			_turn_friction,
+			_turn_velocity,
+			_max_turn_speed,
+			_max_facing_angle,
 			_drift,
-			_frontWheelRotation;
+			_front_wheel_rotation;
 
-    GLboolean _leftPressed,
-			  _rightPressed, 
-			  _downPressed, 
-			  _upPressed;
+    GLboolean _left_pressed,
+			  _right_pressed, 
+			  _down_pressed, 
+			  _up_pressed;
 
     Car();
     Car(GLdouble posx, GLdouble posy, GLdouble posz,

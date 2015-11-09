@@ -12,7 +12,9 @@
 class Vector3 {
 private:
 public:
-	GLdouble _x, _y, _z;
+	GLdouble _x,
+			 _y,
+			 _z;
 	Vector3();
     Vector3(GLdouble x, GLdouble y, GLdouble z);
     ~Vector3();
@@ -23,6 +25,7 @@ public:
 	GLdouble getSize2D();
 
 	void set(GLdouble x, GLdouble y, GLdouble z);
+	void set(Vector3 v);
     Vector3& operator=(const Vector3& vec);
     Vector3& operator+(const Vector3& vec);
     Vector3& operator-(const Vector3& vec);
@@ -32,7 +35,6 @@ public:
 	void normalize();
 	void normalize2D();
 	void rotate2D(GLfloat angle);
-
 
 	static void crossProduct(Vector3& v1, Vector3& v2, Vector3& res);
 	static GLfloat dotProduct2D(Vector3 v1, Vector3 v2);

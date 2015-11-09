@@ -19,11 +19,11 @@ class Car;
 class GameObject : public Entity {
 protected:
     Vector3 _rotation,
-			_initRotation,
-			_initScale,
+			_init_rotation,
+			_init_scale,
 			_scale;
     GLdouble _rotangle,
-			 _initRotangle;
+			 _init_rotangle;
 	GLboolean _hasParent,
 			  _draw;
 	Material _material;

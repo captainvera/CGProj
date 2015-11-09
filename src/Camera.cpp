@@ -10,7 +10,7 @@
 
 Camera::Camera() {
 	_rotate = false;
-	_toFollow = false;
+	_to_follow = false;
 }
 
 Camera::~Camera(){
@@ -18,19 +18,19 @@ Camera::~Camera(){
 
 void Camera::update()
 {
-	if (_toFollow) {
-		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * 25,
-			_follow->getPosition()._y + 10, _follow->getPosition()._z - _follow->getDirection()._z * 25);
-		
-		//std::cout <<"1: "<< getPosition() << " | " << _follow->_position << " | " << _follow->_direction << "\n";
+	if (_to_follow) {
+
+		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * _follow_offset._x,
+					_follow->getPosition()._y + _follow_offset._y, 
+					_follow->getPosition()._z - _follow->getDirection()._z * _follow_offset._z);
 		setLook(Vector3(_follow->getPosition()._x + _follow->getDirection()._x * 50,
-			_follow->getPosition()._y, _follow->getPosition()._z + _follow->getDirection()._z * 50));
+						_follow->getPosition()._y, 
+						_follow->getPosition()._z + _follow->getDirection()._z * 50));
 	}
 }
 
 void Camera::updateMatrix(GLdouble w, GLdouble h){
     //glViewport(0, 0, w, h);
-    // PASSAR PARA O UPDATE O MOVIMENTO DA CAMARA
 	calculateCameraDirection();
 	computeProjectionMatrix(w, h);
 	computeVisualizationMatrix();
@@ -95,15 +95,16 @@ void Camera::setLook(Vector3 look) {
 	_look.set(look._x, look._y, look._z);
 }
 
-void Camera::followCar(Car* gobj)
+void Camera::followCar(Car* gobj, Vector3 offset)
 {
 	_follow = gobj;
-	_toFollow = true;
+	_to_follow = true;
+	_follow_offset = offset;
 }
 
 void Camera::stopFollow()
 {
-	_toFollow = false;
+	_to_follow = false;
 	_follow = NULL;
 }
 

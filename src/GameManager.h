@@ -11,8 +11,10 @@
 #include "Camera.h"
 #include "Car.h"
 #include "CollisionSystem.h"
+#include "LightSource.h"
+#include "PointLight.h"
+#include "DirectionalLight.h"
 #include "DynamicObject.h"
-
 
 #define TIMER_VAL 8
 
@@ -23,14 +25,15 @@ class GameManager {
 private:
 
 	std::vector<GameObject*> _gobjs;
-
+	std::vector<LightSource*> _light_sources;
+	std::vector<GLenum> _light_pool;
 	Camera *_cam1,
 		   *_cam2, 
 		   *_cam;
 
 	Car* _car;
 
-    CollisionSystem* _collisionSystem;
+    CollisionSystem* _collision_system;
 
 	GLdouble _time,
 			 _delta,
@@ -43,8 +46,8 @@ private:
 	GLdouble _w,
 			 _h;
 
-	GLsizei	_currentW,
-			_currentH;
+	GLsizei	_current_w,
+			_current_h;
 	
 	GLboolean _wireframe,
 			  _camFollow;
@@ -78,12 +81,19 @@ public:
 	void draw();
 
 	void init(int argc, char* argv[]);
+	void start();
+
 	void addGameObject(GameObject* obj);
 	void setCamera(Camera* cam);
 	void setCameras(Camera* cam1, Camera* cam2);
 	void setCar(Car * car);
     void setCollisionSystem(CollisionSystem* collisionSystem);
     
+	PointLight* createPointLight();
+	DirectionalLight* createDirectionalLight();
+	void deleteLight(LightSource* light);
+	void updateLights();
+
 	GLboolean wireframe();
     void GGWP();
 	

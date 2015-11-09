@@ -11,8 +11,9 @@
 #include "Roadside.h"
 #include "Orange.h"
 #include "butter.h"
-#include "OrthographicCamera.h"
+#include "OrthographicCamera.h"		
 #include "PerspectiveCamera.h"
+#include "PointLight.h"
 #include <time.h>
 
 #define NUM_ORANGES 3
@@ -26,7 +27,8 @@ int main(int argc, char * argv[]) {
     float scale;
     
 	GameManager* gameMgr = new GameManager();
-    
+	gameMgr->init(argc, argv);
+
 	Car* car = new Car(-16,-1.5,-20,0,0,1,0,.5f,.5f,.5f);
     Table* table = new Table(0,0,0);
     Roadside* roadside = new Roadside(0,0,0);
@@ -44,12 +46,16 @@ int main(int argc, char * argv[]) {
 
 	gameMgr->setCar(car);
 	
-	gameMgr->addGameObject(car);
+	gameMgr->addGameObject(car); 
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
 
 	table->addChild(car);
 	table->addChild(roadside);
+
+	PointLight* light = gameMgr->createPointLight();
+	light->setPosition(-10, 1, -10);
+	light->setAttenuation(0.001, 0.001, 0.02);
 	GameObject* temp;
 
     //Orange Generator
@@ -60,7 +66,7 @@ int main(int argc, char * argv[]) {
         roty = 1;
         angle = (std::rand() % (360-0 + 1));
         scale = 0.8+(std::rand() % (40-0 + 1))/100.0f;
-		temp = new Orange(posx, posy, posz
+		temp = new Orange(posx, posy, posz 
 			, angle, rotx, roty, rotz
 			, scale, scale, scale);
         gameMgr->addGameObject(temp);
@@ -82,7 +88,7 @@ int main(int argc, char * argv[]) {
     }
     
     
-	gameMgr->init(argc, argv);
+	gameMgr->start();
 	
 	return 0;
 

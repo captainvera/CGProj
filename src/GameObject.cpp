@@ -20,12 +20,12 @@ GameObject::GameObject()
 {
 	_hasParent = false;
     _rotangle = 0;
-    _initRotangle = _rotangle;
+    _init_rotangle = _rotangle;
     _rotation.set(0, 0, 0);
-    _initRotation = _rotation;
+    _init_rotation = _rotation;
     _scale.set(1, 1, 1);
 	_draw = true;
-    _initScale = _scale;
+    _init_scale = _scale;
     _hascollider = false;
     _collisionradius = 1;
     _hasmaterial = false;
@@ -38,11 +38,11 @@ GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
 :Entity(posx,posy,posz)
 {
     _rotangle = rotangle;
-    _initRotangle = _rotangle;
+    _init_rotangle = _rotangle;
     _rotation.set(rotx, roty, rotz);
-    _initRotation = _rotation;
+    _init_rotation = _rotation;
     _scale.set(scalex, scaley, scalez);
-    _initScale = _scale;
+    _init_scale = _scale;
     _hascollider = false;
     _draw = true;
 	if (scalex > scaley) {
@@ -106,8 +106,8 @@ void GameObject::applyTransform()
 void GameObject::reset()
 {
     Entity::reset();
-    _rotangle = _initRotangle;
-    _rotation = _initRotation;
+    _rotangle = _init_rotangle;
+    _rotation = _init_rotation;
 }
 
 void GameObject::collide(GameObject* obj) 
