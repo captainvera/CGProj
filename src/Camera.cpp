@@ -10,7 +10,7 @@
 
 Camera::Camera() {
 	_rotate = false;
-	_toFollow = false;
+	_to_follow = false;
 }
 
 Camera::~Camera(){
@@ -18,11 +18,11 @@ Camera::~Camera(){
 
 void Camera::update()
 {
-	if (_toFollow) {
-		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * _followOffset._x,
-					_follow->getPosition()._y + _followOffset._y, 
-					_follow->getPosition()._z - _follow->getDirection()._z * _followOffset._z);
-		
+	if (_to_follow) {
+
+		setPosition(_follow->getPosition()._x - _follow->getDirection()._x * _follow_offset._x,
+					_follow->getPosition()._y + _follow_offset._y, 
+					_follow->getPosition()._z - _follow->getDirection()._z * _follow_offset._z);
 		setLook(Vector3(_follow->getPosition()._x + _follow->getDirection()._x * 50,
 						_follow->getPosition()._y, 
 						_follow->getPosition()._z + _follow->getDirection()._z * 50));
@@ -98,13 +98,13 @@ void Camera::setLook(Vector3 look) {
 void Camera::followCar(Car* gobj, Vector3 offset)
 {
 	_follow = gobj;
-	_toFollow = true;
-	_followOffset = offset;
+	_to_follow = true;
+	_follow_offset = offset;
 }
 
 void Camera::stopFollow()
 {
-	_toFollow = false;
+	_to_follow = false;
 	_follow = NULL;
 }
 

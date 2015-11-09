@@ -11,8 +11,9 @@
 
 class Entity {
 protected:
-	Vector3 _initPosition;
+	Vector3 _init_position;
 public:
+
     Vector3 _position;
 	Entity();
     Entity(GLdouble posx, GLdouble posy, GLdouble posz);

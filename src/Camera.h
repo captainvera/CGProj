@@ -19,10 +19,9 @@ protected:
 			_look,
 			_direction,
 			_rightaxis,
-			_followOffset;
+			_follow_offset;
     GLboolean _rotate,
-			  _toFollow;
-
+			  _to_follow;
 	Car* _follow;
 
 public:

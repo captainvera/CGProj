@@ -13,8 +13,8 @@
 
 class Roadside : public StaticObject {
 private:
-    std::vector<Vector3> _spawnedCheerios,
-						 _controlPoints;
+    std::vector<Vector3> _spawned_cheerios,
+						 _control_points;
 	GLdouble _scale;
 public:
     Roadside();

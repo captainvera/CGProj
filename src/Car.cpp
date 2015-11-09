@@ -42,26 +42,26 @@ void Car::init()
     _direction.set(1,0,0);
 	_moving.set(1, 0, 0);
     _accel = 0.000012;
-    _breakAccel = 0.000035;
+    _break_accel = 0.000035;
     _speed = 0;
     _turnSpeed = 0.035;
-	_maxTurnSpeed = 2;
+	_max_turn_speed = 2;
     _friction = 0.000006;
     _angle = 0;
-    _maxSpeed = 0.035;
-    _maxReverseSpeed = 0.008;
-    _upPressed = false;
-    _downPressed = false;
-    _leftPressed = false;
-    _rightPressed = false;
-	_turnVelocity = 0;
-	_turnFriction = 0.93;
-	_facingAngle = 0;
-	_maxFacingAngle = 1;
+    _max_speed = 0.035;
+    _max_reverse_speed = 0.008;
+    _up_pressed = false;
+    _down_pressed = false;
+    _left_pressed = false;
+    _right_pressed = false;
+	_turn_velocity = 0;
+	_turn_friction = 0.93;
+	_facing_angle = 0;
+	_max_facing_angle = 1;
 	_drift = 0.98;
     _hascollider = true;
-    _collisionradius *= 2;
-    _frontWheelRotation = 0;
+    _collisionradius *= 1.7;
+    _front_wheel_rotation = 0;
     _drift = 0;
 }
 
@@ -114,14 +114,14 @@ void Car::render()
     
       glPushMatrix();
 	   glTranslatef(4, -1.5, -4.5);
-       glRotatef(_frontWheelRotation, 0,1,0);
+       glRotatef(_front_wheel_rotation, 0,1,0);
 	   glScalef(1.5,1.5,1.5);
 	   glutSolidTorus(0.7,1,12,15);
       glPopMatrix();
     
       glPushMatrix();
 	   glTranslatef(4, -1.5, 4.5);
-       glRotatef(_frontWheelRotation, 0,1,0);
+       glRotatef(_front_wheel_rotation, 0,1,0);
 	   glScalef(1.5,1.5,1.5);
 	   glutSolidTorus(0.7,1,12,15);
       glPopMatrix();
@@ -152,11 +152,11 @@ void Car::render()
 void Car::move( GLdouble accel, GLdouble delta_t){
 	
 	if (accel < 0 && _speed > 0) {
-		_speed += accel*_breakAccel*delta_t;
+		_speed += accel*_break_accel*delta_t;
 	}
-	if (accel < 0 && fabs(_speed) < _maxReverseSpeed) {
+	if (accel < 0 && fabs(_speed) < _max_reverse_speed) {
 		_speed += accel*_accel*delta_t;
-	}else if(accel > 0 && fabs(_speed) < _maxSpeed){
+	}else if(accel > 0 && fabs(_speed) < _max_speed){
         _speed += accel*_accel*delta_t;
     }
     else if(_speed > 0 && accel == 0){
@@ -171,10 +171,10 @@ void Car::move( GLdouble accel, GLdouble delta_t){
 }
 
 void Car::turn(GLdouble turn, GLdouble delta_t) {
-	if(fabs(_turnVelocity)<_maxTurnSpeed && fabs(_speed) >0)
-		_turnVelocity += turn*_turnSpeed*delta_t*(1.2*_maxSpeed-_speed)*50;
-	_turnVelocity *= _turnFriction;
-	_angle += _turnVelocity;
+	if(fabs(_turn_velocity)<_max_turn_speed && fabs(_speed) >0)
+		_turn_velocity += turn*_turnSpeed*delta_t*(1.2*_max_speed-_speed)*50;
+	_turn_velocity *= _turn_friction;
+	_angle += _turn_velocity;
 	
 
 	//_angle += turn * _turnSpeed * delta_t;
@@ -186,24 +186,24 @@ void Car::turn(GLdouble turn, GLdouble delta_t) {
 }
 
 void Car::update(GLdouble delta_t) {
-    if(_leftPressed == true && _rightPressed == false){
+    if(_left_pressed == true && _right_pressed == false){
         turn(1, delta_t);
-        _frontWheelRotation = 50;
+        _front_wheel_rotation = 50;
     }
-    else if(_leftPressed == false && _rightPressed == true){
+    else if(_left_pressed == false && _right_pressed == true){
         turn(-1, delta_t);
-		_frontWheelRotation = -50;
+		_front_wheel_rotation = -50;
 	}
 	else {
-		_frontWheelRotation = 0;
+		_front_wheel_rotation = 0;
 		turn(0, delta_t);
 	}
     
     
-    if(_upPressed == true && _downPressed == false){
+    if(_up_pressed == true && _down_pressed == false){
         move(1, delta_t);
     }
-	else if (_upPressed == false && _downPressed == true){
+	else if (_up_pressed == false && _down_pressed == true){
 		move(-1, delta_t);
 	}
 	else {
@@ -216,11 +216,6 @@ void Car::update(GLdouble delta_t) {
 
 }
 
-GLdouble Car::getSpeed()
-{
-    return _speed;
-}
-
 void Car::collide(GameObject *obj)
 {
     obj->collideWith(this);
@@ -228,7 +223,7 @@ void Car::collide(GameObject *obj)
 
 void Car::collideWith(Butter* butter)
 {
-    _speed = 0;
+    _speed = _speed * 0.7;
 
 }
 
@@ -240,7 +235,7 @@ void Car::collideWith(Orange* orange)
 
 void Car::collideWith(Cheerio* butter)
 {
-   _speed = _speed * 0.8;
+    _speed = _speed * 0.9;
     
 }
 

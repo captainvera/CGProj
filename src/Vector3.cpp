@@ -39,6 +39,13 @@ void Vector3::set(GLdouble x, GLdouble y, GLdouble z){
     _z = z;
 }
 
+void Vector3::set(Vector3 v)
+{
+	_x = v._x;
+	_y = v._y;
+	_z = v._z;
+}
+
 Vector3& Vector3::operator=(const Vector3& vec){
 	this->set(vec._x, vec._y, vec._z);
 	return *this;

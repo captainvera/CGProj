@@ -11,7 +11,6 @@
 #include "Car.h"
 
 class Butter : public Obstacle{
-
 private:
 	GLboolean checkOutOfBounds();
 public:
