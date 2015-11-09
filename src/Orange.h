@@ -21,14 +21,6 @@ private:
 	GLdouble _speedModifier, 
 			 _baseSpeed;
 	void setOrangeRespawnCallback();
-	GLfloat _amb[4] = { 1.0f,0.53f,0.03f,1.0f },
-			_diff[4] = { 0.68f,0.45f,0.43f,1.0f },
-			_spec[4] = { 0.51f,0.43f,0.62f,1.0f },
-			_shine = 60.0f,
-			_ambpe[4] = { 0.15f,0.14f,0.0f,1.0f },
-			_diffpe[4] = { 0.59f,0.43f,0.36f,1.0f },
-			_specpe[4] = { 0.46f,0.45f,0.48f,1.0f },
-			_shinepe = 108.0f;
 public:
     
 	Orange();

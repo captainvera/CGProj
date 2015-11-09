@@ -13,10 +13,6 @@
 
 class Cheerio : public Obstacle {
 private:
-	GLfloat _amb[4] = { 1.0f,0.85f,0.27f,1.0f },
-			_diff[4] = { 0.53f,0.41f,0.44f,1.0f },
-			_spec[4] = { 0.48f,0.45f,0.48f,1.0f },
-			_shine = 74.0f;
 public:
 
 	Cheerio();

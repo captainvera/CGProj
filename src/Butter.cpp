@@ -30,7 +30,11 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
     _hascollider = true;
     _collisionradius *= 1;
     _friction = 0.000002;
-	
+    GLfloat amb[4] = { 1.0f,0.92f,0.48f,1.0f },
+            diff[4] = { 0.43f,0.45f,0.48f,1.0f },
+            spec[4] = { 0.48f,0.4f,0.47f,1.0f },
+            shine = 26.0f;
+	setMaterial(amb, diff, spec, shine);
 }
 
 Butter::~Butter()
@@ -44,7 +48,6 @@ void Butter::render()
      glScalef(1.5f, 1.5f, 1.5f);
     //Body
      glPushMatrix();
-	  _material.defineMaterial(_amb, _diff, _spec, _shine);
       glColor3f(1, 1, 0.67f);
       glScalef(1.1f,1.0f,1.5f);
       glutSolidCube(1);

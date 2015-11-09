@@ -27,6 +27,7 @@ protected:
 	GLboolean _hasParent,
 			  _draw;
 	Material _material;
+    GLboolean _hasmaterial;
 	
 	std::vector<GameObject*> _childs;
 	GameObject* _parent;
@@ -55,6 +56,7 @@ public:
 	virtual void collideWith(Orange* obj);
 	virtual void collideWith(Cheerio* obj);
     virtual void collideWith(Car* obj);
+    void setMaterial(float amb[4], float diff[4], float spec[4], float shine);
 
 };
 #endif /* defined(__CGProj__GameObject__) */
