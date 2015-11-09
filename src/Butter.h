@@ -13,6 +13,10 @@
 class Butter : public Obstacle{
 private:
 	GLboolean checkOutOfBounds();
+	GLfloat _amb[4] = { 1.0f,0.92f,0.48f,1.0f },
+			_diff[4] = { 0.43f,0.45f,0.48f,1.0f },
+			_spec[4] = { 0.48f,0.4f,0.47f,1.0f },
+			_shine = 26.0f;
 public:
 	Butter();
     Butter(GLdouble posx, GLdouble posy, GLdouble posz,

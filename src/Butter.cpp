@@ -41,6 +41,7 @@ void Butter::render()
      glScalef(1.5f, 1.5f, 1.5f);
     //Body
      glPushMatrix();
+	  _material.defineMaterial(_amb, _diff, _spec, _shine);
       glColor3f(1, 1, 0.67f);
       glScalef(1.1f,1.0f,1.5f);
       glutSolidCube(1);

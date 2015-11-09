@@ -15,7 +15,7 @@ CollisionSystem::CollisionSystem(GLdouble radius){
 CollisionSystem::~CollisionSystem(){
 }
 
-void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, GameObject* target){
+void CollisionSystem::searchCollisions(std::vector<GameObject*>& objs, DynamicObject* target){
     
 	if(target->_hascollider == true){
 		for(std::vector<GameObject*>::iterator it = objs.begin(); it != objs.end(); ++it){

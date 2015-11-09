@@ -14,6 +14,7 @@
 #include "LightSource.h"
 #include "PointLight.h"
 #include "DirectionalLight.h"
+#include "DynamicObject.h"
 
 #define TIMER_VAL 8
 

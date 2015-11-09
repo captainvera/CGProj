@@ -9,6 +9,7 @@
 #include "Common.h"
 #include "Entity.h"
 #include "Vector3.h"
+#include "Material.h"
 
 class Butter;
 class Orange;
@@ -25,6 +26,7 @@ protected:
 			 _init_rotangle;
 	GLboolean _hasParent,
 			  _draw;
+	Material _material;
 	
 	std::vector<GameObject*> _childs;
 	GameObject* _parent;
