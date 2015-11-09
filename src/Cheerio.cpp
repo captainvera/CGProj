@@ -26,6 +26,7 @@ Cheerio::~Cheerio()
 
 void Cheerio::render()
 {
+	_material.defineMaterial(_amb, _diff, _spec, _shine);
 	glColor3f(1, 1, 0.4);
 	glPushMatrix();
 	glRotatef(90.0, 1.0, 0.0, 0.0);

@@ -66,12 +66,14 @@ void Orange::render()
     
 	 //corpo	
      glPushMatrix();
+	  _material.defineMaterial(_amb, _diff, _spec, _shine);
 	  glColor3f(0.85f, 0.53f, 0.1f);
 	  glutSolidSphere(1, 16, 16);
 	 glPopMatrix();
 
 	 //pe da laranja
 	 glPushMatrix();
+	 _material.defineMaterial(_ambpe, _diffpe, _specpe, _shinepe);
 	  glColor3f(0.2f,0.0f,0.0f);
 	  glTranslatef(0.5f, 0.8f, 0.0f);
 	  glRotatef(-30, 0, 0, 1);
