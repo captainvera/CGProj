@@ -24,7 +24,8 @@ Table::~Table()
 }
 
 void Table::render()
-{    
+{
+    /*
     glPushMatrix();
 	 glTranslatef(0,- 79.9375,0);
 
@@ -35,7 +36,25 @@ void Table::render()
       glutSolidCube(1);
      glPopMatrix();
     glPopMatrix();
-    
+    */
+    for(int u = -75; u < 75; u++)
+    {
+        for(int i = -75; i < 75; i++)
+        {
+            glBegin(GL_QUADS);
+            glNormal3f(0, 1, 0);
+            glVertex3f(1+i, -2, 1+u);
+            glNormal3f(0, 1, 0);
+            glVertex3f(-1+i, -2, 1+u);
+            glNormal3f(0, 1, 0);
+            glVertex3f(-1+i, -2, -1+u);
+            glNormal3f(0, 1, 0);
+            glVertex3f(1+i, -2, -1+u);
+        
+            glEnd();
+        
+        }
+    }
 }
 
 void Table::update(GLdouble delta_t) {
