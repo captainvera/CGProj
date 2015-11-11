@@ -55,8 +55,11 @@ int main(int argc, char * argv[]) {
 
 	PointLight* light = gameMgr->createPointLight();
 	light->setPosition(-10, 1, -10);
-	light->setAttenuation(0.001, 0.001, 0.02);
-	light->setCutoff(180);
+	light->setAttenuation(0.0001, 0.0001, 0.002);
+    
+    PointLight* lighta = gameMgr->createPointLight();
+    lighta->setPosition(10, 1, 10);
+    lighta->setAttenuation(0.0001, 0.0001, 0.002);
 	GameObject* temp;
 
     //Orange Generator

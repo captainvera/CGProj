@@ -28,7 +28,7 @@ GameObject::GameObject()
     _init_scale = _scale;
     _hascollider = false;
     _collisionradius = 1;
-    
+    _hasmaterial = false;
 }
 
 
@@ -71,6 +71,9 @@ void GameObject::draw()
 			glColor4f(1, 0, 0, 0.5f);
 			glutSolidSphere(_collisionradius*1.5, 8, 8);
 		}
+        if(_hasmaterial == true){
+            _material.applyMaterial();
+        }
 		render();
 	}
 }
@@ -130,4 +133,10 @@ void GameObject::collideWith(Cheerio * obj)
 
 void GameObject::collideWith(Car * obj)
 {
+}
+
+void GameObject::setMaterial(float amb[4], float diff[4], float spec[4], float shine)
+{
+    _hasmaterial = true;
+    _material.setValues(amb, diff, spec, shine);
 }

@@ -50,7 +50,8 @@ private:
 			_current_h;
 	
 	GLboolean _wireframe,
-			  _camFollow;
+			  _camFollow,
+              _smooth_shading;
 
 	void setDisplayCallback();
 	void setReshapeCallback();

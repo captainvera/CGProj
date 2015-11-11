@@ -183,6 +183,20 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
         _cam->toggleRotate();
         Logger::printf("Toggle rotate");
     }
+    if(key == 'g'){
+        if(_smooth_shading == true)
+        {
+            glShadeModel(GL_FLAT);
+            Logger::printf("Toggle Flat");
+            _smooth_shading = false;
+        }
+        else{
+            glShadeModel(GL_SMOOTH);
+            Logger::printf("Toggle Smooth");
+            _smooth_shading =true;
+        }
+    }
+
 	if (key == '1') {
 		_cam->stopFollow();
 		_cam = _cam1;
@@ -227,18 +241,14 @@ void GameManager::update(GLdouble delta_t)
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
-    
-	/*for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-        if((*it)->_hascollider == true)
-            _collisionSystem->searchCollisions(_gobjs, (*it));
-    }*/
+
 	_collision_system->searchCollisions(_gobjs, _car);
     /*for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		if ((*it)->_hascollider == true) {
 			DynamicObject* din;
 			din = (DynamicObject*)(*it);
 			if(din->getSpeed() > 0)
-				_collisionSystem->searchCollisions(_gobjs, din);
+				_collision_system->searchCollisions(_gobjs, din);
 		}
     }*/
 	//Redraw
@@ -282,12 +292,13 @@ void GameManager::init(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);                // Enable depth testing
 	glDepthFunc(GL_LEQUAL);                 // Type of depth test to do
 	glDepthRange(0, 1);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glEnable(GL_BLEND);
-
+    //glEnable(GL_BLEND);
+    
+    _smooth_shading = true;
 	glEnable(GL_LIGHTING);
-
+    glShadeModel(GL_SMOOTH);
 	//glEnable(GL_COLOR_MATERIAL);
 	
 	/*
@@ -311,7 +322,7 @@ void GameManager::init(int argc, char* argv[])
 void GameManager::start()
 {
 	_old = glutGet(GLUT_ELAPSED_TIME);
-	printf("Starting Game with %d GameObjects\n", _gobjs.size());
+	printf("Starting Game with %lu GameObjects\n", _gobjs.size());
 	glutMainLoop();
 }
 

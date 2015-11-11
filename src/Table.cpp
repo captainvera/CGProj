@@ -17,6 +17,12 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
               rotangle, rotx, roty, rotz,
               scalex, scaley, scalez)
 {
+    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
+    diff[4] = {0.1f,0.05f,0.0f,1.0f},
+    spec[4] = {0.0f,0.0f,0.0f,1.0f},
+    shine = 80.0f;
+    setMaterial(amb, diff, spec, shine);
+    cube_size = 2;
 }
 
 Table::~Table()
@@ -37,23 +43,17 @@ void Table::render()
      glPopMatrix();
     glPopMatrix();
     */
-    for(int u = -75; u < 75; u++)
+    glTranslatef(-75, -5, -75);
+    for(int u = -75; u < 75; u=u+cube_size)
     {
-        for(int i = -75; i < 75; i++)
+        glTranslatef(cube_size, 0, 0);
+        for(int i = -75; i < 75; i=i+cube_size)
         {
-            glBegin(GL_QUADS);
-            glNormal3f(0, 1, 0);
-            glVertex3f(1+i, -2, 1+u);
-            glNormal3f(0, 1, 0);
-            glVertex3f(-1+i, -2, 1+u);
-            glNormal3f(0, 1, 0);
-            glVertex3f(-1+i, -2, -1+u);
-            glNormal3f(0, 1, 0);
-            glVertex3f(1+i, -2, -1+u);
-        
-            glEnd();
+            glTranslatef(0, 0, cube_size);
+            glutSolidCube(cube_size);
         
         }
+        glTranslatef(0, 0, -150);
     }
 }
 

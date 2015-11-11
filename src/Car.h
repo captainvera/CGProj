@@ -17,6 +17,9 @@ class Car : public DynamicObject {
 private:
 	GLboolean checkOutOfBounds();
 	Vector3 _moving;
+    Material _materialmotor,
+             _materialrodas,
+             _materialcapota;
 public:
 	GLdouble _turnSpeed,
 			_angle,

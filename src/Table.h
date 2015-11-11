@@ -10,6 +10,8 @@
 #include "StaticObject.h"
 
 class Table : public StaticObject {
+private:
+    GLfloat cube_size;
 public:
     Table();
     Table(GLdouble posx, GLdouble posy, GLdouble posz,
