@@ -17,6 +17,11 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
               rotangle, rotx, roty, rotz,
               scalex, scaley, scalez)
 {
+    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
+    diff[4] = {0.83f,0.48f,0.0f,1.0f},
+    spec[4] = {0.83f,0.8f,0.8f,1.0f},
+    shine = 80.0f;
+    setMaterial(amb, diff, spec, shine);
 }
 
 Table::~Table()

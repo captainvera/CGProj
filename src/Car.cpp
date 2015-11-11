@@ -28,7 +28,28 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
           scalex, scaley, scalez)
 {
     
+    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
+    diff[4] = {0.83f,0.48f,0.0f,1.0f},
+    spec[4] = {0.0f,0.0f,0.0f,1.0f},
+    shine = 40.0f;
+    setMaterial(amb, diff, spec, shine);
+    GLfloat ambmotor[4] = {0.0f,0.0f,0.0f,1.0f},
+    diffmotor[4] = {0.8f,0.78f,0.78f,1.0f},
+    specmotor[4] = {0.0f,0.0f,0.0f,1.0f},
+    shinemotor = 20.0f;
+    _materialmotor.setValues(ambmotor, diffmotor, specmotor, shinemotor);
+    GLfloat ambrodas[4] = {0.0f,0.0f,0.0f,1.0f},
+    diffrodas[4] = {0.11f,0.1f,0.1f,1.0f},
+    specrodas[4] = {0.0f,0.0f,0.0f,1.0f},
+    shinerodas = 10.0f;
+    _materialrodas.setValues(ambrodas, diffrodas, specrodas, shinerodas);
+    GLfloat ambcap[4] = {0.0215f,0.0f,0.0215f,1.0f},
+    diffcap[4] = {0.49f,0.0f,0.0f,1.0f},
+    speccap[4] = {0.0f,0.0f,0.0f,1.0f},
+    shinecap = 20.0f;
+    _materialcapota.setValues(ambcap, diffcap, speccap, shinecap);
     init();
+    
 }
 
 
@@ -93,6 +114,7 @@ void Car::render()
      glPopMatrix();
     
     //capot
+    _materialcapota.applyMaterial();
      glColor3f(0.20, 0.21, 0.22);
      glPushMatrix();
       glTranslatef(-3.5, 3.5, 0);
@@ -101,6 +123,7 @@ void Car::render()
      glPopMatrix();
     
     //motor
+    _materialmotor.applyMaterial();
      glColor3f(0.37, 0.34, 0-.33);
      glPushMatrix();
       glTranslatef(2.5, 2.5, 0);
@@ -109,6 +132,7 @@ void Car::render()
      glPopMatrix();
     
     //rodas frente
+    _materialrodas.applyMaterial();
      glColor3f(0, 0, 0);
      glPushMatrix();
     

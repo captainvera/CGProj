@@ -32,7 +32,7 @@ private:
 		   *_cam;
 
 	Car* _car;
-
+	DirectionalLight* sun_light;
     CollisionSystem* _collision_system;
 
 	GLdouble _time,
@@ -51,7 +51,7 @@ private:
 	
 	GLboolean _wireframe,
 			  _camFollow;
-
+	
 	void setDisplayCallback();
 	void setReshapeCallback();
 	void setKeyboardCallback();

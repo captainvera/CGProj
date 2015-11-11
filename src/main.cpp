@@ -53,12 +53,14 @@ int main(int argc, char * argv[]) {
 	table->addChild(car);
 	table->addChild(roadside);
 
-	PointLight* light = gameMgr->createPointLight();
+	/*PointLight* light = gameMgr->createPointLight();
 	light->setPosition(0, 1, 0);
-	light->setAttenuation(0.001, 0.001, 0.02);
+	light->setAttenuation(0.001, 0.001, 0.02);*/
+
 	DirectionalLight* d_light = gameMgr->createDirectionalLight();
-	light->setPosition(0, -20, 2);
-	light->setDiffuse(0.9, 0.9, 0.9,1.0);
+	d_light->setPosition(0, 1, 0);
+	d_light->setDiffuse(0.9, 0.9, 0.9,1.0);
+
 	GameObject* temp;
 
     //Orange Generator
