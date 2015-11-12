@@ -39,7 +39,7 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
     shinemotor = 20.0f;
     _materialmotor.setValues(ambmotor, diffmotor, specmotor, shinemotor);
     GLfloat ambrodas[4] = {0.0f,0.0f,0.0f,1.0f},
-    diffrodas[4] = {0.11f,0.1f,0.1f,1.0f},
+    diffrodas[4] = {0.05f,0.05f,0.05f,1.0f},
     specrodas[4] = {0.0f,0.0f,0.0f,1.0f},
     shinerodas = 10.0f;
     _materialrodas.setValues(ambrodas, diffrodas, specrodas, shinerodas);
@@ -211,10 +211,14 @@ void Car::turn(GLdouble turn, GLdouble delta_t) {
 
 void Car::update(GLdouble delta_t) {
     if(_left_pressed == true && _right_pressed == false){
-        turn(1, delta_t);
+		if (_down_pressed)
+			turn(1, delta_t);
+		turn(1, delta_t);
         _front_wheel_rotation = 50;
     }
     else if(_left_pressed == false && _right_pressed == true){
+		if(_down_pressed)
+			turn(-1, delta_t);
         turn(-1, delta_t);
 		_front_wheel_rotation = -50;
 	}

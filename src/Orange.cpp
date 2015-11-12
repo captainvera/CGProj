@@ -51,15 +51,15 @@ Orange::Orange(GLdouble posx, GLdouble posy, GLdouble posz,
 	setOrangeSpeedCallback();
     _hascollider = true;
     _collisionradius *= 1.1;
-    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
-            diff[4] = {1.0f,0.45f,0.0f,1.0f},
+    GLfloat amb[4] = {0.24f,0.04f,0.0f,1.0f},
+            diff[4] = {0.8f,0.46f,0.0f,1.0f},
             spec[4] = {0.0f,0.0f,0.0f,1.0f},
             shine = 0.0f;
     setMaterial(amb, diff, spec, shine);
-    GLfloat ambpe[4] = {0.0f,0.0f,0.0f,1.0f},
-    diffpe[4] = {0.1f,0.05f,0.0f,1.0f},
-    specpe[4] = {0.0f,0.0f,0.0f,1.0f},
-    shinepe = 0.0f;
+	GLfloat ambpe[4] = { 0.08f,0.1f,0.0f,1.0f },
+		diffpe[4] = { 0.05,0.025,0.0f,1.0f },
+		specpe[4] = { 0.0f,0.0f,0.0f,1.0f },
+		shinepe = 0;
     _materialpe.setValues(ambpe, diffpe, specpe, shinepe);
 }
 
@@ -76,12 +76,14 @@ void Orange::render()
     
 	 //corpo	
      glPushMatrix();
+	  glColor3f(0.85f, 0.53f, 0.1f);
 	  glutSolidSphere(1, 16, 16);
 	 glPopMatrix();
 
 	 //pe da laranja
 	 glPushMatrix();
-     _materialpe.applyMaterial();
+	  glColor3f(0.2f, 0.0f, 0.0f);
+      _materialpe.applyMaterial();
 	  glTranslatef(0.5f, 0.8f, 0.0f);
 	  glRotatef(-30, 0, 0, 1);
 	  glScalef(0.15, 0.7f, 0.15);

@@ -6,6 +6,7 @@ LightSource::LightSource()
 	_direction = Vector3(0,0,0);
 	setPosition(0, 0, 0);
 	setDirection(0, 0, 1);
+	_state = true;
 	_w = 0.0;
 }
 
@@ -25,11 +26,16 @@ GLboolean LightSource::getState()
 
 void LightSource::setState(GLboolean state)
 {
-	state = _state;
-	if (state)
+	printf("state\n");
+	_state = state;
+	if (state) {
 		glEnable(_num);
-	else
+		printf("Enable light\n");
+	}
+	else {
+		printf("Disable light\n");
 		glDisable(_num);
+	}
 }
 
 GLenum LightSource::getNum()
@@ -55,7 +61,7 @@ void LightSource::setPosition(Vector3 & vec)
 	GLfloat pos[4] = { (GLfloat)_position._x,
 					   (GLfloat)_position._y,
 					   (GLfloat)_position._z,
-					   0.0 };
+					   _w};
 	glLightfv(_num, GL_POSITION, pos);
 }
 
@@ -128,8 +134,8 @@ void LightSource::setAttenuation(GLfloat constant, GLfloat linear, GLfloat quadr
 }
 
 void LightSource::draw()
-{
+{	
 	setPosition(_position._x, _position._y, _position._z);
-	setDirection(_direction);
+	//(_direction);
 	//setExponent(_exponent);
 }

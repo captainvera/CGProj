@@ -3,7 +3,7 @@
 //  CGProj
 //
 
-#ifndef __CGProj__DirectionalLight__
+#ifndef __CGProj__PointLight__
 #define __CGProj__PointLight__
 
 #include "Common.h"

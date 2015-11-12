@@ -50,8 +50,10 @@ private:
 			_current_h;
 	
 	GLboolean _wireframe,
-			  _camFollow;
-	
+			  _camFollow,
+              _smooth_shading,
+			  _lights;
+
 	void setDisplayCallback();
 	void setReshapeCallback();
 	void setKeyboardCallback();
@@ -97,6 +99,11 @@ public:
 	GLboolean wireframe();
     void GGWP();
 	
+	void toggleLights();
+	void createSunLight();
+	void toggleSunLight();
+	void toggleCandles();
+
 	static GameManager* getCurrentInstance();
 };
 
