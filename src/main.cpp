@@ -14,6 +14,7 @@
 #include "OrthographicCamera.h"		
 #include "PerspectiveCamera.h"
 #include "PointLight.h"
+#include "Candle.h"
 #include <time.h>
 
 #define NUM_ORANGES 3
@@ -29,9 +30,21 @@ int main(int argc, char * argv[]) {
 	GameManager* gameMgr = new GameManager();
 	gameMgr->init(argc, argv);
 
-	Car* car = new Car(-16,-1.5,-20,0,0,1,0,.5f,.5f,.5f);
-    Table* table = new Table(0,0,0);
+	Car* car = new Car(-16,-1.5,-24,0,0,1,0,.5f,.5f,.5f);
+    Table* table = new Table(0,0.0,0);
     Roadside* roadside = new Roadside(0,0,0);
+	//Center left
+	Candle* candle1 = new Candle(-20,0,-5);
+	//Center right
+	Candle* candle5 = new Candle(30, 0,-5);
+	//bottom right
+	Candle* candle2 = new Candle( 47, 0, 32);
+	//top right
+	Candle* candle3 = new Candle( 47, 0, -32);
+	//bottom left
+	Candle* candle4 = new Candle( -40, 0, 33);
+	//top left
+	Candle* candle6 = new Candle( -40, 0, -33);
 
 	Logger::printf("Initializing Game Manager");
 
@@ -49,17 +62,23 @@ int main(int argc, char * argv[]) {
 	gameMgr->addGameObject(car); 
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
+	gameMgr->addGameObject(candle1);
+	gameMgr->addGameObject(candle2);
+	gameMgr->addGameObject(candle3);
+	gameMgr->addGameObject(candle4);
+	gameMgr->addGameObject(candle5);
+	gameMgr->addGameObject(candle6);
 
 	table->addChild(car);
 	table->addChild(roadside);
 
-	PointLight* light = gameMgr->createPointLight();
-	light->setPosition(-10, 1, -10);
-	light->setAttenuation(0.0001, 0.0001, 0.002);
-    
-    PointLight* lighta = gameMgr->createPointLight();
-    lighta->setPosition(10, 1, 10);
-    lighta->setAttenuation(0.0001, 0.0001, 0.002);
+
+	/*PointLight* light = gameMgr->createPointLight();
+	light->setPosition(-10, 0.1, -10);
+	light->setAttenuation(0.0000, 0.00, 0.004);
+	light->setDiffuse(0.6, 0.6, 0.6, 1.0);
+    */
+
 	GameObject* temp;
 
     //Orange Generator

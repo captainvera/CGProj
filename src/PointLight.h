@@ -3,7 +3,7 @@
 //  CGProj
 //
 
-#ifndef __CGProj__DirectionalLight__
+#ifndef __CGProj__PointLight__
 #define __CGProj__PointLight__
 
 #include "Common.h"
@@ -18,8 +18,6 @@ public:
 	PointLight(GLenum num);
 	~PointLight();
 	void setAttenuation(GLdouble constant, GLdouble linear, GLdouble quadric);
-	void setCutoff(GLdouble cutoff);
-	void setExponent(GLdouble exp);
 };
 
 #endif /* defined(__CGProj__PointLight__) */

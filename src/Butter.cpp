@@ -28,9 +28,9 @@ Butter::Butter(GLdouble posx, GLdouble posy, GLdouble posz,
     _hascollider = true;
     _collisionradius *= 1;
     _friction = 0.000002;
-    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
+    GLfloat amb[4] = {0.24f,0.1f,0.0f,1.0f},
             diff[4] = {1.0f,0.88f,0.44f,1.0f},
-            spec[4] = {0.97f,1.0f,0.0f,1.0f},
+            spec[4] = {0.67f,0.6f,0.0f,1.0f},
             shine = 66.0f;
 	setMaterial(amb, diff, spec, shine);
 }

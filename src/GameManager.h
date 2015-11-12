@@ -32,7 +32,7 @@ private:
 		   *_cam;
 
 	Car* _car;
-
+	DirectionalLight* sun_light;
     CollisionSystem* _collision_system;
 
 	GLdouble _time,
@@ -51,7 +51,8 @@ private:
 	
 	GLboolean _wireframe,
 			  _camFollow,
-              _smooth_shading;
+              _smooth_shading,
+			  _lights;
 
 	void setDisplayCallback();
 	void setReshapeCallback();
@@ -98,6 +99,11 @@ public:
 	GLboolean wireframe();
     void GGWP();
 	
+	void toggleLights();
+	void createSunLight();
+	void toggleSunLight();
+	void toggleCandles();
+
 	static GameManager* getCurrentInstance();
 };
 

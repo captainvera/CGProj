@@ -10,6 +10,7 @@
 #include "Entity.h"
 #include "Vector3.h"
 #include "Material.h"
+#include "LightSource.h"
 
 class Butter;
 class Orange;
@@ -27,9 +28,11 @@ protected:
 	GLboolean _hasParent,
 			  _draw;
 	Material _material;
-    GLboolean _hasmaterial;
-	
+    GLboolean _hasmaterial,
+			  _light_on;
+		
 	std::vector<GameObject*> _childs;
+	std::vector<LightSource*> _lights;
 	GameObject* _parent;
 	
 	
@@ -39,7 +42,9 @@ public:
     GLboolean _hascollider;
     GLdouble _collisionradius;
 	GameObject();
-    GameObject(GLdouble posx, GLdouble posy, GLdouble posz, GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz, GLdouble scalex, GLdouble scaley, GLdouble scalez);
+    GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
+		GLdouble rotangle = 0, GLdouble rotx = 0, GLdouble roty = 0, GLdouble rotz = 0,
+		GLdouble scalex = 1, GLdouble scaley = 1, GLdouble scalez = 1);
 	~GameObject();
 
 	virtual void draw();
@@ -48,6 +53,9 @@ public:
 
 	void addChild(GameObject* gobj);
 	void applyTransform();
+
+	void addLight(LightSource* light);
+	void toggleLights();
     virtual void reset();
 
 	virtual void collide(GameObject* obj);

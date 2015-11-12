@@ -17,8 +17,8 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
               rotangle, rotx, roty, rotz,
               scalex, scaley, scalez)
 {
-    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
-    diff[4] = {0.1f,0.05f,0.0f,1.0f},
+    GLfloat amb[4] = {0.15f,0.012f,0.0f,1.0f},
+    diff[4] = {0.12f,0.08f,0.0f,1.0f},
     spec[4] = {0.0f,0.0f,0.0f,1.0f},
     shine = 80.0f;
     setMaterial(amb, diff, spec, shine);
@@ -43,7 +43,8 @@ void Table::render()
      glPopMatrix();
     glPopMatrix();
     */
-    glTranslatef(-75, -5, -75);
+	glColor3f(0.0,0.6,0.0);
+    glTranslatef(-75, -3, -75);
     for(int u = -75; u < 75; u=u+cube_size)
     {
         glTranslatef(cube_size, 0, 0);
@@ -51,7 +52,6 @@ void Table::render()
         {
             glTranslatef(0, 0, cube_size);
             glutSolidCube(cube_size);
-        
         }
         glTranslatef(0, 0, -150);
     }

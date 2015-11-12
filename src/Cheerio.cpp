@@ -17,8 +17,8 @@ Cheerio::Cheerio(GLdouble posx, GLdouble posy, GLdouble posz,
 	_hascollider = true;
 	_collisionradius *= 0.45;
 	_friction = 0.000009;
-    GLfloat amb[4] = {0.0f,0.0f,0.0f,1.0f},
-            diff[4] = {0.9f,0.77f,0.1f,1.0f},
+    GLfloat amb[4] = {0.11f,0.05f,0.0f,1.0f},
+            diff[4] = {0.7f,0.65f,0.1f,1.0f},
             spec[4] = {0.0f,0.0f,0.0f,1.0f},
             shine=0.0f;
     setMaterial(amb, diff, spec, shine);

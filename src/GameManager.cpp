@@ -45,6 +45,8 @@ GameManager::GameManager()
 	_drawTimer = 0;
 	_wireframe = false;
 	_camFollow = false;
+	_smooth_shading = true;
+	_lights = true;
 
 	_light_pool.push_back(GL_LIGHT0);
 	_light_pool.push_back(GL_LIGHT1);
@@ -196,6 +198,12 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
             _smooth_shading =true;
         }
     }
+	if (key == 'n')
+		toggleSunLight();
+	if (key == 'l')
+		toggleLights();
+	if (key == 'c')
+		toggleCandles();
 
 	if (key == '1') {
 		_cam->stopFollow();
@@ -263,10 +271,10 @@ void GameManager::draw()
 	int a = 0;
 	_cam->calculateCameraDirection();
 	_cam->computeProjectionMatrix(_current_w, _current_h);
-	for (std::vector<LightSource*>::iterator it = _light_sources.begin(); it != _light_sources.end(); ++it) {
-		(*it)->draw();
-	}
 	_cam->computeVisualizationMatrix();
+
+	updateLights();
+
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -292,26 +300,18 @@ void GameManager::init(int argc, char* argv[])
 	glEnable(GL_DEPTH_TEST);                // Enable depth testing
 	glDepthFunc(GL_LEQUAL);                 // Type of depth test to do
 	glDepthRange(0, 1);
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    //glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     
+
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
     glShadeModel(GL_SMOOTH);
-	//glEnable(GL_COLOR_MATERIAL);
-	
-	/*
-	glEnable(GL_LIGHT7);
-	GLfloat t[4] = { 0,0,0,1 };
-	glLightfv(GL_LIGHT7, GL_AMBIENT, t);
-	glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, t);
-	t[0] = 1; t[1] = 1; t[2] = 1;
-	glLightfv(GL_LIGHT7, GL_DIFFUSE, t);
-	glLightfv(GL_LIGHT7, GL_SPECULAR, t);
-	t[0] = 0; t[1] = 0; t[3] = 0;
-	glLightfv(GL_LIGHT7, GL_POSITION, t);
-	*/
+	//Setting ambient light
+	GLfloat amb[4] = { 0.35f,0.35f,0.35f,1.0f };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+	createSunLight();
 
 	setDisplayCallback();
 	setReshapeCallback();
@@ -370,7 +370,7 @@ PointLight* GameManager::createPointLight()
 		//Default PointLight Settings
 		l->setAmbient(0, 0, 0, 1);
 		l->setDiffuse(1, 1, 1, 1);
-		l->setSpecular(1, 1, 1, 1);
+		l->setSpecular(0.4, 0.4, 0.4, 0.4);
 		l->setPosition(0, 0, 1);
 
 		std::cout << "Enabled light " << n << "\n";
@@ -413,6 +413,15 @@ void GameManager::deleteLight(LightSource * light)
 	delete light;
 }
 
+void GameManager::updateLights()
+{
+	for (std::vector<LightSource*>::iterator it = _light_sources.begin(); it != _light_sources.end(); ++it) {
+		glPushMatrix();
+		(*it)->draw();
+		glPopMatrix();
+	}
+}
+
 GLboolean GameManager::wireframe()
 {
 	return _wireframe;
@@ -424,6 +433,42 @@ void GameManager::GGWP()
         (*it)->reset();
     }
 
+}
+
+void GameManager::toggleLights()
+{
+	if (_lights)
+		glDisable(GL_LIGHTING);
+	else
+		glEnable(GL_LIGHTING);
+	_lights = !_lights;
+}
+
+void GameManager::createSunLight()
+{
+	sun_light = createDirectionalLight();
+	sun_light->setPosition(0, 1, 0);
+	sun_light->setDiffuse(.8, .8, .8, 1.0);
+	sun_light->setAmbient(0.8, 0.8, 0.8, 1.0);
+	sun_light->setSpecular(0.6, 0.6, 0.6, 1.0);
+}
+
+void GameManager::toggleSunLight()
+{
+	printf("Toggle\n");
+	if (sun_light->getState()) {
+		printf("Disable\n");
+		sun_light->setState(false);
+	}
+	else sun_light->setState(true);
+}
+
+void GameManager::toggleCandles()
+{
+	printf("toggle!");
+	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+		(*it)->toggleLights();
+	}
 }
 
 GameManager * GameManager::getCurrentInstance()

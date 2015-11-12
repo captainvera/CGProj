@@ -13,13 +13,3 @@ void PointLight::setAttenuation(GLdouble constant, GLdouble linear, GLdouble qua
 {
 	LightSource::setAttenuation(constant, linear, quadric);
 }
-
-void PointLight::setCutoff(GLdouble cutoff)
-{
-	LightSource::setCutoff(cutoff);
-}
-
-void PointLight::setExponent(GLdouble exp)
-{
-	LightSource::setExponent(exp);
-}

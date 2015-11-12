@@ -29,11 +29,12 @@ GameObject::GameObject()
     _hascollider = false;
     _collisionradius = 1;
     _hasmaterial = false;
+	_light_on = false;
 }
 
 
 GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
-                       GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+                       GLdouble rotangle , GLdouble rotx, GLdouble roty, GLdouble rotz,
                        GLdouble scalex, GLdouble scaley, GLdouble scalez)
 :Entity(posx,posy,posz)
 {
@@ -56,7 +57,7 @@ GameObject::GameObject(GLdouble posx, GLdouble posy, GLdouble posz,
 	else if (scalez > scaley)
 		_collisionradius = scalez;
 	else _collisionradius = scalex;
-
+	_light_on = true;
 }
 
 GameObject::~GameObject()
@@ -101,6 +102,19 @@ void GameObject::applyTransform()
 	glTranslated(_position.getX(), _position.getY(), _position.getZ());
 	glRotated(_rotangle, _rotation.getX(), _rotation.getY(), _rotation.getZ());
 	glScaled(_scale.getX(), _scale.getY(), _scale.getX());
+}
+
+void GameObject::addLight(LightSource * light)
+{
+	_lights.push_back(light);
+}
+
+void GameObject::toggleLights()
+{
+	_light_on = !_light_on;
+	for (std::vector<LightSource*>::iterator it = _lights.begin(); it != _lights.end(); ++it) {
+		(*it)->setState(_light_on);
+	}
 }
 
 void GameObject::reset()

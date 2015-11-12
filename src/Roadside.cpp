@@ -14,7 +14,7 @@ Roadside::Roadside()
 {
 	StaticObject();
 
-	_scale =1.8f;
+	_scale =2.8f;
     init();
 }
 
@@ -25,7 +25,7 @@ Roadside::Roadside(GLdouble posx, GLdouble posy, GLdouble posz,
               rotangle, rotx, roty, rotz,
               scalex, scaley, scalez)
 {
-	_scale = 2.0f;
+	_scale = 2.4f;
 	init();
 }
 
@@ -162,12 +162,12 @@ void Roadside::calculatePerpendicularPoints()
             angle2 = (atan2(_spawned_cheerios[i+1].getX()-_spawned_cheerios[_spawned_cheerios.size()-1].getX(), _spawned_cheerios[i+1].getZ()-_spawned_cheerios[_spawned_cheerios.size()-1].getZ()) - pi/2);
             //SPAWN CHEERIO
             normal = Vector3(_spawned_cheerios[i].getX()+2*sin(angle1),0,_spawned_cheerios[i].getZ()+2*cos(angle1));
-			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.60, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawned_cheerios[i].getX()+2*sin(angle2),0,_spawned_cheerios[i].getZ()+2*cos(angle2));
-            cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
+            cheerio = new Cheerio(normal._x*_scale, -1.60, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 		}
@@ -178,12 +178,12 @@ void Roadside::calculatePerpendicularPoints()
 			angle2 = (atan2(_spawned_cheerios[0].getX()-_spawned_cheerios[i-1].getX(), _spawned_cheerios[0].getZ()-_spawned_cheerios[i-1].getZ()) - pi/2);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawned_cheerios[i].getX()+2*sin(angle1),0,_spawned_cheerios[i].getZ()+2*cos(angle1));
-			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.60, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawned_cheerios[i].getX()+2*sin(angle2),0,_spawned_cheerios[i].getZ()+2*cos(angle2));
-			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.60, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 		}
@@ -193,12 +193,12 @@ void Roadside::calculatePerpendicularPoints()
 			angle2 = (atan2(_spawned_cheerios[i + 1].getX() - _spawned_cheerios[i - 1].getX(), _spawned_cheerios[i + 1].getZ() - _spawned_cheerios[i - 1].getZ()) - pi / 2);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawned_cheerios[i].getX() + 2 * sin(angle1), 0, _spawned_cheerios[i].getZ() + 2 * cos(angle1));
-			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.60, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 			//SPAWN CHEERIO
 			normal = Vector3(_spawned_cheerios[i].getX() + 2 * sin(angle2), 0, _spawned_cheerios[i].getZ() + 2 * cos(angle2));
-			cheerio = new Cheerio(normal._x*_scale, -1.55, normal._z*_scale);
+			cheerio = new Cheerio(normal._x*_scale, -1.60, normal._z*_scale);
 			GameManager::getCurrentInstance()->addGameObject(cheerio);
 			addChild(cheerio);
 		}
