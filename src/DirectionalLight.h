@@ -14,7 +14,6 @@
 class DirectionalLight : public LightSource {
 private:
 public:
-
 	DirectionalLight(GLenum num);
 	~DirectionalLight();
 };

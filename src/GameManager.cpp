@@ -218,7 +218,7 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 	}
 	if (key == '3') {
 		_cam = _cam2;
-		_cam->followCar(_car, Vector3(35,15,35));
+		_cam->followCar(_car, Vector3(15,7,15));
 	}
 	if (key == 27) {
 		exit(1);
@@ -269,6 +269,7 @@ void GameManager::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	int a = 0;
+
 	_cam->calculateCameraDirection();
 	_cam->computeProjectionMatrix(_current_w, _current_h);
 	_cam->computeVisualizationMatrix();
@@ -308,6 +309,7 @@ void GameManager::init(int argc, char* argv[])
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
     glShadeModel(GL_SMOOTH);
+
 	//Setting ambient light
 	GLfloat amb[4] = { 0.35f,0.35f,0.35f,1.0f };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);

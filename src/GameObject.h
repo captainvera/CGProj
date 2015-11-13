@@ -56,6 +56,7 @@ public:
 
 	void addLight(LightSource* light);
 	void toggleLights();
+
     virtual void reset();
 
 	virtual void collide(GameObject* obj);

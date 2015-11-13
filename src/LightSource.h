@@ -16,6 +16,7 @@ protected:
 	GLfloat _ambient[4] = { 0.0, 0.0, 0.0, 1.0 },
 			 _diffuse[4] = { 0.0, 0.0, 0.0, 1.0 },
 			 _specular[4] = { 0.0, 0.0, 0.0, 1.0 };
+
 	GLfloat _cut_off,
 			 _exponent,
 			 _w;
@@ -45,7 +46,6 @@ public:
 	void setDiffuse(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 	void setSpecular(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 
-	
 	void draw();
 };
 

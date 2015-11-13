@@ -32,6 +32,7 @@ int main(int argc, char * argv[]) {
 
 	Car* car = new Car(-16,-1.5,-24,0,0,1,0,.5f,.5f,.5f);
     Table* table = new Table(0,0.0,0);
+
     Roadside* roadside = new Roadside(0,0,0);
 	//Center left
 	Candle* candle1 = new Candle(-20,0,-5);
