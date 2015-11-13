@@ -211,15 +211,11 @@ void Car::turn(GLdouble turn, GLdouble delta_t) {
 
 void Car::update(GLdouble delta_t) {
     if(_left_pressed == true && _right_pressed == false){
-		if (_down_pressed)
-			turn(1, delta_t);
 		turn(1, delta_t);
         _front_wheel_rotation = 50;
     }
     else if(_left_pressed == false && _right_pressed == true){
-		if(_down_pressed)
-			turn(-1, delta_t);
-        turn(-1, delta_t);
+		turn(-1, delta_t);
 		_front_wheel_rotation = -50;
 	}
 	else {
