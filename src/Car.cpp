@@ -272,20 +272,20 @@ void Car::render()
     glEnd();
     //3
     glBegin(GL_TRIANGLES);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(-1, 0.4, 0.2);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(1, 0.6, 1);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(1, 0.4, 0.2);
     glEnd();
     //4
     glBegin(GL_TRIANGLES);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(-1, 0.4, 0.2);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(-1, 0.6, 1);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(1, 0.6, 1);
     glEnd();
     //5
