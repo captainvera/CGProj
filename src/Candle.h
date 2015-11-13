@@ -11,11 +11,13 @@
 #include "Vector3.h"
 #include "PointLight.h"
 #include "GameManager.h"
+#include "Material.h"
 
 class Candle : public GameObject {
 private:
 	PointLight* _light;
 	GLboolean _light_state;
+	Material _material_lamp;
 public:
 
 	Candle();

@@ -43,7 +43,7 @@ void Table::render()
      glPopMatrix();
     glPopMatrix();
     */
-	glColor3f(0.0,0.6,0.0);
+	glColor3f(0.30,0.15,0.0);
     glTranslatef(-75, -3, -75);
     for(int u = -75; u < 75; u=u+cube_size)
     {
