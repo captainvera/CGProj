@@ -22,7 +22,7 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
     spec[4] = {0.0f,0.0f,0.0f,1.0f},
     shine = 80.0f;
     setMaterial(amb, diff, spec, shine);
-    cube_size = 2;
+    _cube_size = 2;
 }
 
 Table::~Table()
@@ -44,14 +44,14 @@ void Table::render()
     glPopMatrix();
     */
 	glColor3f(0.0,0.6,0.0);
-    glTranslatef(-75, -3, -75);
-    for(int u = -75; u < 75; u=u+cube_size)
+    glTranslatef(-75, -_cube_size*1.5, -75);
+    for(int u = -75; u < 75; u=u+_cube_size)
     {
-        glTranslatef(cube_size, 0, 0);
-        for(int i = -75; i < 75; i=i+cube_size)
+        glTranslatef(_cube_size, 0, 0);
+        for(int i = -75; i < 75; i=i+_cube_size)
         {
-            glTranslatef(0, 0, cube_size);
-            glutSolidCube(cube_size);
+            glTranslatef(0, 0, _cube_size);
+            glutSolidCube(_cube_size);
         }
         glTranslatef(0, 0, -150);
     }

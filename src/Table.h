@@ -11,7 +11,7 @@
 
 class Table : public StaticObject {
 private:
-    GLfloat cube_size;
+    GLfloat _cube_size;
 public:
     Table();
     Table(GLdouble posx, GLdouble posy, GLdouble posz,
