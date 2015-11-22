@@ -8,6 +8,12 @@
 
 #include "Common.h"
 #include "StaticObject.h"
+#include "SOIL.h";
+
+#define checkImageWidth 64
+#define checkImageHeight 64
+static GLubyte checkImage[checkImageHeight][checkImageWidth][4];
+static GLuint texName;
 
 class Table : public StaticObject {
 private:
@@ -21,6 +27,8 @@ public:
 
     void render();
 	void update(GLdouble delta_t);
+	void static drawBoxTable(GLfloat size, GLenum type);
+	void SolidCubeTable(GLdouble size);
 };
 
 
