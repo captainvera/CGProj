@@ -25,17 +25,8 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
     setMaterial(amb, diff, spec, shine);
     _cube_size = 2;
 
-	int width, height, channels;
-	GLubyte* texture = SOIL_load_image("D:\\IST\\3_Ano\\CG\\Simple OpenGL Image Library\\img_cheryl.jpg", &width, &height, &channels, SOIL_LOAD_RGBA);
-
-	glGenTextures(1, &texName);
-	glBindTexture(GL_TEXTURE_2D, texName);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, texture);
-	SOIL_free_image_data(texture);
+	_texture.chooseImage(TEXTURE_PATH);
+	_texture.generateTexture();
 }
 
 Table::~Table()
@@ -43,12 +34,7 @@ Table::~Table()
 }
 
 void Table::render()
-{
-
-	glEnable(GL_TEXTURE_2D);
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-	glBindTexture(GL_TEXTURE_2D, texName);
-    
+{   
     /*glPushMatrix();
 	 glTranslatef(0,- 79.9375,0);
 
@@ -60,6 +46,8 @@ void Table::render()
      glPopMatrix();
     glPopMatrix();
     */
+
+	_texture.bindTexture();
 
 	glColor3f(0.30,0.15,0.0);
     glTranslatef(-75, -_cube_size*1.5, -75);

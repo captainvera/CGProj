@@ -11,6 +11,7 @@
 #include "Vector3.h"
 #include "Material.h"
 #include "LightSource.h"
+#include "Texture.h"
 
 class Butter;
 class Orange;
@@ -28,8 +29,10 @@ protected:
 	GLboolean _hasParent,
 			  _draw;
 	Material _material;
-    GLboolean _hasmaterial,
-			  _light_on;
+	Texture _texture;
+	GLboolean _hasmaterial,
+			  _light_on,
+			  _hastexture;
 		
 	std::vector<GameObject*> _childs;
 	std::vector<LightSource*> _lights;

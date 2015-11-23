@@ -8,12 +8,8 @@
 
 #include "Common.h"
 #include "StaticObject.h"
-#include "SOIL.h";
 
-#define checkImageWidth 64
-#define checkImageHeight 64
-static GLubyte checkImage[checkImageHeight][checkImageWidth][4];
-static GLuint texName;
+#define TEXTURE_PATH "D:\\IST\\3_Ano\\CG\\Simple OpenGL Image Library\\brick.jpg"
 
 class Table : public StaticObject {
 private:

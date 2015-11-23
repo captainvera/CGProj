@@ -304,7 +304,9 @@ void GameManager::init(int argc, char* argv[])
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-    
+
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Enable textures and set environment mode
 
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
