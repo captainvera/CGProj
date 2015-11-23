@@ -269,13 +269,22 @@ void GameManager::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	int a = 0;
-
+    
+    _uicam->calculateCameraDirection();
+    _uicam->computeProjectionMatrix(_current_w, _current_h);
+    _uicam->computeVisualizationMatrix();
+    
+    glPushMatrix();
+    overlay();
+    glPopMatrix();
+    
 	_cam->calculateCameraDirection();
 	_cam->computeProjectionMatrix(_current_w, _current_h);
 	_cam->computeVisualizationMatrix();
-
+    
 	updateLights();
-
+    
+    
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -283,8 +292,18 @@ void GameManager::draw()
 		a++;
 	}
 	
+    
 	//std::cout << "Draw " << a << " objects\n";
 	glFlush();
+}
+
+void GameManager::overlay()
+{
+    Vector3 inicpos = _car->getPosition();
+    _car->setPosition(0, 0, 0);
+    _car->draw();
+    _car->setPosition(inicpos);
+
 }
 
 void GameManager::init(int argc, char* argv[])
@@ -321,6 +340,8 @@ void GameManager::init(int argc, char* argv[])
 	setReshapeCallback();
 	setKeyboardCallback();
 	setTimerCallback();
+    
+    _lives = MAX_LIVES;
 }
 
 void GameManager::start()
@@ -340,11 +361,13 @@ void GameManager::setCamera(Camera * cam)
 	_cam = cam;
 }
 
-void GameManager::setCameras(Camera * cam1, Camera * cam2)
+void GameManager::setCameras(Camera * cam1, Camera * cam2, Camera* uicam)
 {
 	_cam1 = cam1;
 	_cam2 = cam2;
+    _uicam = uicam;
 	_cam = _cam1;
+    
 }
 
 

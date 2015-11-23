@@ -17,6 +17,7 @@
 #include "DynamicObject.h"
 
 #define TIMER_VAL 8
+#define MAX_LIVES 5
 
 class Camera;
 class CollisionSystem;
@@ -29,7 +30,8 @@ private:
 	std::vector<GLenum> _light_pool;
 	Camera *_cam1,
 		   *_cam2, 
-		   *_cam;
+		   *_cam,
+           *_uicam;
 
 	Car* _car;
 	DirectionalLight* sun_light;
@@ -53,7 +55,8 @@ private:
 			  _camFollow,
               _smooth_shading,
 			  _lights;
-
+    GLint   _lives;
+    
 	void setDisplayCallback();
 	void setReshapeCallback();
 	void setKeyboardCallback();
@@ -81,13 +84,14 @@ public:
 
 	void update(GLdouble delta_t);
 	void draw();
+    void overlay();
 
 	void init(int argc, char* argv[]);
 	void start();
 
 	void addGameObject(GameObject* obj);
 	void setCamera(Camera* cam);
-	void setCameras(Camera* cam1, Camera* cam2);
+	void setCameras(Camera* cam1, Camera* cam2, Camera* uicam);
 	void setCar(Car * car);
     void setCollisionSystem(CollisionSystem* collisionSystem);
     

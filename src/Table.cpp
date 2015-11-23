@@ -23,7 +23,7 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
     spec[4] = {0.0f,0.0f,0.0f,1.0f},
     shine = 80.0f;
     setMaterial(amb, diff, spec, shine);
-    _cube_size = 2;
+    _cube_size = 5;
 
 	_texture.chooseImage(TEXTURE_PATH);
 	_texture.generateTexture();
