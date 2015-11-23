@@ -13,6 +13,7 @@
 #include "CollisionSystem.h"
 #include "LightSource.h"
 #include "PointLight.h"
+#include "SpotLight.h"
 #include "DirectionalLight.h"
 #include "DynamicObject.h"
 
@@ -93,6 +94,7 @@ public:
     
 	PointLight* createPointLight();
 	DirectionalLight* createDirectionalLight();
+	SpotLight* createSpotLight();
 	void deleteLight(LightSource* light);
 	void updateLights();
 

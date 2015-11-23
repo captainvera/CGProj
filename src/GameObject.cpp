@@ -116,7 +116,7 @@ void GameObject::toggleLights()
 		(*it)->setState(_light_on);
 	}
 }
-
+ 
 void GameObject::reset()
 {
     Entity::reset();

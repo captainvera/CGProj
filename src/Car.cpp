@@ -49,7 +49,16 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
     shinecap = 20.0f;
     _materialcapota.setValues(ambcap, diffcap, speccap, shinecap);
     init();
-    
+
+	_light_l = GameManager::getCurrentInstance()->createSpotLight();
+	_light_l->setPosition(6, 4, 4);
+	_light_l->setDirection(1, 0, 0);
+	_light_l->setCutoff(30.0);
+	_light_l->setExponent(48);
+	_light_l->setDiffuse(1.0, 1.0, 1.0, 1.0);
+	_light_l->setAmbient(0.0, 0.0, 0.0, 1.0);
+	_light_l->setSpecular(0.3, 0.3, 0.3, 1.0);
+	_light_l->setAttenuation(0.01, 0.001, 0.00008);
 }
 
 
@@ -103,7 +112,7 @@ void Car::render()
 
     glPushMatrix();
      glRotatef(_angle,0,1,0);
-     glScalef(0.2,0.2,0.2);
+     glScalef(0.3,0.3,0.3);
     /*
     //base
      glColor3f(0.33, 0.2, 0.15);
@@ -131,6 +140,7 @@ void Car::render()
       glutSolidCube(1);
      glPopMatrix();
     */
+	 _light_l->draw();
     _materialcapota.applyMaterial();
     glPushMatrix();
     glScalef(4, 4, 4);
@@ -272,20 +282,20 @@ void Car::render()
     glEnd();
     //3
     glBegin(GL_TRIANGLES);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(-1, 0.4, 0.2);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(1, 0.6, 1);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,96,-0.26);
         glVertex3f(1, 0.4, 0.2);
     glEnd();
     //4
     glBegin(GL_TRIANGLES);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(-1, 0.4, 0.2);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(-1, 0.6, 1);
-        glNormal3f(0,-96,-0.26);
+        glNormal3f(0,0.96,-0.26);
         glVertex3f(1, 0.6, 1);
     glEnd();
     //5
@@ -713,7 +723,6 @@ void Car::update(GLdouble delta_t) {
 	if (checkOutOfBounds() == true) {
 		reset();
 	}
-
 }
 
 void Car::collide(GameObject *obj)

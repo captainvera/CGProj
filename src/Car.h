@@ -12,6 +12,7 @@
 #include "Orange.h"
 #include "Butter.h"
 #include "Cheerio.h"
+#include "SpotLight.h"
 
 class Car : public DynamicObject {
 private:
@@ -20,6 +21,8 @@ private:
     Material _materialmotor,
              _materialrodas,
              _materialcapota;
+	SpotLight *_light_l,
+				*_light_r;
 public:
 	GLdouble _turnSpeed,
 			_angle,

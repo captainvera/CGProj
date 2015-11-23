@@ -36,7 +36,7 @@ int main(int argc, char * argv[]) {
 	//Center left
 	Candle* candle1 = new Candle(-20,0,-5);
 	//Center right
-	Candle* candle5 = new Candle(30, 0,-5);
+	//Candle* candle5 = new Candle(30, 0,-5);
 	//bottom right
 	Candle* candle2 = new Candle( 47, 0, 32);
 	//top right
@@ -66,7 +66,7 @@ int main(int argc, char * argv[]) {
 	gameMgr->addGameObject(candle2);
 	gameMgr->addGameObject(candle3);
 	gameMgr->addGameObject(candle4);
-	gameMgr->addGameObject(candle5);
+	//gameMgr->addGameObject(candle5);
 	gameMgr->addGameObject(candle6);
 
 	table->addChild(car);

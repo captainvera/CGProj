@@ -5,6 +5,7 @@
 
 #include "GameManager.h"
 #include "Logger.h"
+#include "SOIL.h"
 
 GameManager* current;
 GLdouble t,
@@ -251,14 +252,7 @@ void GameManager::update(GLdouble delta_t)
 	}
 
 	_collision_system->searchCollisions(_gobjs, _car);
-    /*for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-		if ((*it)->_hascollider == true) {
-			DynamicObject* din;
-			din = (DynamicObject*)(*it);
-			if(din->getSpeed() > 0)
-				_collision_system->searchCollisions(_gobjs, din);
-		}
-    }*/
+
 	//Redraw
 	glutPostRedisplay();
 }
@@ -303,7 +297,7 @@ void GameManager::init(int argc, char* argv[])
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
-    
+    glEnable(GL_NORMALIZE);
 
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
@@ -312,11 +306,22 @@ void GameManager::init(int argc, char* argv[])
 	GLfloat amb[4] = { 0.35f,0.35f,0.35f,1.0f };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
 	createSunLight();
+	glEnable(GL_TEXTURE_2D);
+
 
 	setDisplayCallback();
 	setReshapeCallback();
 	setKeyboardCallback();
 	setTimerCallback();
+
+	GLuint tex_2d = SOIL_load_OGL_texture
+	(
+		"img.png",
+		SOIL_LOAD_AUTO,
+		SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+	);
+
 }
 
 void GameManager::start()
@@ -399,6 +404,30 @@ DirectionalLight* GameManager::createDirectionalLight()
 	
 		std::cout << "Enabled light " << n << "\n";
 		_light_sources.push_back(l);
+	}
+	else
+		Logger::print("Error: tried to create lights but all lights are used");
+	return l;
+}
+
+SpotLight * GameManager::createSpotLight()
+{
+	SpotLight* l = nullptr;
+	if (_light_pool.size() > 0) {
+		GLenum n = _light_pool.back();
+		_light_pool.pop_back();
+
+		l = new SpotLight(n);
+		l->setState(true);
+
+		//Default Light Settings
+		l->setAmbient(0, 0, 0, 1);
+		l->setDiffuse(1, 1, 1, 1);
+		l->setSpecular(1, 1, 1, 1);
+		//l->setPosition(0, 0, 1);
+
+		std::cout << "Enabled spotlight " << n << "\n";
+		//_light_sources.push_back(l);
 	}
 	else
 		Logger::print("Error: tried to create lights but all lights are used");
