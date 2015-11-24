@@ -9,7 +9,7 @@
 #include "Common.h"
 #include "StaticObject.h"
 
-#define TEXTURE_PATH "D:\\IST\\3_Ano\\CG\\Simple OpenGL Image Library\\brick.jpg"
+#define TEXTURE_PATH "..\\..\\..\\CGProj\\assets\\wood.jpg"
 
 class Table : public StaticObject {
 private:
@@ -23,8 +23,8 @@ public:
 
     void render();
 	void update(GLdouble delta_t);
-	void static drawBoxTable(GLfloat size, GLenum type);
-	void SolidCubeTable(GLdouble size);
+	//void static drawBoxTable(GLfloat size, GLenum type);
+	//void SolidCubeTable(GLdouble size);
 };
 
 
