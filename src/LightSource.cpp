@@ -52,7 +52,7 @@ Vector3 & LightSource::getPosition()
 void LightSource::setPosition(GLfloat x, GLfloat y, GLfloat z)
 {
 	_position.set(x, y, z);
-	updatePosition();
+	//updatePosition();
 }
 
 void LightSource::setPosition(Vector3 & vec)
@@ -76,11 +76,15 @@ void LightSource::updatePosition()
 	glLightfv(_num, GL_POSITION, pos);
 }
 
+void LightSource::updateDirection()
+{
+	GLfloat dir[4] = { _direction._x ,_direction._y ,_direction._z ,0.0 };
+	glLightfv(_num, GL_SPOT_DIRECTION, dir);
+}
+
 void LightSource::setDirection(GLfloat x, GLfloat y, GLfloat z)
 {
 	_direction.set(x, y, z);
-	GLfloat dir[4] = {x ,y ,z ,0.0};
-	glLightfv(_num, GL_SPOT_DIRECTION, dir);
 }
 
 void LightSource::setDirection(Vector3 & dir)
@@ -158,7 +162,7 @@ void LightSource::setAttenuation(GLfloat constant, GLfloat linear, GLfloat quadr
 void LightSource::draw()
 {	
 	updatePosition();
-	setDirection(_direction);
+	updateDirection();
 	//(_direction);
 	//setExponent(_exponent);
 }

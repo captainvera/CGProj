@@ -19,6 +19,7 @@ protected:
 	GLfloat _ambient[4] = { 0.0, 0.0, 0.0, 1.0 },
 			 _diffuse[4] = { 0.0, 0.0, 0.0, 1.0 },
 			 _specular[4] = { 0.0, 0.0, 0.0, 1.0 };
+
 	GLfloat _cut_off,
 			 _exponent,
 
@@ -48,6 +49,7 @@ public:
 	void setPosition(GLfloat x, GLfloat y, GLfloat z);
 	void setPosition(Vector3& vec);
 	void updatePosition();
+	void updateDirection();
 
 	void setAmbient(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 	void setDiffuse(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
@@ -55,7 +57,7 @@ public:
 
 	void attach(GameObject* parent);
 	void detach();
-	
+
 	void draw();
 };
 

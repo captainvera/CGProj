@@ -15,8 +15,6 @@
 
 class Candle : public GameObject {
 private:
-	PointLight* _light;
-	GLboolean _light_state;
 	Material _material_lamp;
 public:
 
@@ -25,7 +23,6 @@ public:
 	~Candle();
 
 	void render();
-	void toggleLight();
 };
 
 #endif /* defined(__CGProj__Candle__) */

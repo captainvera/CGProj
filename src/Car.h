@@ -40,7 +40,8 @@ public:
     GLboolean _left_pressed,
 			  _right_pressed, 
 			  _down_pressed, 
-			  _up_pressed;
+			  _up_pressed,
+			  _spot_on;
 
     Car();
     Car(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -59,6 +60,7 @@ public:
     void collideWith(Cheerio* butter);
 
 	void reset();
+	void toggleSpotLight();
     
 };
 

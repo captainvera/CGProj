@@ -219,7 +219,7 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 	}
 	if (key == '3') {
 		_cam = _cam2;
-		_cam->followCar(_car, Vector3(35,15,35));
+		_cam->followCar(_car, Vector3(15,7,15));
 	}
 	if (key == 27) {
 		exit(1);
@@ -230,7 +230,6 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 
 void GameManager::onTimer(int value)
 {
-
 	t = glutGet(GLUT_ELAPSED_TIME);
 	delta = t - old;
 	old = t;
@@ -246,11 +245,10 @@ void GameManager::idle()
 void GameManager::update(GLdouble delta_t)
 {
 
-	_cam->update();
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		(*it)->update(delta_t);
 	}
-
+	
 	_collision_system->searchCollisions(_gobjs, _car);
 
 	//Redraw
@@ -263,12 +261,13 @@ void GameManager::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	int a = 0;
+
+	_cam->update();
 	_cam->calculateCameraDirection();
 	_cam->computeProjectionMatrix(_current_w, _current_h);
 	_cam->computeVisualizationMatrix();
-
 	updateLights();
-
+	
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -299,28 +298,22 @@ void GameManager::init(int argc, char* argv[])
     glEnable(GL_BLEND);
     glEnable(GL_NORMALIZE);
 
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Enable textures and set environment mode
+
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
     glShadeModel(GL_SMOOTH);
+
 	//Setting ambient light
 	GLfloat amb[4] = { 0.35f,0.35f,0.35f,1.0f };
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
 	createSunLight();
-	glEnable(GL_TEXTURE_2D);
-
 
 	setDisplayCallback();
 	setReshapeCallback();
 	setKeyboardCallback();
 	setTimerCallback();
-
-	GLuint tex_2d = SOIL_load_OGL_texture
-	(
-		"img.png",
-		SOIL_LOAD_AUTO,
-		SOIL_CREATE_NEW_ID,
-		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
-	);
 
 }
 
@@ -485,6 +478,7 @@ void GameManager::createSunLight()
 void GameManager::toggleSunLight()
 {
 	printf("Toggle\n");
+	_car->toggleSpotLight();
 	if (sun_light->getState()) {
 		printf("Disable\n");
 		sun_light->setState(false);

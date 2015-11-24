@@ -9,6 +9,7 @@ Candle::Candle(GLdouble posx, GLdouble posy, GLdouble posz)
 	: GameObject(posx, posy, posz)
 {
 
+	PointLight* _light;
 	_light = GameManager::getCurrentInstance()->createPointLight();
 	_light->setPosition(_position._x, _position._y+5,_position._z);
 	_light->setAttenuation(0.0, 0.005, 0.0016);
@@ -16,7 +17,6 @@ Candle::Candle(GLdouble posx, GLdouble posy, GLdouble posz)
 	_light->setAmbient(0.0, 0.0, 0.0, 1.0);
 	_light->setSpecular(0.3, 0.3, 0.3, 1.0);
 	_light->setState(true);
-	_light_state = true;
 	addLight(_light);
 
 	GLfloat amb[4] = { 0.0f,0.0f,0.0f,1.0f },
@@ -51,15 +51,5 @@ void Candle::render()
 	glutSolidCube(1.0);
 	glPopMatrix();
 }
-
-void Candle::toggleLight()
-{
-	if (_light_state)
-		_light->setState(false);
-	else
-		_light->setState(true);
-	_light_state = !_light_state;
-}
-
 
 

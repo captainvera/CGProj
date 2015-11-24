@@ -21,6 +21,7 @@
 
 class Camera;
 class CollisionSystem;
+class Spotlight;
 
 class GameManager {
 private:
