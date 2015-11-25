@@ -375,11 +375,11 @@ void GameManager::init(int argc, char* argv[])
     _gameover = false;
     _pause = false;
     _uigameover = InterfaceElement(-4, -2, 8, 4);
-    _uigameover.setTexture("/Users/Administrador/Documents/DEV/GameDev/CG/Assets/GameOver.png");
+    _uigameover.setTexture(_UIGAMEOVERPATH);
     _uigameover._active = true;
     
     _uipause = InterfaceElement(-4, -2, 8, 4);
-    _uipause.setTexture("/Users/Administrador/Documents/DEV/GameDev/CG/Assets/Pause.png");
+    _uipause.setTexture(_UIPAUSEPATH);
     _uipause._active = true;
     
 }

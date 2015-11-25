@@ -20,6 +20,14 @@
 #define TIMER_VAL 8
 #define MAX_LIVES 2
 
+#if defined(__APPLE__) || defined(MACOSX)
+#define _UIGAMEOVERPATH "../../Assets/GameOver.png"
+#define _UIPAUSEPATH "../../Assets/Pause.png"
+#else
+#define _UIGAMEOVERPATH "../../Assets/GameOver.png"
+#define _UIPAUSEPATH "../../Assets/Pause.png"
+#endif
+
 class Camera;
 class CollisionSystem;
 
