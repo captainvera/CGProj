@@ -31,9 +31,11 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
 
     setMaterial(amb, diff, spec, shine);
     _cube_size = 2;
-
-	_texture.chooseImage(TEXTURE_PATH);
-	_texture.generateTexture();
+	
+	
+	_texture.loadTexture(&texture, TEXTURE_PATH);
+	
+	//_texture.generateTexture(texture);
 }
 
 Table::~Table()
@@ -42,7 +44,6 @@ Table::~Table()
 
 void Table::render()
 {   
-
 	// ------------------ Mesa do Vera (MERDA) --------------------
 	//glPushMatrix();
     //glTranslatef(-75, -_cube_size*1.5, -75);
@@ -65,7 +66,10 @@ void Table::render()
 
 	// --------------- Mesa do Jorge ------------------
 	
-	_texture.bindTexture();
+	//_texture.bindTexture();
+
+
+	_texture.textureInit(texture);
 
 	glColor3f(0.30, 0.15, 0.0);
 
@@ -99,11 +103,9 @@ void Table::render()
 		}
 		glEnd();
 		
+		_texture.textureEnd();
 	}
 	glPopMatrix();
-	
-
-	
 }
 
 

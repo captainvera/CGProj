@@ -23,6 +23,7 @@ public:
 
     void render();
 	void update(GLdouble delta_t);
+	GLuint texture;
 	//void static drawBoxTable(GLfloat size, GLenum type);
 	//void SolidCubeTable(GLdouble size);
 };
