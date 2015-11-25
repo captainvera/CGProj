@@ -143,9 +143,11 @@ void Orange::orangeRespawnCallback(int obj)
 
 void Orange::orangeSpeedCallback(int obj)
 {
-	Orange* o = (Orange*)obj;
-	o->increaseSpeed();
-	o->setOrangeSpeedCallback();
+    if(GameManager::getCurrentInstance()->isRunning()){
+        Orange* o = (Orange*)obj;
+        o->increaseSpeed();
+        o->setOrangeSpeedCallback();
+    }
 }
 
 void Orange::collideWith(Car* obj)
@@ -157,5 +159,14 @@ void Orange::reset()
 {
 	respawn();
 	resetSpeed();
+}
+
+void Orange::reset(GLint lives)
+{
+    if(lives != 0){
+        resetSpeed();
+        DynamicObject::reset();
+    }
+    else reset();
 }
 

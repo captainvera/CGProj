@@ -124,6 +124,10 @@ void GameObject::reset()
     _rotation = _init_rotation;
 }
 
+void GameObject::reset(GLint lives)
+{
+}
+
 void GameObject::collide(GameObject* obj) 
 {
 	//Logger::printf("DEBUG: BOOP BOOP BOOP Something is very wrong in the GameObject, it seems to want to collide with someone, wonder how that happened! (Yes, this is the default collider)\n");
@@ -153,4 +157,15 @@ void GameObject::setMaterial(float amb[4], float diff[4], float spec[4], float s
 {
     _hasmaterial = true;
     _material.setValues(amb, diff, spec, shine);
+}
+
+void GameObject::setRotation(GLfloat rot, GLfloat x, GLfloat y, GLfloat z)
+{
+    _rotation = Vector3(x,y,z);
+    _rotangle = rot;
+}
+
+void GameObject::setScale(GLfloat x, GLfloat y, GLfloat z)
+{
+    _scale = Vector3(x,y,z);
 }

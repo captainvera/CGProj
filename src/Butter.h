@@ -24,5 +24,7 @@ public:
 
 	void collide(GameObject* obj);
     void collideWith(Car* car);
+    void reset(GLint lives);
+    
 };
 #endif /* defined(__CGProj__Butter__) */

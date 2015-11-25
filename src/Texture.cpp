@@ -58,5 +58,3 @@ void Texture::textureEnd()
 {
 	glBindTexture(GL_TEXTURE_2D, _textureName);
 }*/
-
-

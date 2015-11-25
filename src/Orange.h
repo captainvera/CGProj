@@ -40,6 +40,7 @@ public:
     void collide(GameObject* obj);
     void collideWith(Car* obj);
 	void reset();
+    void reset(GLint lives);
 };
 
 #endif /* defined(__CGProj__Orange__) */

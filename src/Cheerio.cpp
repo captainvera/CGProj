@@ -70,3 +70,8 @@ void Cheerio::collideWith(Butter* butter)
     _direction.set(_position.getX() - butter->_position.getX(), _position.getY() - butter->_position.getY(),_position.getZ() - butter->_position.getZ());
     _direction.normalize2D();
 }
+
+void Cheerio::reset(GLint lives)
+{
+    DynamicObject::reset();
+}

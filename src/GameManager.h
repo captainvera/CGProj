@@ -16,8 +16,19 @@
 #include "SpotLight.h"
 #include "DirectionalLight.h"
 #include "DynamicObject.h"
+#include "InterfaceElement.h"
+#include "SOIL.h"
 
 #define TIMER_VAL 8
+#define MAX_LIVES 2
+
+#if defined(__APPLE__) || defined(MACOSX)
+#define _UIGAMEOVERPATH "../../Assets/GameOver.png"
+#define _UIPAUSEPATH "../../Assets/Pause.png"
+#else
+#define _UIGAMEOVERPATH "../../Assets/GameOver.png"
+#define _UIPAUSEPATH "../../Assets/Pause.png"
+#endif
 
 class Camera;
 class CollisionSystem;
@@ -31,9 +42,14 @@ private:
 	std::vector<GLenum> _light_pool;
 	Camera *_cam1,
 		   *_cam2, 
-		   *_cam;
+		   *_cam,
+           *_uicam;
 
-	Car* _car;
+	Car* _car, *_uicar;
+    
+    InterfaceElement _uigameover,
+                     _uipause;
+    
 	DirectionalLight* sun_light;
     CollisionSystem* _collision_system;
 
@@ -54,8 +70,13 @@ private:
 	GLboolean _wireframe,
 			  _camFollow,
               _smooth_shading,
-			  _lights;
-
+			  _lights,
+              _gameover,
+              _pause;
+    
+    
+    GLint   _lives;
+    
 	void setDisplayCallback();
 	void setReshapeCallback();
 	void setKeyboardCallback();
@@ -83,14 +104,16 @@ public:
 
 	void update(GLdouble delta_t);
 	void draw();
+    void overlay();
 
 	void init(int argc, char* argv[]);
 	void start();
 
 	void addGameObject(GameObject* obj);
 	void setCamera(Camera* cam);
-	void setCameras(Camera* cam1, Camera* cam2);
+	void setCameras(Camera* cam1, Camera* cam2, Camera* uicam);
 	void setCar(Car * car);
+    void setUICar(Car* uicar);
     void setCollisionSystem(CollisionSystem* collisionSystem);
     
 	PointLight* createPointLight();
@@ -108,6 +131,7 @@ public:
 	void toggleCandles();
 
 	static GameManager* getCurrentInstance();
+    GLboolean isRunning();
 };
 
 #endif /* defined(__CGProj__GameManager__) */

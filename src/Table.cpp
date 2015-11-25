@@ -11,17 +11,17 @@ Table::Table()
 }
 
 Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
-               GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
-               GLdouble scalex, GLdouble scaley, GLdouble scalez)
-:StaticObject(posx, posy, posz,
-              rotangle, rotx, roty, rotz,
-              scalex, scaley, scalez)
+	GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+	GLdouble scalex, GLdouble scaley, GLdouble scalez)
+	:StaticObject(posx, posy, posz,
+		rotangle, rotx, roty, rotz,
+		scalex, scaley, scalez)
 {
 
-    GLfloat amb[4] = {0.15f,0.012f,0.0f,1.0f},
-    diff[4] = {0.12f,0.08f,0.0f,1.0f},
-    spec[4] = {0.0f,0.0f,0.0f,1.0f},
-    shine = 80.0f;
+	GLfloat amb[4] = { 0.15f,0.012f,0.0f,1.0f },
+		diff[4] = { 0.12f,0.08f,0.0f,1.0f },
+		spec[4] = { 0.0f,0.0f,0.0f,1.0f },
+		shine = 80.0f;
 
 	// ---------------------- usar se pretender ter a cor original da textura --------------
 	/*GLfloat amb[4] = { 0.15f,0.012f,0.0f,1.0f },
@@ -29,15 +29,15 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
 		spec[4] = { 0.0f,0.0f,0.0f,1.0f },
 		shine = 0.0f;*/
 
-    setMaterial(amb, diff, spec, shine);
-    _cube_size = 2;
-	
-	
+	setMaterial(amb, diff, spec, shine);
+
+	_cube_size = 2;
+
+
 	_texture.loadTexture(&texture, TEXTURE_PATH);
-	
+
 	//_texture.generateTexture(texture);
 }
-
 Table::~Table()
 {
 }

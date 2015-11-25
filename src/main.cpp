@@ -31,6 +31,7 @@ int main(int argc, char * argv[]) {
 	gameMgr->init(argc, argv);
 
 	Car* car = new Car(-16,-1.5,-24,0,0,1,0,.5f,.5f,.5f);
+    Car* uicar = new Car(0,0,0,-90,1,0,0,0.1f,0.1f,0.1f);
     Table* table = new Table(0,0.0,0);
 
     Roadside* roadside = new Roadside(0,0,0);
@@ -51,15 +52,19 @@ int main(int argc, char * argv[]) {
 
 	OrthographicCamera* cam = new OrthographicCamera(-50, 55, -30, 30, 5, 300);
 	cam->setPosition(0, 125, 1);
-	cam->calculateCameraDirection();
+    cam->calculateCameraDirection();
+    OrthographicCamera* uicam = new OrthographicCamera(-10, 10, -5,5, -5, 5);
+    uicam->setPosition(0, 5, 1);
+	uicam->calculateCameraDirection();
 	PerspectiveCamera* cam2 = new PerspectiveCamera(45.0, 5, 300);
 	cam2->setPosition(0, 125, 1);
 	cam2->calculateCameraDirection();
 
-	gameMgr->setCameras(cam,cam2);
+	gameMgr->setCameras(cam,cam2, uicam);
 
 	gameMgr->setCar(car);
-	
+    gameMgr->setUICar(uicar);
+    
 	gameMgr->addGameObject(car); 
     gameMgr->addGameObject(table);
     gameMgr->addGameObject(roadside);
