@@ -13,9 +13,11 @@
 #include "CollisionSystem.h"
 #include "LightSource.h"
 #include "PointLight.h"
+#include "SpotLight.h"
 #include "DirectionalLight.h"
 #include "DynamicObject.h"
 #include "InterfaceElement.h"
+#include "SOIL.h"
 
 #define TIMER_VAL 8
 #define MAX_LIVES 2
@@ -30,6 +32,7 @@
 
 class Camera;
 class CollisionSystem;
+class Spotlight;
 
 class GameManager {
 private:
@@ -115,6 +118,7 @@ public:
     
 	PointLight* createPointLight();
 	DirectionalLight* createDirectionalLight();
+	SpotLight* createSpotLight();
 	void deleteLight(LightSource* light);
 	void updateLights();
 

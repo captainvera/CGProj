@@ -12,6 +12,7 @@
 #include "Orange.h"
 #include "Butter.h"
 #include "Cheerio.h"
+#include "SpotLight.h"
 
 class Car : public DynamicObject {
 private:
@@ -20,6 +21,8 @@ private:
     Material _materialmotor,
              _materialrodas,
              _materialcapota;
+	SpotLight *_light_l,
+				*_light_r;
 public:
 	GLdouble _turnSpeed,
 			_angle,
@@ -37,7 +40,8 @@ public:
     GLboolean _left_pressed,
 			  _right_pressed, 
 			  _down_pressed, 
-			  _up_pressed;
+			  _up_pressed,
+			  _spot_on;
 
     Car();
     Car(GLdouble posx, GLdouble posy, GLdouble posz,
@@ -56,6 +60,7 @@ public:
     void collideWith(Cheerio* butter);
 
 	void reset(GLint lives);
+	void toggleSpotLight();
     
 };
 

@@ -8,6 +8,9 @@
 
 #include "Common.h"
 #include "Vector3.h"
+#include "GameObject.h"
+
+class GameObject;
 
 class LightSource {
 protected:
@@ -19,9 +22,13 @@ protected:
 
 	GLfloat _cut_off,
 			 _exponent,
+
 			 _w;
 	GLenum _num;
-	GLboolean _state;
+	GLboolean _state,
+			  _attached;
+
+	GameObject* _parent;
 
 	virtual void setExponent(GLfloat exp);
 	virtual void setCutoff(GLfloat cutoff);
@@ -41,10 +48,15 @@ public:
 	Vector3& getPosition();
 	void setPosition(GLfloat x, GLfloat y, GLfloat z);
 	void setPosition(Vector3& vec);
+	void updatePosition();
+	void updateDirection();
 
 	void setAmbient(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 	void setDiffuse(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
 	void setSpecular(GLfloat r, GLfloat g, GLfloat b, GLfloat a);
+
+	void attach(GameObject* parent);
+	void detach();
 
 	void draw();
 };

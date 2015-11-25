@@ -12,7 +12,7 @@
 class Vector3 {
 private:
 public:
-	GLdouble _x,
+	GLfloat _x,
 			 _y,
 			 _z;
 	Vector3();

@@ -7,6 +7,7 @@ LightSource::LightSource()
 	setPosition(0, 0, 0);
 	setDirection(0, 0, 1);
 	_state = true;
+	_attached = false;
 	_w = 0.0;
 }
 
@@ -51,25 +52,39 @@ Vector3 & LightSource::getPosition()
 void LightSource::setPosition(GLfloat x, GLfloat y, GLfloat z)
 {
 	_position.set(x, y, z);
-	GLfloat pos[4] = {x, y, z, _w};
-	glLightfv(_num, GL_POSITION, pos);
+	//updatePosition();
 }
 
 void LightSource::setPosition(Vector3 & vec)
 {
 	_position.set(vec);
-	GLfloat pos[4] = { (GLfloat)_position._x,
+	/*GLfloat pos[4] = { (GLfloat)_position._x,
 					   (GLfloat)_position._y,
 					   (GLfloat)_position._z,
 					   _w};
+	glLightfv(_num, GL_POSITION, pos);*/
+}
+
+void LightSource::updatePosition()
+{
+	GLfloat pos[4] = { _position._x, _position._y, _position._z, _w };
+	if (_attached == true) {
+		pos[0] += _parent->_position._x;
+		pos[1] += _parent->_position._y;
+		pos[2] += _parent->_position._z;
+	}
 	glLightfv(_num, GL_POSITION, pos);
+}
+
+void LightSource::updateDirection()
+{
+	GLfloat dir[4] = { _direction._x ,_direction._y ,_direction._z ,0.0 };
+	glLightfv(_num, GL_SPOT_DIRECTION, dir);
 }
 
 void LightSource::setDirection(GLfloat x, GLfloat y, GLfloat z)
 {
 	_direction.set(x, y, z);
-	GLfloat dir[4] = {x ,y ,z ,0.0};
-	glLightfv(_num, GL_SPOT_DIRECTION, dir);
 }
 
 void LightSource::setDirection(Vector3 & dir)
@@ -109,6 +124,17 @@ void LightSource::setSpecular(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
 	glLightfv(_num, GL_SPECULAR, _specular);
 }
 
+void LightSource::attach(GameObject * parent)
+{
+	_attached = true;
+	_parent = parent;
+}
+
+void LightSource::detach()
+{
+	_attached = false;
+}
+
 void LightSource::setExponent(GLfloat exp)
 {
 	_exponent = exp;
@@ -135,7 +161,8 @@ void LightSource::setAttenuation(GLfloat constant, GLfloat linear, GLfloat quadr
 
 void LightSource::draw()
 {	
-	setPosition(_position._x, _position._y, _position._z);
+	updatePosition();
+	updateDirection();
 	//(_direction);
 	//setExponent(_exponent);
 }

@@ -8,6 +8,7 @@ Candle::Candle()
 Candle::Candle(GLdouble posx, GLdouble posy, GLdouble posz)
 	: GameObject(posx, posy, posz)
 {
+
 	PointLight* _light;
 	_light = GameManager::getCurrentInstance()->createPointLight();
 	_light->setPosition(_position._x, _position._y+5,_position._z);

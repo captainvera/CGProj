@@ -49,7 +49,17 @@ Car::Car(GLdouble posx, GLdouble posy, GLdouble posz,
     shinecap = 20.0f;
     _materialcapota.setValues(ambcap, diffcap, speccap, shinecap);
     init();
-    
+
+	_light_l = GameManager::getCurrentInstance()->createSpotLight();
+	_light_l->setPosition(-2, 2, 0);
+	_light_l->setDirection(1, 0, 0);
+	_light_l->setCutoff(90.0);
+	_light_l->setExponent(32);
+	_light_l->setDiffuse(1.0, 1.0, 1.0, 1.0);
+	_light_l->setAmbient(0.0, 0.0, 0.0, 1.0);
+	_light_l->setSpecular(0.3, 0.3, 0.3, 1.0);
+	_light_l->setAttenuation(0.000, 0.0006, 0.0014);
+	_light_l->setState(false);
 }
 
 
@@ -84,6 +94,7 @@ void Car::init()
     _collisionradius *= 1.7;
     _front_wheel_rotation = 0;
     _drift = 0;
+	_spot_on = false;
 }
 
 void Car::render()
@@ -103,7 +114,8 @@ void Car::render()
 
     glPushMatrix();
      glRotatef(_angle,0,1,0);
-     glScalef(0.2,0.2,0.2);
+	 _light_l->draw();
+     glScalef(0.3,0.3,0.3);
     /*
     //base
      glColor3f(0.33, 0.2, 0.15);
@@ -713,7 +725,6 @@ void Car::update(GLdouble delta_t) {
 	if (checkOutOfBounds() == true) {
         DynamicObject::reset();
 	}
-
 }
 
 void Car::collide(GameObject *obj)
@@ -744,6 +755,12 @@ void Car::reset(GLint lives)
 	DynamicObject::reset();
 	_angle = 0.0;
 	_direction.set(1, 0, 0);
+}
+
+void Car::toggleSpotLight()
+{
+	_spot_on = !_spot_on;
+	_light_l->setState(_spot_on);
 }
 
 

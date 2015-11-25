@@ -17,6 +17,7 @@ class Butter;
 class Orange;
 class Cheerio;
 class Car;
+class LightSource;
 
 class GameObject : public Entity {
 protected:
@@ -35,7 +36,7 @@ protected:
 			  _hastexture;
 		
 	std::vector<GameObject*> _childs;
-	std::vector<LightSource*> _lights;
+ 	std::vector<LightSource*> _lights;
 	GameObject* _parent;
 	
 	

@@ -6,6 +6,7 @@
 #include "GameManager.h"
 #include "Logger.h"
 
+
 GameManager* current;
 GLdouble t,
 delta,
@@ -239,7 +240,6 @@ void GameManager::keyPressed(unsigned char key, int x, int y)
 
 void GameManager::onTimer(int value)
 {
-
 	t = glutGet(GLUT_ELAPSED_TIME);
 	delta = t - old;
 	old = t;
@@ -259,7 +259,6 @@ void GameManager::update(GLdouble delta_t)
         for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
             (*it)->update(delta_t);
         }
-
         _collision_system->searchCollisions(_gobjs, _car);
         /*for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
             if ((*it)->_hascollider == true) {
@@ -272,6 +271,7 @@ void GameManager::update(GLdouble delta_t)
         //Redraw
     }
     glutPostRedisplay();
+
 }
 
 void GameManager::draw()
@@ -280,15 +280,13 @@ void GameManager::draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	int a = 0;
-    
-    
+
+	_cam->update();
 	_cam->calculateCameraDirection();
 	_cam->computeProjectionMatrix(_current_w, _current_h);
 	_cam->computeVisualizationMatrix();
-    
 	updateLights();
-    
-    
+	
 	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
 		glPushMatrix();
 		(*it)->draw();
@@ -353,6 +351,7 @@ void GameManager::init(int argc, char* argv[])
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
+    glEnable(GL_NORMALIZE);
 
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Enable textures and set environment mode
@@ -381,7 +380,7 @@ void GameManager::init(int argc, char* argv[])
     _uipause = InterfaceElement(-4, -2, 8, 4);
     _uipause.setTexture(_UIPAUSEPATH);
     _uipause._active = true;
-    
+
 }
 
 void GameManager::start()
@@ -479,6 +478,30 @@ DirectionalLight* GameManager::createDirectionalLight()
 	return l;
 }
 
+SpotLight * GameManager::createSpotLight()
+{
+	SpotLight* l = nullptr;
+	if (_light_pool.size() > 0) {
+		GLenum n = _light_pool.back();
+		_light_pool.pop_back();
+
+		l = new SpotLight(n);
+		l->setState(true);
+
+		//Default Light Settings
+		l->setAmbient(0, 0, 0, 1);
+		l->setDiffuse(1, 1, 1, 1);
+		l->setSpecular(1, 1, 1, 1);
+		//l->setPosition(0, 0, 1);
+
+		std::cout << "Enabled spotlight " << n << "\n";
+		//_light_sources.push_back(l);
+	}
+	else
+		Logger::print("Error: tried to create lights but all lights are used");
+	return l;
+}
+
 void GameManager::deleteLight(LightSource * light)
 {
 	std::cout << "Deleting light " << light->getNum();
@@ -534,6 +557,7 @@ void GameManager::createSunLight()
 void GameManager::toggleSunLight()
 {
 	printf("Toggle\n");
+	_car->toggleSpotLight();
 	if (sun_light->getState()) {
 		printf("Disable\n");
 		sun_light->setState(false);
