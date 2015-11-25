@@ -251,7 +251,7 @@ void Car::render()
     glTranslatef(0, 4, 0);
     glRotatef(-90, 0, 1, 0);
     glScalef(2, 2, 2);
-    glColor3f(1, 0, 0);
+    glColor3f(1, 1, 1);
     //1
     glBegin(GL_TRIANGLES);
         glNormal3f(0,-1,0);
@@ -711,7 +711,7 @@ void Car::update(GLdouble delta_t) {
 	}
 
 	if (checkOutOfBounds() == true) {
-		reset();
+        DynamicObject::reset();
 	}
 
 }
@@ -739,7 +739,7 @@ void Car::collideWith(Cheerio* butter)
     
 }
 
-void Car::reset()
+void Car::reset(GLint lives)
 {
 	DynamicObject::reset();
 	_angle = 0.0;

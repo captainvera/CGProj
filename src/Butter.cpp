@@ -79,7 +79,7 @@ void Butter::update(GLdouble delta_t)
 	DynamicObject::update(delta_t);
 
 	if (checkOutOfBounds() == true)
-		reset();
+        DynamicObject::reset();
 }
 
 void Butter::collide(GameObject* obj) 
@@ -96,5 +96,24 @@ void Butter::collideWith(Car* car)
 				   _position.getY() - car->_position.getY(),
 			       _position.getZ() - car->_position.getZ());
     _direction.normalize2D();
+}
+
+void Butter::reset(GLint lives)
+{
+    if(lives == 0){
+        float posx =((std::rand() % (60 -0 + 1)))-30;
+        float posy = -1;
+        float posz = (std::rand() % (60-0 + 1))-30;
+        float roty = 1;
+        float angle = (std::rand() % (360-0 + 1));
+        float scale = 0.8+(std::rand() % (20-0 + 1))/100.0f;
+        
+        DynamicObject::setPosition(posx, posy, posz);
+        GameObject::setRotation(angle, 0,roty,0);
+        GameObject::setScale(scale, scale, scale);
+        
+        printf("CONA\n");
+    }
+    else DynamicObject::reset();
 }
 

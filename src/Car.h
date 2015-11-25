@@ -55,7 +55,7 @@ public:
     void collideWith(Orange* orange);
     void collideWith(Cheerio* butter);
 
-	void reset();
+	void reset(GLint lives);
     
 };
 

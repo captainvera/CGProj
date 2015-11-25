@@ -15,9 +15,10 @@
 #include "PointLight.h"
 #include "DirectionalLight.h"
 #include "DynamicObject.h"
+#include "InterfaceElement.h"
 
 #define TIMER_VAL 8
-#define MAX_LIVES 5
+#define MAX_LIVES 2
 
 class Camera;
 class CollisionSystem;
@@ -33,7 +34,11 @@ private:
 		   *_cam,
            *_uicam;
 
-	Car* _car;
+	Car* _car, *_uicar;
+    
+    InterfaceElement _uigameover,
+                     _uipause;
+    
 	DirectionalLight* sun_light;
     CollisionSystem* _collision_system;
 
@@ -54,7 +59,11 @@ private:
 	GLboolean _wireframe,
 			  _camFollow,
               _smooth_shading,
-			  _lights;
+			  _lights,
+              _gameover,
+              _pause;
+    
+    
     GLint   _lives;
     
 	void setDisplayCallback();
@@ -93,6 +102,7 @@ public:
 	void setCamera(Camera* cam);
 	void setCameras(Camera* cam1, Camera* cam2, Camera* uicam);
 	void setCar(Car * car);
+    void setUICar(Car* uicar);
     void setCollisionSystem(CollisionSystem* collisionSystem);
     
 	PointLight* createPointLight();
@@ -109,6 +119,7 @@ public:
 	void toggleCandles();
 
 	static GameManager* getCurrentInstance();
+    GLboolean isRunning();
 };
 
 #endif /* defined(__CGProj__GameManager__) */

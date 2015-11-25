@@ -61,6 +61,7 @@ public:
 	void toggleLights();
 
     virtual void reset();
+    virtual void reset(GLint _lives);
 
 	virtual void collide(GameObject* obj);
 	virtual void collideWith(GameObject* obj);
@@ -69,6 +70,8 @@ public:
 	virtual void collideWith(Cheerio* obj);
     virtual void collideWith(Car* obj);
     void setMaterial(float amb[4], float diff[4], float spec[4], float shine);
+    void setRotation(GLfloat rot, GLfloat x, GLfloat y, GLfloat z);
+    void setScale(GLfloat x, GLfloat y, GLfloat z);
 
 };
 #endif /* defined(__CGProj__GameObject__) */
