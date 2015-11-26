@@ -22,6 +22,7 @@ private:
                 _sizey;
     
     Texture     _texture;
+    //GLuint      _textureid;
     
 public:
     

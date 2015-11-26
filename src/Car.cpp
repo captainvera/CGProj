@@ -115,7 +115,7 @@ void Car::render()
     glPushMatrix();
      glRotatef(_angle,0,1,0);
 	 _light_l->draw();
-     glScalef(0.3,0.3,0.3);
+     glScalef(0.2,0.2,0.2);
     /*
     //base
      glColor3f(0.33, 0.2, 0.15);
@@ -723,7 +723,7 @@ void Car::update(GLdouble delta_t) {
 	}
 
 	if (checkOutOfBounds() == true) {
-        DynamicObject::reset();
+        GameManager::getCurrentInstance()->GGWP();
 	}
 }
 

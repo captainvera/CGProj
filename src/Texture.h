@@ -14,20 +14,18 @@
 
 class Texture {
 private:
-	static GLubyte _checkImage[checkImageHeight][checkImageWidth][4];
-	GLuint _textureName;
-	int _width, 
-		_height, 
-		_channels;
-	//GLubyte* _text;
+    static GLubyte _checkImage[checkImageHeight][checkImageWidth][4];
+    GLuint _textureName;
+    int _width,
+    _height,
+    _channels;
+    GLubyte* _text;
 public:
-	Texture();
-	~Texture();
-	void loadTexture(GLuint * texture, const char * path);
-	void textureInit(GLuint texture);
-	void textureEnd();
-	//void generateTexture(GLuint texture);
-	//void bindTexture();
+    Texture();
+    ~Texture();
+    void chooseImage(const char* path);
+    void generateTexture();
+    void bindTexture();
 };
 
 #endif /* defined(__CGProj__Texture__) */

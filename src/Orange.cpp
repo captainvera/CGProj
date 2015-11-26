@@ -137,8 +137,10 @@ void Orange::resetSpeed() {
 }
 void Orange::orangeRespawnCallback(int obj)
 {
-	Orange* o = (Orange*)obj;
-	o->respawn();
+    if(GameManager::getCurrentInstance()->isRunning()){
+        Orange* o = (Orange*)obj;
+        o->respawn();
+    }
 }
 
 void Orange::orangeSpeedCallback(int obj)

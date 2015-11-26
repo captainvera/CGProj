@@ -72,4 +72,5 @@ void InterfaceElement::render()
         
         glPopMatrix();
     }
+    glDisable(GL_TEXTURE_2D);
 }

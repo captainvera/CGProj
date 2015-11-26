@@ -177,62 +177,64 @@ void GameManager::keyboardUp(unsigned char key, int _x, int _y)
 void GameManager::keyPressed(unsigned char key, int x, int y)
 {
     if(_gameover == false){
-        if (key == 's'){
-            if(_pause == true)
-                _pause = false;
-            else _pause = true;
-        }
-        if (key == 'a') {
-            Logger::printf("Toggle wireframe");
-            if (_wireframe)
-                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            else
-                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            _wireframe = !_wireframe;
-        }
-        if(key == 't'){
-            _cam->toggleRotate();
-            Logger::printf("Toggle rotate");
-        }
-        if(key == 'g'){
-            if(_smooth_shading == true)
-            {
-                glShadeModel(GL_FLAT);
-                Logger::printf("Toggle Flat");
-                _smooth_shading = false;
+        if(_pause == false){
+            if(key == 's')
+                _pause = true;
+            if (key == 'a') {
+                Logger::printf("Toggle wireframe");
+                if (_wireframe)
+                    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                else
+                    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+                _wireframe = !_wireframe;
             }
-            else{
-                glShadeModel(GL_SMOOTH);
-                Logger::printf("Toggle Smooth");
-                _smooth_shading =true;
+            if(key == 't'){
+                _cam->toggleRotate();
+                Logger::printf("Toggle rotate");
             }
+            if(key == 'g'){
+                if(_smooth_shading == true)
+                {
+                    glShadeModel(GL_FLAT);
+                    Logger::printf("Toggle Flat");
+                    _smooth_shading = false;
+                }
+                else{
+                    glShadeModel(GL_SMOOTH);
+                    Logger::printf("Toggle Smooth");
+                    _smooth_shading =true;
+                }
+            }
+            if (key == 'n')
+                toggleSunLight();
+            if (key == 'l')
+                toggleLights();
+            if (key == 'c')
+                toggleCandles();
+            
+            if (key == '1') {
+                _cam->stopFollow();
+                _cam = _cam1;
+                
+            }
+            if (key == '2') {
+                _cam = _cam2;
+                _cam->stopFollow();
+                _cam->setPosition(0, 100, 1);
+                _cam->setLook(Vector3(0, 0, 0));
+            }
+            if (key == '3') {
+                _cam = _cam2;
+                _cam->followCar(_car, Vector3(15,7,15));
+            }
+            if (key == 27) {
+                exit(1);
+                
+            }
+            
         }
-        if (key == 'n')
-            toggleSunLight();
-        if (key == 'l')
-            toggleLights();
-        if (key == 'c')
-            toggleCandles();
-        
-        if (key == '1') {
-            _cam->stopFollow();
-            _cam = _cam1;
-
-        }
-        if (key == '2') {
-            _cam = _cam2;
-            _cam->stopFollow();
-            _cam->setPosition(0, 100, 1);
-            _cam->setLook(Vector3(0, 0, 0));
-        }
-        if (key == '3') {
-            _cam = _cam2;
-            _cam->followCar(_car, Vector3(15,7,15));
-        }
-        if (key == 27) {
-            exit(1);
-
-        }
+        else if (key == 's')
+            _pause = false;
     } else if (key == 'r'){
         _gameover = false;
     }
@@ -254,7 +256,8 @@ void GameManager::idle()
 
 void GameManager::update(GLdouble delta_t)
 {
-    if(_gameover == false && _pause == false){
+    
+    if(isRunning()){
         _cam->update();
         for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
             (*it)->update(delta_t);
@@ -271,31 +274,36 @@ void GameManager::update(GLdouble delta_t)
         //Redraw
     }
     glutPostRedisplay();
-
+    
 }
 
 void GameManager::draw()
 {
-	glClearColor(0.0f, 0.4f, 0.7f,1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glClear(GL_DEPTH_BUFFER_BIT);
-	int a = 0;
-
-	_cam->update();
-	_cam->calculateCameraDirection();
-	_cam->computeProjectionMatrix(_current_w, _current_h);
-	_cam->computeVisualizationMatrix();
-	updateLights();
-	
-	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-		glPushMatrix();
-		(*it)->draw();
-		glPopMatrix();
-		a++;
-	}
-	
+    //if(isRunning() == true){
+        glClearColor(0.0f, 0.4f, 0.7f,1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_DEPTH_BUFFER_BIT);
+        
+        int a = 0;
+        
+        _cam->update();
+        _cam->calculateCameraDirection();
+        _cam->computeProjectionMatrix(_current_w, _current_h);
+        _cam->computeVisualizationMatrix();
+        
+        updateLights();
+        
+        for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+            glPushMatrix();
+            (*it)->draw();
+            glPopMatrix();
+            a++;
+        }
+        
+    //}
     glDisable(GL_DEPTH_TEST);
-    glDisable(GL_LIGHTING);
+    if(_lights == true)
+        glDisable(GL_LIGHTING);
     _uicam->calculateCameraDirection();
     _uicam->computeProjectionMatrix(_current_w, _current_h);
     _uicam->computeVisualizationMatrix();
@@ -305,9 +313,11 @@ void GameManager::draw()
     glPopMatrix();
 
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
+    if (_lights == true)
+        glEnable(GL_LIGHTING);
     //std::cout << "Draw " << a << " objects\n";
 	glFlush();
+    
 }
 
 void GameManager::overlay()
@@ -325,7 +335,7 @@ void GameManager::overlay()
         glPopMatrix();
     }
     else for(int i = 0; i < _lives; i++){
-        _uicar->setPosition(9-i*0.5, 2, 7.5);
+        _uicar->setPosition(4-i*0.5, 2, 5);
         glPushMatrix();
         _uicar->draw();
         glPopMatrix();
@@ -353,9 +363,6 @@ void GameManager::init(int argc, char* argv[])
     glEnable(GL_BLEND);
     glEnable(GL_NORMALIZE);
 
-	//glEnable(GL_TEXTURE_2D);
-	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Enable textures and set environment mode
-
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
     glShadeModel(GL_SMOOTH);
@@ -373,6 +380,7 @@ void GameManager::init(int argc, char* argv[])
     _lives = MAX_LIVES;
     _gameover = false;
     _pause = false;
+    
     _uigameover = InterfaceElement(-4, -2, 8, 4);
     _uigameover.setTexture(_UIGAMEOVERPATH);
     _uigameover._active = true;
@@ -380,6 +388,8 @@ void GameManager::init(int argc, char* argv[])
     _uipause = InterfaceElement(-4, -2, 8, 4);
     _uipause.setTexture(_UIPAUSEPATH);
     _uipause._active = true;
+    
+    _lights = true;
 
 }
 

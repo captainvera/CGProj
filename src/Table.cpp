@@ -34,9 +34,8 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
 	_cube_size = 2;
 
 
-	_texture.loadTexture(&texture, TEXTURE_PATH);
-
-	//_texture.generateTexture(texture);
+	_texture.chooseImage(TEXTURE_PATH);
+	_texture.generateTexture();
 }
 Table::~Table()
 {
@@ -66,10 +65,9 @@ void Table::render()
 
 	// --------------- Mesa do Jorge ------------------
 	
-	//_texture.bindTexture();
+	_texture.bindTexture();
 
 
-	_texture.textureInit(texture);
 
 	glColor3f(0.30, 0.15, 0.0);
 
@@ -103,9 +101,11 @@ void Table::render()
 		}
 		glEnd();
 		
-		_texture.textureEnd();
+		
 	}
 	glPopMatrix();
+    
+    glDisable(GL_TEXTURE_2D);
 }
 
 

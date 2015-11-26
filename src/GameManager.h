@@ -20,14 +20,14 @@
 #include "SOIL.h"
 
 #define TIMER_VAL 8
-#define MAX_LIVES 2
+#define MAX_LIVES 5
 
 #if defined(__APPLE__) || defined(MACOSX)
-#define _UIGAMEOVERPATH "../../Assets/GameOver.png"
-#define _UIPAUSEPATH "../../Assets/Pause.png"
+#define _UIGAMEOVERPATH "/Users/Administrador/Documents/DEV/GameDev/CG/Assets/GameOver.png"
+#define _UIPAUSEPATH "/Users/Administrador/Documents/DEV/GameDev/CG/Assets/Pause.png"
 #else
-#define _UIGAMEOVERPATH "../../Assets/GameOver.png"
-#define _UIPAUSEPATH "../../Assets/Pause.png"
+#define _UIGAMEOVERPATH "..\\..\\..\\CGProj\\assets\\GameOver.png"
+#define _UIPAUSEPATH "..\\..\\..\\CGProj\\assets\\Pause.png"
 #endif
 
 class Camera;

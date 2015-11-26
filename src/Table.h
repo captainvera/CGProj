@@ -9,7 +9,12 @@
 #include "Common.h"
 #include "StaticObject.h"
 
+#if defined(__APPLE__) || defined(MACOSX)
+#define TEXTURE_PATH "/Users/Administrador/Documents/DEV/GameDev/CG/Assets/wood.jpg"
+#else
 #define TEXTURE_PATH "..\\..\\..\\CGProj\\assets\\wood.jpg"
+#endif
+
 
 class Table : public StaticObject {
 private:
@@ -23,7 +28,7 @@ public:
 
     void render();
 	void update(GLdouble delta_t);
-	GLuint texture;
+	//GLuint texture;
 	//void static drawBoxTable(GLfloat size, GLenum type);
 	//void SolidCubeTable(GLdouble size);
 };
