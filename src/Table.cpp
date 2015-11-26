@@ -34,6 +34,9 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
 
 	_texture.chooseImage(TEXTURE_PATH);
 	_texture.generateTexture();
+
+	if (_texture.isNull())
+		printf("ERROR LOADING TEXTURE\n");
 }
 
 Table::~Table()

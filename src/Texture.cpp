@@ -30,9 +30,14 @@ void Texture::generateTexture()
 	SOIL_free_image_data(_text);
 }
 
-void Texture::bindTexture()
+void Texture::bindTexture() 
 {
 	glBindTexture(GL_TEXTURE_2D, _textureName);
+}
+
+bool Texture::isNull()
+{
+	return _text == 0;
 }
 
 

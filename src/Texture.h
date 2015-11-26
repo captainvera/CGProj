@@ -26,6 +26,7 @@ public:
 	void chooseImage(const char* path);
 	void generateTexture();
 	void bindTexture();
+	bool isNull();
 };
 
 #endif /* defined(__CGProj__Texture__) */

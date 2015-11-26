@@ -9,7 +9,7 @@
 #include "Common.h"
 #include "StaticObject.h"
 
-#define TEXTURE_PATH "..\\..\\..\\CGProj\\assets\\wood.jpg"
+#define TEXTURE_PATH "assets\\wood.jpg"
 
 class Table : public StaticObject {
 private:
