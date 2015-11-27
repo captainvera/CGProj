@@ -31,6 +31,7 @@ public:
 
 	Vector3 getDirection();
 	virtual void reset();
+    virtual void reset(GLint lives);
 	virtual void move(GLdouble delta_t);
 };
 

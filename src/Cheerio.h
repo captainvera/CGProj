@@ -27,6 +27,7 @@ public:
     void collideWith(Car* car);
     void collideWith(Butter* car);
     void collideWith(Cheerio* car);
+    void reset(GLint lives);
 };
 
 #endif /* defined(__CGProj__Orange__) */

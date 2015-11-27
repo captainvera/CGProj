@@ -5,7 +5,7 @@
 
 #include "GameManager.h"
 #include "Logger.h"
-#include "SOIL.h"
+
 
 GameManager* current;
 GLdouble t,
@@ -99,6 +99,9 @@ void GameManager::reshape(GLsizei w, GLsizei h)
 	_current_h = h;
 	_cam->computeProjectionMatrix(_current_w, _current_h);
 	_cam->computeVisualizationMatrix();
+
+    _uicam->computeProjectionMatrix(_current_w, _current_h);
+    _uicam->computeVisualizationMatrix();
 }
 
 void GameManager::displayCallback()
@@ -173,59 +176,69 @@ void GameManager::keyboardUp(unsigned char key, int _x, int _y)
 
 void GameManager::keyPressed(unsigned char key, int x, int y)
 {
-
-	if (key == 'a') {
-		Logger::printf("Toggle wireframe");
-		if (_wireframe) 
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		else
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		_wireframe = !_wireframe;
-	}
-    if(key == 'r'){
-        _cam->toggleRotate();
-        Logger::printf("Toggle rotate");
-    }
-    if(key == 'g'){
-        if(_smooth_shading == true)
-        {
-            glShadeModel(GL_FLAT);
-            Logger::printf("Toggle Flat");
-            _smooth_shading = false;
+    if(_gameover == false){
+        if(_pause == false){
+            if(key == 's')
+                _pause = true;
+            if (key == 'a') {
+                Logger::printf("Toggle wireframe");
+                if (_wireframe)
+                    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                else
+                    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+                _wireframe = !_wireframe;
+            }
+            if(key == 't'){
+                _cam->toggleRotate();
+                Logger::printf("Toggle rotate");
+            }
+            if(key == 'g'){
+                if(_smooth_shading == true)
+                {
+                    glShadeModel(GL_FLAT);
+                    Logger::printf("Toggle Flat");
+                    _smooth_shading = false;
+                }
+                else{
+                    glShadeModel(GL_SMOOTH);
+                    Logger::printf("Toggle Smooth");
+                    _smooth_shading =true;
+                }
+            }
+            if (key == 'n')
+                toggleSunLight();
+            if (key == 'l')
+                toggleLights();
+            if (key == 'c')
+                toggleCandles();
+			if (key == 'h')
+				_car->toggleSpotLight();
+            if (key == '1') {
+                _cam->stopFollow();
+                _cam = _cam1;
+                
+            }
+            if (key == '2') {
+                _cam = _cam2;
+                _cam->stopFollow();
+                _cam->setPosition(0, 100, 1);
+                _cam->setLook(Vector3(0, 0, 0));
+            }
+            if (key == '3') {
+                _cam = _cam2;
+                _cam->followCar(_car, Vector3(15,7,15));
+            }
+            if (key == 27) {
+                exit(1);
+                
+            }
+            
         }
-        else{
-            glShadeModel(GL_SMOOTH);
-            Logger::printf("Toggle Smooth");
-            _smooth_shading =true;
-        }
+        else if (key == 's')
+            _pause = false;
+    } else if (key == 'r'){
+        _gameover = false;
     }
-	if (key == 'n')
-		toggleSunLight();
-	if (key == 'l')
-		toggleLights();
-	if (key == 'c')
-		toggleCandles();
-
-	if (key == '1') {
-		_cam->stopFollow();
-		_cam = _cam1;
-
-	}
-	if (key == '2') {
-		_cam = _cam2;
-		_cam->stopFollow();
-		_cam->setPosition(0, 100, 1);
-		_cam->setLook(Vector3(0, 0, 0));
-	}
-	if (key == '3') {
-		_cam = _cam2;
-		_cam->followCar(_car, Vector3(15,7,15));
-	}
-	if (key == 27) {
-		exit(1);
-
-	}
-
 }
 
 void GameManager::onTimer(int value)
@@ -244,39 +257,93 @@ void GameManager::idle()
 
 void GameManager::update(GLdouble delta_t)
 {
+    
+    if(isRunning()){
+        _cam->update();
+        for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+            (*it)->update(delta_t);
+        }
+        _collision_system->searchCollisions(_gobjs, _car);
 
-	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-		(*it)->update(delta_t);
-	}
-	
-	_collision_system->searchCollisions(_gobjs, _car);
-
-	//Redraw
-	glutPostRedisplay();
+		//For collisions between everything
+        /*for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+            if ((*it)->_hascollider == true) {
+                DynamicObject* din;
+                din = (DynamicObject*)(*it);
+                if(din->getSpeed() > 0)
+                    _collision_system->searchCollisions(_gobjs, din);
+            }
+         }*/
+        //Redraw
+    }
+    glutPostRedisplay();
+    
 }
 
 void GameManager::draw()
 {
-	glClearColor(0.0f, 0.4f, 0.7f,1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glClear(GL_DEPTH_BUFFER_BIT);
-	int a = 0;
+  
+    glClearColor(0.0f, 0.4f, 0.7f,1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
+        
+    int a = 0;
+        
+    _cam->update();
+    _cam->calculateCameraDirection();
+    _cam->computeProjectionMatrix(_current_w, _current_h);
+    _cam->computeVisualizationMatrix();
+        
+    updateLights();
+        
+    for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
+        glPushMatrix();
+        (*it)->draw();
+        glPopMatrix();
+        a++;
+    }
+        
+	//Draw UI    
+    glDisable(GL_DEPTH_TEST);
+    if(_lights == true)
+        glDisable(GL_LIGHTING);
+    _uicam->calculateCameraDirection();
+    _uicam->computeProjectionMatrix(_current_w, _current_h);
+    _uicam->computeVisualizationMatrix();
+    
+    glPushMatrix();
+     overlay();
+    glPopMatrix();
 
-	_cam->update();
-	_cam->calculateCameraDirection();
-	_cam->computeProjectionMatrix(_current_w, _current_h);
-	_cam->computeVisualizationMatrix();
-	updateLights();
-	
-	for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-		glPushMatrix();
-		(*it)->draw();
-		glPopMatrix();
-		a++;
-	}
-	
-	//std::cout << "Draw " << a << " objects\n";
+    glEnable(GL_DEPTH_TEST);
+    if (_lights == true)
+        glEnable(GL_LIGHTING);
 	glFlush();
+    
+}
+
+void GameManager::overlay()
+{
+    
+    if (_pause == true){
+        glPushMatrix();
+        _uipause.render();
+        glPopMatrix();
+    }
+    
+    if(_gameover == true){
+        glPushMatrix();
+        _uigameover.render();
+        glPopMatrix();
+    }
+    else for(int i = 0; i < _lives; i++){
+        _uicar->setPosition(4-i*0.5, 2, 5);
+        glPushMatrix();
+        _uicar->draw();
+        glPopMatrix();
+        
+    }
+        
 }
 
 void GameManager::init(int argc, char* argv[])
@@ -298,9 +365,6 @@ void GameManager::init(int argc, char* argv[])
     glEnable(GL_BLEND);
     glEnable(GL_NORMALIZE);
 
-	glEnable(GL_TEXTURE_2D);
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE); // Enable textures and set environment mode
-
     _smooth_shading = true;
 	glEnable(GL_LIGHTING);
     glShadeModel(GL_SMOOTH);
@@ -314,6 +378,20 @@ void GameManager::init(int argc, char* argv[])
 	setReshapeCallback();
 	setKeyboardCallback();
 	setTimerCallback();
+    
+    _lives = MAX_LIVES;
+    _gameover = false;
+    _pause = false;
+    
+    _uigameover = InterfaceElement(-4, -2, 8, 4);
+    _uigameover.setTexture(_UIGAMEOVERPATH);
+    _uigameover._active = true;
+    
+    _uipause = InterfaceElement(-4, -2, 8, 4);
+    _uipause.setTexture(_UIPAUSEPATH);
+    _uipause._active = true;
+    
+    _lights = true;
 
 }
 
@@ -334,11 +412,13 @@ void GameManager::setCamera(Camera * cam)
 	_cam = cam;
 }
 
-void GameManager::setCameras(Camera * cam1, Camera * cam2)
+void GameManager::setCameras(Camera * cam1, Camera * cam2, Camera* uicam)
 {
 	_cam1 = cam1;
 	_cam2 = cam2;
+    _uicam = uicam;
 	_cam = _cam1;
+    
 }
 
 
@@ -347,6 +427,13 @@ void GameManager::setCar(Car * car) {
 	_car = car;
 	Logger::printf("Car added");
 
+}
+
+void GameManager::setUICar(Car * uicar) {
+    
+    _uicar = uicar;
+    Logger::printf("UICar added");
+    
 }
 
 void GameManager::setCollisionSystem(CollisionSystem* collisionSystem)
@@ -420,7 +507,6 @@ SpotLight * GameManager::createSpotLight()
 		//l->setPosition(0, 0, 1);
 
 		std::cout << "Enabled spotlight " << n << "\n";
-		//_light_sources.push_back(l);
 	}
 	else
 		Logger::print("Error: tried to create lights but all lights are used");
@@ -451,10 +537,14 @@ GLboolean GameManager::wireframe()
 
 void GameManager::GGWP()
 {
+    _lives--;
     for (std::vector<GameObject*>::iterator it = _gobjs.begin(); it != _gobjs.end(); ++it) {
-        (*it)->reset();
+        (*it)->reset(_lives);
     }
-
+    if(_lives <= 0){
+        _gameover = true;
+        _lives = MAX_LIVES;
+    }
 }
 
 void GameManager::toggleLights()
@@ -478,12 +568,15 @@ void GameManager::createSunLight()
 void GameManager::toggleSunLight()
 {
 	printf("Toggle\n");
-	_car->toggleSpotLight();
 	if (sun_light->getState()) {
 		printf("Disable\n");
 		sun_light->setState(false);
+		_car->setLight(true);
 	}
-	else sun_light->setState(true);
+	else {
+		sun_light->setState(true);
+		_car->setLight(false);
+	}
 }
 
 void GameManager::toggleCandles()
@@ -497,4 +590,11 @@ void GameManager::toggleCandles()
 GameManager * GameManager::getCurrentInstance()
 {
 	return current;
+}
+
+GLboolean GameManager::isRunning()
+{
+    if(_gameover == true || _pause == true)
+        return false;
+    return true;
 }

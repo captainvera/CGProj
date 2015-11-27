@@ -59,6 +59,11 @@ void DynamicObject::reset()
 	GameObject::reset();
 }
 
+void DynamicObject::reset(GLint lives)
+{
+    _speed = 0;
+}
+
 void DynamicObject::move(GLdouble delta_t)
 {
 	_position.set(_position.getX() + _direction.getX()*_speed*delta_t, 

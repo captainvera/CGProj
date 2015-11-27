@@ -11,17 +11,17 @@ Table::Table()
 }
 
 Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
-               GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
-               GLdouble scalex, GLdouble scaley, GLdouble scalez)
-:StaticObject(posx, posy, posz,
-              rotangle, rotx, roty, rotz,
-              scalex, scaley, scalez)
+	GLdouble rotangle, GLdouble rotx, GLdouble roty, GLdouble rotz,
+	GLdouble scalex, GLdouble scaley, GLdouble scalez)
+	:StaticObject(posx, posy, posz,
+		rotangle, rotx, roty, rotz,
+		scalex, scaley, scalez)
 {
 
-    GLfloat amb[4] = {0.15f,0.012f,0.0f,1.0f},
-    diff[4] = {0.12f,0.08f,0.0f,1.0f},
-    spec[4] = {0.0f,0.0f,0.0f,1.0f},
-    shine = 80.0f;
+	GLfloat amb[4] = { 0.15f,0.012f,0.0f,1.0f },
+		diff[4] = { 0.12f,0.08f,0.0f,1.0f },
+		spec[4] = { 0.0f,0.0f,0.0f,1.0f },
+		shine = 80.0f;
 
 	// ---------------------- usar se pretender ter a cor original da textura --------------
 	/*GLfloat amb[4] = { 0.15f,0.012f,0.0f,1.0f },
@@ -29,8 +29,10 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
 		spec[4] = { 0.0f,0.0f,0.0f,1.0f },
 		shine = 0.0f;*/
 
-    setMaterial(amb, diff, spec, shine);
-    _cube_size = 2;
+	setMaterial(amb, diff, spec, shine);
+
+	_cube_size = 2;
+
 
 	_texture.chooseImage(TEXTURE_PATH);
 	_texture.generateTexture();
@@ -38,15 +40,13 @@ Table::Table(GLdouble posx, GLdouble posy, GLdouble posz,
 	if (_texture.isNull())
 		printf("ERROR LOADING TEXTURE\n");
 }
-
 Table::~Table()
 {
 }
 
 void Table::render()
 {   
-
-	// ------------------ Mesa do Vera (MERDA) --------------------
+	// ------------------ Mesa do Vera (BAD) --------------------
 	//glPushMatrix();
     //glTranslatef(-75, -_cube_size*1.5, -75);
 	/*for (int u = -75; u < 75; u = u + _cube_size)
@@ -69,6 +69,8 @@ void Table::render()
 	// --------------- Mesa do Jorge ------------------
 	
 	_texture.bindTexture();
+
+
 
 	glColor3f(0.30, 0.15, 0.0);
 
@@ -102,11 +104,11 @@ void Table::render()
 		}
 		glEnd();
 		
+		
 	}
 	glPopMatrix();
-	
-
-	
+    
+    glDisable(GL_TEXTURE_2D);
 }
 
 
