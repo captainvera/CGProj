@@ -33,6 +33,11 @@ void Entity::setPosition(Vector3& vec)
     _position = vec;
 }
 
+void Entity::setInitPosition(GLdouble x, GLdouble y, GLdouble z)
+{
+    _init_position.set(x, y, z);
+}
+
 void Entity::reset()
 {
     _position = _init_position;

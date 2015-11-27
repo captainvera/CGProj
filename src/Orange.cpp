@@ -159,7 +159,7 @@ void Orange::collideWith(Car* obj)
 
 void Orange::reset()
 {
-	respawn();
+    DynamicObject::reset();
 	resetSpeed();
 }
 
@@ -167,6 +167,11 @@ void Orange::reset(GLint lives)
 {
     if(lives != 0){
         resetSpeed();
+        Vector3 _pos = Vector3((std::rand() % (60 - 0 + 1)) - 30, _position._y, (std::rand() % (60 - 0 + 1)) - 30);
+        Entity::setInitPosition(_pos._x, _pos._y, _pos._z);
+        _direction = Vector3(2 * ((double)(std::rand()) / RAND_MAX) - 1, 0, 2 * ((double)(std::rand()) / RAND_MAX) - 1);
+        _direction.normalize();
+        _base_speed = ((double)std::rand() / RAND_MAX)*0.010 + 0.005;
         DynamicObject::reset();
     }
     else reset();
