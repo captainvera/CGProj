@@ -169,3 +169,14 @@ void GameObject::setScale(GLfloat x, GLfloat y, GLfloat z)
 {
     _scale = Vector3(x,y,z);
 }
+
+void GameObject::setInitRotation(GLfloat rotangle, GLfloat x, GLfloat y, GLfloat z)
+{
+    _init_rotation = Vector3(x,y,z);
+    _init_rotangle = rotangle;
+}
+
+void GameObject::setInitScale(GLfloat x, GLfloat y, GLfloat z)
+{
+    _init_scale = Vector3(x,y,z);
+}

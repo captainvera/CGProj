@@ -108,9 +108,10 @@ void Butter::reset(GLint lives)
         float angle = (std::rand() % (360-0 + 1));
         float scale = 0.8+(std::rand() % (20-0 + 1))/100.0f;
         
-        DynamicObject::setPosition(posx, posy, posz);
-        GameObject::setRotation(angle, 0,roty,0);
-        GameObject::setScale(scale, scale, scale);
+        Entity::setInitPosition(posx, posy, posz);
+        GameObject::setInitRotation(angle, 0,roty,0);
+        GameObject::setInitScale(scale, scale, scale);
+        DynamicObject::reset();
         
         printf("CONA\n");
     }

@@ -22,6 +22,7 @@ public:
     Vector3& getPosition();
     void setPosition(GLdouble x, GLdouble y, GLdouble z);
     void setPosition(Vector3& vec);
+    void setInitPosition(GLdouble x, GLdouble y, GLdouble z);
     virtual void reset();
 };
 

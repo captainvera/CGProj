@@ -73,6 +73,8 @@ public:
     void setMaterial(float amb[4], float diff[4], float spec[4], float shine);
     void setRotation(GLfloat rot, GLfloat x, GLfloat y, GLfloat z);
     void setScale(GLfloat x, GLfloat y, GLfloat z);
-
+    void setInitRotation(GLfloat rotangle, GLfloat x, GLfloat y, GLfloat z);
+    void setInitScale(GLfloat x, GLfloat y, GLfloat z);
+    
 };
 #endif /* defined(__CGProj__GameObject__) */
