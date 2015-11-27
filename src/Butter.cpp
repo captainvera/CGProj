@@ -112,8 +112,6 @@ void Butter::reset(GLint lives)
         GameObject::setInitRotation(angle, 0,roty,0);
         GameObject::setInitScale(scale, scale, scale);
         DynamicObject::reset();
-        
-        printf("CONA\n");
     }
     else DynamicObject::reset();
 }
